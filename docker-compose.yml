@@ -12,7 +12,7 @@ services:
       - MYSQL_HOST=mysql
       - NEXT_TELEMETRY_DISABLED=1
     env_file:
-      - .env.local
+      - .env
     expose:
       - 8080
     command: npm run build-start
@@ -27,11 +27,11 @@ services:
       - ./db:/var/lib/mysql:rw
       - ./db_dump:/docker-entrypoint-initdb.d
     environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD: doit
-      - MYSQL_ROOT_HOST: localhost
-      - MYSQL_USER: ${MYSQL_USER}
-      - MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      - MYSQL_DATABASE: ${MYSQL_DATABASE}
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_ROOT_HOST=localhost
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
 
 
   nginx:
