@@ -1,0 +1,35 @@
+version: '3'
+services:
+  nextjs:
+    build: ./nextjs
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    environment:
+      - PORT=8080
+      - MYSQL_HOST=mysql
+      - NEXT_TELEMETRY_DISABLED=1
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+    command: npm run dev
+
+  mysql:
+    image: mariadb:10.6
+    hostname: mysql
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    volumes:
+      - ./db:/var/lib/mysql:rw
+      - ./db_dump:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD: kirowashere
+      - MYSQL_USER: ${MYSQL_USER}
+      - MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      - MYSQL_DATABASE: ${MYSQL_DATABASE}

@@ -1,0 +1,29 @@
+db/
+certbot/
+.vscode/
+.env*
+
+# dependencies
+nextjs/node_modules
+nextjs/.pnp
+nextjs/.pnp.js
+
+# testing
+nextjs/coverage
+
+# next.js
+nextjs/.next/
+nextjs/out/
+
+# production
+nextjs/build
+
+
+# debug
+nextjs/npm-debug.log*
+nextjs/yarn-debug.log*
+nextjs/yarn-error.log*
+nextjs/.pnpm-debug.log*
+
+# vercel
+nextjs/.vercel

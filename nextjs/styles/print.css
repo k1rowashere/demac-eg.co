@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+@media print {
+    .bg-light {
+        background: none !important;
+    }
+    * {
+        border: none !important;
+    }
+    .no-print,
+    .no-print * {
+        display: none;
+    }
+
+    
+
+    footer, footer *,
+    .navbar,
+    .navbar *,
+    button {
+        display: none;
+    }
+}
