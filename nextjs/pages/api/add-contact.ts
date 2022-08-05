@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { v4 as uuidv4 } from 'uuid';
 import { renderToString } from 'react-dom/server';
+import requestIp from 'request-ip';
 import nodemailer from 'nodemailer';
 
 import { AddUserInternal } from '../../components/email/add_user_i';
@@ -10,32 +11,22 @@ import rateLimit from '../../utils/rate_limit';
 import { product } from '../../utils/types';
 import { emailTrasportOptions } from '../../utils/constants';
 
-
-const limiter = rateLimit({
-    interval: 5 * 60 * 1000, // 5 mins
-    uniqueTokenPerInterval: 500, // Max 500 users per second
-})
-
-export const config = {
-    api: {
-        bodyParser: {
-            sizeLimit: '1kb',
-        },
-    },
-}
-
+export const config = { api: { bodyParser: { sizeLimit: '5kb' } } }
+const limiterIp = rateLimit({ interval: 5 * 60 * 1000, uniqueTokenPerInterval: 500 })
+const limiterCart = rateLimit({ interval: 10 * 60 * 1000, uniqueTokenPerInterval: 500 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
     //TODO: security
 
     //Only allow POST requests
-    if (req.method !== 'POST') return res.status(404).json({});
+    if (req.method !== 'POST') return res.status(404).send('');
+    if (req.headers['content-type'] !== 'application/json') return res.status(415).json({ error: 'content-type must be application/json' });
 
     //ratelimiter
     if (process.env.NODE_ENV !== 'development') {
         try {
-            await limiter.check(res, 2, 'CACHE_TOKEN'); // 1 request per 5 minutes
+            await limiterIp.check(res, 10, requestIp.getClientIp(req) || ''); // 10 request per 5 minutes for a given ip
+            await limiterCart.check(res, 1, (req.cookies.cart + JSON.stringify(req.body)) || ''); // 1 request for the same cart and same contact info
         } catch {
             return res.status(429).json({ error: 'Rate limit exceeded' });
         }
@@ -65,15 +56,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //render internal email
     //TODO: add customer confirm email
     //TODO: add db store
-    
+
     //send email
     let transport = nodemailer.createTransport(emailTrasportOptions);
-    
+
     const html = renderToString(AddUserInternal({ cartCount, cartItems, contactInfo: body }));
     if (process.env.NODE_ENV === 'development') {
         console.log(html)
     } else {
-        let info = await transport.sendMail({
+        transport.sendMail({
             from: '"THIS IS A TEST" <sales@demac-egypt.com>',
             to: "krolamrolla@gmail.com",
             subject: "THIS IS A TEST",
