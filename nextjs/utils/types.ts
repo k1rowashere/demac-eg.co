@@ -22,4 +22,5 @@ export interface contactInfo {
     phone: string;
     address: string;
     message?: string;
+    captchaToken: string;
 };

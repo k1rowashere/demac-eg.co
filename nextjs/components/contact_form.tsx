@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { UseFormReturn, useForm, SubmitHandler } from 'react-hook-form';
+import { useEffect, useRef, useState } from 'react';
+import { UseFormReturn, SubmitHandler } from 'react-hook-form';
 
-import { Button, Form, InputGroup, FloatingLabel, Stack, OverlayTrigger, Spinner } from 'react-bootstrap';
+import ReCAPTCHA from 'react-google-recaptcha';
+import { Button, Form, InputGroup, Stack, Spinner } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
-import SuccessModal from "./success_status_modal";
+import SuccessModal from './success_status_modal';
 
-import { contactInfo } from "../utils/types";
-import { doesNotMatch } from "assert";
+import type { contactInfo } from '../utils/types';
 
 type MyFormControl = {
     type?: string;
@@ -37,34 +37,37 @@ async function sendInfo(body: contactInfo) {
     return res.status
 }
 
-export default function ContactForm({ handleClose = () => { }, showCancel = false, form }: {handleClose?: () => void, showCancel?: boolean, form: UseFormReturn<contactInfo>}) {
-
-    const { watch, control, register, handleSubmit, formState: { errors } } = form
+export default function ContactForm({ handleClose = () => { }, showCancel = false, form }: { handleClose?: () => void, showCancel?: boolean, form: UseFormReturn<contactInfo> }) {
+    const { watch, setValue, register, handleSubmit, formState: { errors }, clearErrors } = form
     const [confirm, setConfirm] = useState(0); // 0: no clicks, 1: waiting for confirm, 2: loading
     const [successStatus, setSuccessStatus] = useState({ show: false, status: 0 } as { show: boolean, status?: number });
-
-    // const required = { required: { value: true, message: "Required" } }
-    // const nameValid = { minLength: { value: 3, message: 'Too short' }, maxLength: { value: 32, message: 'Too long' } }
-    // const emailValid = { pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g, message: 'Invalid email' } }
-    // const mobileValid = { minLength: { value: 12, message: 'Invalid' }, maxLength: { value: 12, message: 'Invalid' } }
-    // const phoneValid = {
-    //     pattern: { value: /^[0-9]*$/, message: 'Invalid number' },
-    //     minLength: { value: 9, message: 'Too short' },
-    //     maxLength: { value: 10, message: 'Too long' }
-    // }
+    const captchaRef = useRef<ReCAPTCHA>(null);
+    useEffect(() => { register('captchaToken', { required: true }) });
+    const required = { required: { value: true, message: "Required" } }
+    const nameValid = { minLength: { value: 3, message: 'Too short' }, maxLength: { value: 32, message: 'Too long' } }
+    const emailValid = { pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g, message: 'Invalid email' } }
+    const mobileValid = { minLength: { value: 12, message: 'Invalid' }, maxLength: { value: 12, message: 'Invalid' } }
+    const phoneValid = {
+        pattern: { value: /^[0-9]*$/, message: 'Invalid number' },
+        minLength: { value: 9, message: 'Too short' },
+        maxLength: { value: 10, message: 'Too long' }
+    }
 
 
     //for testing
-    const required = {}
-    const nameValid = {}
-    const emailValid = {}
-    const mobileValid = {}
-    const phoneValid = {}
+    // const required = {}
+    // const nameValid = {}
+    // const emailValid = {}
+    // const mobileValid = {}
+    // const phoneValid = {}
 
 
-    const onSubmit: SubmitHandler<contactInfo> = async data => {
+    const onSubmit: SubmitHandler<contactInfo> = async (data) => {
         setConfirm(2);
+
         const status = await sendInfo(data);
+        captchaRef.current?.reset();
+        
         setConfirm(0);
         setSuccessStatus({ show: true, status });
     };
@@ -75,6 +78,11 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
         } else if (confirm === 1) {
             handleSubmit(onSubmit)();
         }
+    };
+
+    const handleCaptchaVerify = () => {
+        setValue('captchaToken', captchaRef.current?.getValue() as string);
+        clearErrors('captchaToken');
     };
 
     return (<>
@@ -121,7 +129,7 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
                     <PhoneInput
                         inputProps={{ required: true, autoFocus: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid }) }}
                         inputClass={errors.mobile && ' is-invalid'}
-                        containerClass={Boolean(watch('mobile')) ? 'has-value': ''}
+                        containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
                         value={watch('mobile')}
                         country='eg'
                         countryCodeEditable={false}
@@ -139,7 +147,10 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
                 <InputGroup.Text><i className='bi bi-geo-alt-fill' /></InputGroup.Text>
                 <MyFormControl type='text' label='Address' register={register('address', { ...required, ...nameValid })} errors={errors} />
             </InputGroup>
-            <small className='text-danger my-0'>* Required</small>
+
+            <ReCAPTCHA className='mt-3' ref={captchaRef} sitekey='6LfAZEwhAAAAADvzYyVWY8mxPuunCbiJVtTbX6jR' onChange={handleCaptchaVerify} />
+            {errors.captchaToken ? <p className='text-danger my-0 small'>Please verify that you are not a robot 🤖.</p> : <></>}
+            <p className='text-danger my-0 small'>* Required</p>
 
             <Stack className='mt-4' direction='horizontal' gap={3}>
                 {showCancel ? <Button className='w-50' variant='outline-dark' size='lg' onClick={handleClose}>Cancel</Button> : null}

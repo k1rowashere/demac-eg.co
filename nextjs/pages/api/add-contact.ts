@@ -8,7 +8,7 @@ import { AddUserInternal } from '../../components/email/add_user_i';
 
 import dbQuery from '../../utils/db_fetch'
 import rateLimit from '../../utils/rate_limit';
-import { product } from '../../utils/types';
+import { contactInfo, product } from '../../utils/types';
 import { emailTrasportOptions } from '../../utils/constants';
 
 export const config = { api: { bodyParser: { sizeLimit: '5kb' } } }
@@ -34,8 +34,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let { cart = '{}' } = req.cookies;
     let cartCount: { [x: string]: number } = {};
-    let body = req.body;
+    let body = req.body as contactInfo;
     let cartItems: product[] = [];
+
+    //captcha stuff
+    const captchaResponse = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${body.captchaToken}`);
+    const captchaResponseBody = await captchaResponse.json();
+    if (!captchaResponseBody.success) return res.status(409).json({ error: 'Captcha failed' });
+
 
     //parse cart and sql query for items
     try {
