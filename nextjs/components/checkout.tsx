@@ -2,7 +2,8 @@ import { useForm } from "react-hook-form";
 
 import { Container, Modal } from 'react-bootstrap';
 import ContactForm from './contact_form';
-import { contactInfo } from '../utils/types';
+
+import type { contactInfo } from '../utils/types';
 
 export default function CheckoutForm({ show, setShow }: { show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
     const form = useForm<contactInfo>();

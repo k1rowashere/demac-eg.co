@@ -7,8 +7,8 @@ import AddToCart from '../components/add_to_cart';
 
 import { Pagination, Card, Row, Col } from 'react-bootstrap';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import { product } from '../utils/types';
 import { currencyFormater } from '../utils/constants';
+import type { product } from '../utils/types';
 
 
 

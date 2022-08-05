@@ -2,13 +2,13 @@ import Head from 'next/head';
 
 import { useForm } from 'react-hook-form';
 
-import { Container, Col, Row, Card, Breadcrumb, Stack, Form } from 'react-bootstrap';
+import { Container, Col, Row, Card, Form } from 'react-bootstrap';
 
 import Navbar from '../components/navigation';
 import Footer from '../components/footer';
 import ContactForm from '../components/contact_form';
 
-import { contactInfo } from '../utils/types';
+import type { contactInfo } from '../utils/types';
 
 
 export default function Contact() {

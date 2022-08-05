@@ -1,18 +1,19 @@
-import { useRouter } from 'next/router';
-
-import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { CloseButton } from 'react-bootstrap';
 
 import Navbar from '../../../components/navigation';
 import Footer from '../../../components/footer';
 import ImageWithFallback from '../../../components/image_fallback';
 import Breadcrumb from '../../../components/breadcrumb';
 import AddToCart from '../../../components/add_to_cart';
-import CloseButton from 'react-bootstrap/CloseButton';
 
 import dbQuery from '../../../utils/db_fetch';
-import { product } from '../../../utils/types';
+
+import type { product } from '../../../utils/types';
+import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const res = await dbQuery(`

@@ -2,8 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 
-
-
 export default function _Breadcrumb(props: {activePath: string[], pid?: string, [x: string]: any}) {
     const { activePath, pid, ...rest } = props;
     return (

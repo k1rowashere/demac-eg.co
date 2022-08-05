@@ -1,4 +1,3 @@
-import { GetStaticProps, GetStaticPaths, GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,8 +15,9 @@ import CheckoutForm from '../../components/checkout';
 
 import dbQuery from '../../utils/db_fetch';
 import { COOKIES_ATTRIBUTES, currencyFormater } from '../../utils/constants';
-import { product } from '../../utils/types';
 
+import type { product } from '../../utils/types';
+import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 
 const SHIPPING_COST = 150;
 const VAT_PERCENT = 0.14;

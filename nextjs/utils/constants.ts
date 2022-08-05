@@ -9,15 +9,15 @@ export function currencyFormater(x: number) {
 
 export const emailTrasportOptions = {
     host: process.env.EMAIL_HOST,
-    port: 465,
-    secure: true,
+    port: Number(process.env.EMAIL_PORT),
+    // secure: true,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    tls: {
-        rejectUnauthorized: false
-    }
+    // tls: {
+    //     rejectUnauthorized: false
+    // }
 };
 
 export function pathsToTree(paths: { path: string }[]) {
