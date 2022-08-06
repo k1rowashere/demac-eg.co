@@ -13,8 +13,9 @@ export default function rateLimit(options?: Options) {
   })
 
   return {
-    check: (res: NextApiResponse, limit: number, token: string) =>
+    check: (res: NextApiResponse, limit: number, token: string | null) =>
       new Promise<void>((resolve, reject) => {
+        if (!token) return reject();
         const tokenCount = (tokenCache.get(token) as number[]) || [0]
         if (tokenCount[0] === 0) {
           tokenCache.set(token, tokenCount)

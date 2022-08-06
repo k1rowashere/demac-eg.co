@@ -70,7 +70,7 @@ function ProductCard({ product }: { product: product }) {
                             </Link>
                         </h6>
                         <p className='small text-muted text-truncate'><span style={{ borderBottom: '1px dotted gray' }}>{product.part_no}</span></p>
-                        <p className='text-primary card-subtitle h6'>{currencyFormater(+product.price)}</p>
+                        <p className='text-primary card-subtitle h6'>{currencyFormater(product.price)}</p>
                     </div>
                 </Card.Body>
                 <Card.Footer className='p-4 pt-0 border-top-0 bg-transparent text-center'>

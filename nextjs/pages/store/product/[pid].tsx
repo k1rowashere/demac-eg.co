@@ -74,7 +74,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                             <div className='small mb-1'>Part No.: {props.product.part_no}</div>
                             <h1 className='display-5 fw-bolder'>{props.product.name}</h1>
                             <div className='fs-5 mb-5'>
-                                <span>{Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(+props.product.price)}</span>
+                                <span>{Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(props.product.price)}</span>
                             </div>
                             <p className='text-muted text-truncate' style={{ textDecoration: 'underline', textDecorationStyle: 'dotted' }}>
                                 <a href={props.product.manufacturer_link}><small>{props.product.manufacturer_link}</small></a>

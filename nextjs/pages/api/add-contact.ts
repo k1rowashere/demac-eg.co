@@ -16,6 +16,10 @@ const limiterIp = rateLimit({ interval: 5 * 60 * 1000, uniqueTokenPerInterval: 5
 const limiterCart = rateLimit({ interval: 10 * 60 * 1000, uniqueTokenPerInterval: 500 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    let body = req.body as contactInfo;
+    let cartCount: { [x: string]: number } = {};
+    let cartItems: product[] = [];
+
     //TODO: security
 
     //Only allow POST requests
@@ -25,41 +29,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     //ratelimiter
     if (process.env.NODE_ENV !== 'development') {
         try {
-            await limiterIp.check(res, 10, requestIp.getClientIp(req) || ''); // 10 request per 5 minutes for a given ip
-            await limiterCart.check(res, 1, (req.cookies.cart + JSON.stringify(req.body)) || ''); // 1 request for the same cart and same contact info
+            await limiterIp.check(res, 10, requestIp.getClientIp(req)); // 10 request per 5 minutes for a given ip
+            await limiterCart.check(res, 1, (req.cookies.cart + body.email)); // 1 request for the same cart and same contact info
         } catch {
             return res.status(429).json({ error: 'Rate limit exceeded' });
         }
     }
 
-    let { cart = '{}' } = req.cookies;
-    let cartCount: { [x: string]: number } = {};
-    let body = req.body as contactInfo;
-    let cartItems: product[] = [];
+    //parse cart and sql query for items
+    try { cartCount = JSON.parse(req.cookies.cart ?? '') } catch { return res.status(400).json({}) };
+
 
     //captcha stuff
     const captchaResponse = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${body.captchaToken}`);
     const captchaResponseBody = await captchaResponse.json();
-    if (!captchaResponseBody.success) return res.status(409).json({ error: 'Captcha failed' });
+    if (!captchaResponseBody?.success) return res.status(409).json({ error: 'Captcha failed' });
 
 
-    //parse cart and sql query for items
-    try {
-        cartCount = JSON.parse(cart);
-        const keys = Object.keys(cartCount);
-
-        if (keys.length) {
-            cartItems = await dbQuery(`
-                SELECT part_no, name, price FROM products
-                    WHERE part_no IN (${keys.map(() => { return '?' })})
-                    AND price <> 0;
-            `, keys) as product[];
-        }
-    } catch {
-        return res.status(400).json({});
+    const keys = Object.keys(cartCount);
+    if (keys.length) {
+        cartItems = await dbQuery(`
+            SELECT part_no, name, price FROM products
+                WHERE part_no IN (${keys.map(() => { return '?' })})
+                AND price <> 0;
+        `, keys) as product[];
     }
 
-    //render internal email
+    
     //TODO: add customer confirm email
     //TODO: add db store
 

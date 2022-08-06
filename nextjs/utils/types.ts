@@ -7,7 +7,7 @@ export interface product {
     part_no: string;
     name: string;
     description: string;
-    price: string;
+    price: number;
     manufacturer_link: string;
     img_link: string;
 }

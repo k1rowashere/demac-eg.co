@@ -33,7 +33,7 @@ export function AddUserInternal({ cartCount, cartItems, contactInfo }: { cartCou
                     textAlign: 'left'
                 }}>{el.name}</th>
                 <th>{el.part_no}</th>
-                <th>{currencyFormater(+el.price)}</th>
+                <th>{currencyFormater(el.price)}</th>
                 <th>{cartCount[el.part_no]}</th>
             </tr>)}
         </table>

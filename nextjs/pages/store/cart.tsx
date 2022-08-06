@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import nookies from 'nookies';
 
 import { Card, Container, Button, CloseButton, Row, Col, Modal } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
@@ -14,7 +13,8 @@ import ImageWithFallback from '../../components/image_fallback';
 import CheckoutForm from '../../components/checkout';
 
 import dbQuery from '../../utils/db_fetch';
-import { COOKIES_ATTRIBUTES, currencyFormater } from '../../utils/constants';
+import { currencyFormater } from '../../utils/constants';
+import { appendCart, getCart } from '../../utils/cart';
 
 import type { product } from '../../utils/types';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
@@ -23,37 +23,23 @@ const SHIPPING_COST = 150;
 const VAT_PERCENT = 0.14;
 
 
-
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    let { cart = '{}' } = nookies.get(ctx);
-    let cartCount: { [x: string]: number }
+    const cartCount = getCart(ctx);
+    let cartItems: product[] = [];
 
-    try {
-        cartCount = JSON.parse(cart);
-    } catch {
-        nookies.set(ctx, 'cart', '{}', COOKIES_ATTRIBUTES);
-        return {
-            props: {
-                cartItems: [],
-                cartCount: {},
-            }
-        };
-    }
-
-    const cartKeys = Object.keys(cartCount);
-    if (cartKeys.length === 0) return { props: { cartItems: [], cartCount: {} } };
-
-    const res = await dbQuery(`
+    if (cartCount.length) {
+        const cartKeys = Object.keys(cartCount);
+        const res = (await dbQuery(`
         SELECT part_no, name, price, img_link FROM products
-            WHERE part_no IN (${cartKeys.map(() => { return '?' })})
-            AND price <> 0;
-    `, cartKeys) as product[];
+        WHERE part_no IN (${cartKeys.map(() => { return '?' })})
+        AND price <> 0;
+        `, cartKeys) as product[])
+        cartItems = res.map((result) => ({ ...result }));
+    }
 
     return {
         props: {
-            //fix 'error serializing' bug
-            cartItems: res.map((result) => ({ ...result })),
+            cartItems,
             cartCount,
         }
     };
@@ -67,7 +53,6 @@ type CartItems = {
 };
 
 function CartItems({ cartItems, itemCount, itemCountHandle }: CartItems) {
-
     function CartItem({ product }: { product: product }) {
         const [visible, setVisible] = useState(true);
         return (
@@ -90,10 +75,10 @@ function CartItems({ cartItems, itemCount, itemCountHandle }: CartItems) {
                         <NumField value={itemCount[product.part_no]} id={product.part_no} onChange={itemCountHandle} />
                     </Col>
                     <Col xs={{ span: 4, order: 4 }} sm={{ span: 3, offset: 1 }} md={{ span: 2, order: 3, offset: 0 }} style={{ overflow: 'scroll' }}>
-                        <span className='text-primary text-truncate'>{currencyFormater(+product.price)}</span>
+                        <span className='text-primary text-truncate'>{currencyFormater(product.price)}</span>
                     </Col>
                     <Col xs={{ span: 4, order: 5 }} sm={3} md={{ span: 2, order: 4 }} style={{ overflow: 'scroll' }}>
-                        <b className='text-secondary text-truncate'>{currencyFormater(+product.price * itemCount[product.part_no])}</b>
+                        <b className='text-secondary text-truncate'>{currencyFormater(product.price * itemCount[product.part_no])}</b>
                     </Col>
                     <Col xs={{ span: 1, order: 2 }} md={{ span: 1, order: 5 }}>
                         <CloseButton onClick={() => setVisible(false)} />
@@ -110,30 +95,12 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
     const router = useRouter();
 
     const [cartCount, setCartCount] = useState(props.cartCount);
-    const [cartItems, setCartItems] = useState(props.cartItems || []);
-    const [isEmpty, setEmpty] = useState(!Boolean(cartItems.length));
+    const [cartItems, setCartItems] = useState(props.cartItems);
     const [showCheckout, setShowCheckout] = useState(false);
-
-    const itemCountHandle = (fieldId: string, count: number) => {
-        let newCart = { ...cartCount, [fieldId]: count };
-
-        if (count === 0) {
-            let newCartItems = [];
-            delete newCart[fieldId];
-            newCartItems = cartItems.filter(product => !(product.part_no === fieldId))
-            setCartItems(newCartItems)
-            setEmpty(!Boolean(newCartItems.length));
-        }
-        setCartCount(newCart);
-        //set cart cookie
-        nookies.set(null, 'cart', JSON.stringify(newCart), COOKIES_ATTRIBUTES);
-    };
 
     const subTotal = (() => {
         let sub = 0;
-        cartItems.forEach((product) => {
-            sub += Number(product.price) * Number(cartCount[product.part_no]);
-        });
+        cartItems.forEach((product) => sub += product.price * cartCount[product.part_no]);
         return sub;
     })();
 
@@ -161,8 +128,8 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                             <h3 className='mx-2 mb-0'>Your items</h3>
                             <strong className='text-muted ms-auto me-4 mb-0'>{cartItems.length || 'No'}&nbsp;item{cartItems.length === 1 ? '' : 's'}</strong>
                         </Card.Header>
-                        <Card.Body className='mx-4' style={{ height: !isEmpty ? '70vh' : '100%', overflow: 'scroll' }}>
-                            {isEmpty ? (
+                        <Card.Body className='mx-4' style={{ height: !cartItems.length ? '70vh' : '100%', overflow: 'scroll' }}>
+                            {!cartItems.length ? (
                                 <div className='d-flex flex-column justify-content-center'>
                                     <picture className='text-center'>
                                         <source srcSet='/assets/empty_cart.svg' type='image/svg+xml' />
@@ -186,11 +153,18 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                                             <span className='h6'>Subtotal</span>
                                         </Col>
                                     </Row>
-                                    <CartItems cartItems={cartItems} itemCount={cartCount} itemCountHandle={itemCountHandle} />
+                                    <CartItems
+                                        cartItems={cartItems}
+                                        itemCount={cartCount}
+                                        itemCountHandle={(fieldId: string, count: number) => {
+                                            setCartCount(appendCart(fieldId, count));
+                                            if (!count) setCartItems(cartItems.filter(el => !(el.part_no === fieldId)));
+                                        }}
+                                    />
                                 </>
                             )}
                         </Card.Body>
-                        {!isEmpty && (
+                        {Boolean(cartItems.length) && (
                             <Card.Footer className='bg-white py-3'>
                                 <Container className='px-5'>
                                     <div className='d-flex'>

@@ -30,7 +30,7 @@ a {
 }
 
 .big-pic {
-    max-height: 30vh;
+    max-height: 40vh;
 }
 
 
@@ -82,7 +82,8 @@ input[type=number] {
 
 .react-tel-input>.form-control,
 .react-tel-input>.flag-dropdown {
-    transition: opacity 0.15s ease-in-out color 0.15s ease-in-out;
+    transition: opacity 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out;
 }
 
 .form-floating>.react-tel-input:not(:focus-within, .has-value)>.form-control {

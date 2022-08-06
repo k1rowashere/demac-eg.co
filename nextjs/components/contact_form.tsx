@@ -123,11 +123,10 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
             {/* phone/mobile */}
             <InputGroup className='mt-3 stack'>
                 <InputGroup.Text><i className='bi bi-phone' /></InputGroup.Text>
-                {/* TODO */}
                 {/* <MyFormControl type='tel' label='Mobile number' register={register('mobile', { ...required, ...mobileValid })} errors={errors} /> */}
                 <Form.Floating error-message={errors.mobile && errors.mobile.message}>
                     <PhoneInput
-                        inputProps={{ required: true, autoFocus: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid }) }}
+                        inputProps={{ required: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid }) }}
                         inputClass={errors.mobile && ' is-invalid'}
                         containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
                         value={watch('mobile')}
