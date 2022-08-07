@@ -404,3 +404,10 @@ input[type=number] {
 }
 
 /*----------------------------------------*/
+
+
+.about-p p {
+    line-height: 2em;
+    text-indent: 2em;
+    hyphens: auto;
+}

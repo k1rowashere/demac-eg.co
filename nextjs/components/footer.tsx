@@ -18,9 +18,15 @@ export default function Footer() {
                         </Breadcrumb>
                         <small className='text-white-50'>demac-egypt.com © 2022</small>
                     </Col>
-                    <Col md={3} lg={4} className='d-none d-md-block'>
-                        <p className='text-white h4'>About Us:</p>
-                        <p className='text-white-50'>Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.</p>
+                    <Col md={3} lg={4} className='d-none d-md-block text-white-50'>
+                        <span className='text-white h4'>About Us</span>
+                        <p>
+                            Established in 2010.
+                            We provide complete engineering solutions for industrial automation.
+                        </p>
+                        <p>
+                            In addition, we source orginal Siemens spare parts at reasonable pricing.
+                        </p>
                     </Col>
                     <Col as='address' md={5} lg={4} className='mt-sm-0'>
                         <ul className='footer-contact'>
@@ -28,9 +34,9 @@ export default function Footer() {
                             <li><a href='tel:+201099747581' target='_blank' rel="noreferrer"><i className='bi bi-telephone-fill me-2' /><p>+20-10-9974-7581</p></a></li>
                             <li><a href='mailto:demac@demac-egypt.com' target='_blank' rel="noreferrer"><i className='bi bi-envelope-fill me-2' /><p>demac@demac-egypt.com</p></a></li>
                             <Breadcrumb style={{ '--bs-breadcrumb-divider': '"·"' } as React.CSSProperties}>
-                                <Breadcrumb.Item href='https://api.whatsapp.com/send?phone=2001550200608'><i className='h5 mx-1 bi bi-whatsapp' /></Breadcrumb.Item>
                                 <Breadcrumb.Item href='https://www.facebook.com/demac.company/' target='_blank'><i className='h5 mx-1 bi bi-facebook' /></Breadcrumb.Item>
                                 <Breadcrumb.Item href=''><i className='h5 mx-1 bi bi-linkedin' /></Breadcrumb.Item>
+                                <Breadcrumb.Item href='https://api.whatsapp.com/send?phone=2001550200608'><i className='h5 mx-1 bi bi-whatsapp' /></Breadcrumb.Item>
                                 {/* <Breadcrumb.Item href='mailto:demac@demac-egypt.com'><i className='h5 mx-1 bi bi-envelope-fill' /></Breadcrumb.Item> */}
                             </Breadcrumb>
                         </ul>
