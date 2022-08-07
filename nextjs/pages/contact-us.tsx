@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Container, Col, Row, Card, Form } from 'react-bootstrap';
 
 import Navbar from '../components/navigation';
+import Header from '../components/header';
 import Footer from '../components/footer';
 import ContactForm from '../components/contact_form';
 
@@ -18,15 +19,8 @@ export default function Contact() {
         <>
             <Head><title>DEMAC - Contact Us</title></Head>
             <Navbar activePage='contact_us' />
-            <header className='bg-dark'>
-                <Container className='px-4 px-lg-5 py-5'>
-                    <div className='text-white'>
-                        <h1 className='display-4 fw-bolder'>Contact Us</h1>
-                        <h2 className='lead fw-normal text-white-50 mb-0'>Leave us a message and we will get in touch as soon as possible</h2>
-                    </div>
-                </Container>
-            </header>
-            <section className='py-5 bg-light'>
+            <Header h1='Contact Us' h2='Leave us a message and we will get intouch as soon as possible.' />
+            <main className='py-5 bg-light'>
                 <Container fluid='lg'>
                     <Card>
                         <Card.Body>
@@ -57,7 +51,7 @@ export default function Contact() {
                         </Card.Body>
                     </Card>
                 </Container>
-            </section>
+            </main>
             <Footer />
 
         </>

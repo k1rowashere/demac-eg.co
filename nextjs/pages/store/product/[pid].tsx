@@ -55,7 +55,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
         <>
             <Head><title>DEMAC - Products</title></Head>
             <Navbar activePage='store' />
-            <section className='container-fluid py-5 bg-light'>
+            <main className='container-fluid py-5 bg-light'>
                 <div className='px-4 px-lg-5 d-flex align-items-center'>
                     <Link href={'/store' + props.product.path.replace(/(\/[^\/]+)$/, '').replaceAll(/\s/g, '-').toLowerCase()}>
                         <a>
@@ -86,7 +86,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                         </div>
                     </div>
                 </div>
-            </section>
+            </main>
             <Footer />
         </>
     );

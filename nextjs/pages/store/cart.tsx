@@ -3,10 +3,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-import { Card, Container, Button, CloseButton, Row, Col, Modal } from 'react-bootstrap';
+import { Card, Container, Button, CloseButton, Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 
 import Navbar from '../../components/navigation';
+import Header from '../../components/header';
 import Footer from '../../components/footer';
 import NumField from '../../components/number_field';
 import ImageWithFallback from '../../components/image_fallback';
@@ -112,15 +113,8 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
         <>
             <Head><title>DEMAC - Cart</title></Head>
             <Navbar activePage='cart' />
-            <header className='bg-dark'>
-                <Container className='px-4 px-lg-5 py-5'>
-                    <div className='text-white'>
-                        <h1 className='display-4 fw-bolder'>Shopping Cart</h1>
-                        <h2 className='lead fw-normal text-white-50 mb-0'>Lorem ipsum</h2>
-                    </div>
-                </Container>
-            </header>
-            <section className='py-5 bg-light'>
+            <Header h1='Shopping cart' h2='Lorem ipsum' />
+            <main className='py-5 bg-light'>
                 <Container fluid='lg'>
                     <Card>
                         <Card.Header className='no-print bg-white py-4 d-flex align-items-center'>
@@ -198,7 +192,7 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                         )}
                     </Card>
                 </Container>
-            </section>
+            </main>
             <Footer />
 
             <CheckoutForm show={showCheckout} setShow={setShowCheckout} />

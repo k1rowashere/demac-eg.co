@@ -1,13 +1,14 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { InferGetStaticPropsType } from 'next';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
 
-import {Button, Offcanvas} from 'react-bootstrap';
+import {Button, Container, Offcanvas} from 'react-bootstrap';
 
 import Navbar from '../../components/navigation';
+import Header from '../../components/header';
 import Footer from '../../components/footer';
 import ProductDisplay from '../../components/product_display';
 import Categories from '../../components/categories';
@@ -72,19 +73,8 @@ export default function Store({products, categories, url}: InferGetStaticPropsTy
         <>
             <Head><title>DEMAC - Store</title></Head>
             <Navbar activePage='store' />
-
-            <header className='bg-dark'>
-                <div className='py-3 bg bg-img-1'>
-                    <div className='container px-4 px-lg-5 my-5'>
-                        <div className='text-white'>
-                            <h1 className='display-4 fw-bolder'>Welcome To DEMAC Store</h1>
-                            <h2 className='lead fw-normal text-white-50 mb-0'>Lorem ipsum</h2>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <section className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
+            <Header h1='Welcome to demac store' h2='Lorem ipsum' classNames={{child: 'bg bg-img-1'}} />
+            <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
                 <div className='px-4 px-lg-5 d-flex'>
                     <Button variant='outline-dark' className='d-block d-xl-none' onClick={() => setShowOffcanvas(true)}>
                         <i className='bi bi-funnel-fill' />
@@ -104,7 +94,7 @@ export default function Store({products, categories, url}: InferGetStaticPropsTy
                         <ProductDisplay products={products} />
                     </div>
                 </div>
-            </section>
+            </main>
 
             <Footer />
 
