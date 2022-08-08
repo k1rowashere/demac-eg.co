@@ -22,5 +22,5 @@ export const appendCart = (id: string, count: number, ctx?:  Pick<NextPageContex
     nookies.set(ctx, 'cart', JSON.stringify(cart), COOKIES_ATTRIBUTES);
 
     //returns new cart
-    return cart;
+    return count;
 }

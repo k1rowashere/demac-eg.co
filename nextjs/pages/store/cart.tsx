@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { Card, Container, Button, CloseButton, Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
@@ -28,86 +28,82 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const cartCount = getCart(ctx);
     let cartItems: product[] = [];
 
-    if (cartCount.length) {
+    if (Object.keys(cartCount).length) {
         const cartKeys = Object.keys(cartCount);
         const res = (await dbQuery(`
         SELECT part_no, name, price, img_link FROM products
         WHERE part_no IN (${cartKeys.map(() => { return '?' })})
         AND price <> 0;
         `, cartKeys) as product[])
-        cartItems = res.map((result) => ({ ...result }));
+        cartItems = res.map((result) => ({ ...result, count: cartCount[result.part_no] }));
     }
-
-    return {
-        props: {
-            cartItems,
-            cartCount,
-        }
-    };
+    return { props: { cartItems } };
 
 }
 
-type CartItems = {
-    cartItems: product[];
-    itemCount: { [x: string]: number };
-    itemCountHandle: (fieldId: string, count: number) => void;
-};
 
-function CartItems({ cartItems, itemCount, itemCountHandle }: CartItems) {
-    function CartItem({ product }: { product: product }) {
-        const [visible, setVisible] = useState(true);
-        return (
-            <CSSTransition in={visible} timeout={300} classNames='cart' unmountOnExit onExited={() => itemCountHandle(product.part_no, 0)}>
-                <Row className='mb-3 p-0 p-sm-2 justify-content-md-between align-items-center'>
-                    <Col xs={{ span: 4, order: 0 }} sm={5} md={{ span: 1, order: 0 }} className='p-0'>
+const CartItem = ({ product, itemCountHandle }: { product: product, itemCountHandle: (fieldId: string, count: number) => void }) => {
+    const [visible, setVisible] = useState(true);
+    return useMemo(() => <>
+        <CSSTransition in={visible} timeout={300} classNames='cart' unmountOnExit onExited={() => itemCountHandle(product.part_no, 0)}>
+            <Row className='mb-3 p-0 p-sm-2 justify-content-md-between align-items-center'>
+                <Col xs={{ span: 4, order: 0 }} sm={5} md={{ span: 1, order: 0 }} className='p-0'>
+                    <Link href={`product/${product.part_no}`} scroll={true} passHref>
+                        <a><ImageWithFallback className='img-fluid rounded-3' width={'100%'} src={product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={product.name} /></a>
+                    </Link>
+                </Col>
+                <Col xs={{ span: 6, order: 1 }} md={{ span: 4, order: 1 }} className='pe-0'>
+                    <p className='truncate fw-bolder h6' data-bs-toggle='tooltip' data-bs-placement='bottom' title={product.name}>
                         <Link href={`product/${product.part_no}`} scroll={true} passHref>
-                            <a><ImageWithFallback className='img-fluid rounded-3' width={'100%'} src={product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={product.name} /></a>
+                            <a className=''>{product.name}</a>
                         </Link>
-                    </Col>
-                    <Col xs={{ span: 6, order: 1 }} md={{ span: 4, order: 1 }} className='pe-0'>
-                        <p className='truncate fw-bolder h6' data-bs-toggle='tooltip' data-bs-placement='bottom' title={product.name}>
-                            <Link href={`product/${product.part_no}`} scroll={true} passHref>
-                                <a className=''>{product.name}</a>
-                            </Link>
-                        </p>
-                        <p className='small text-muted text-truncate'>{product.part_no}</p>
-                    </Col>
-                    <Col xs={{ span: 4, order: 3 }} sm={5} md={{ span: 2, order: 2 }} className='d-flex justify-content-center'>
-                        <NumField value={itemCount[product.part_no]} id={product.part_no} onChange={itemCountHandle} />
-                    </Col>
-                    <Col xs={{ span: 4, order: 4 }} sm={{ span: 3, offset: 1 }} md={{ span: 2, order: 3, offset: 0 }} style={{ overflow: 'scroll' }}>
-                        <span className='text-primary text-truncate'>{currencyFormater(product.price)}</span>
-                    </Col>
-                    <Col xs={{ span: 4, order: 5 }} sm={3} md={{ span: 2, order: 4 }} style={{ overflow: 'scroll' }}>
-                        <b className='text-secondary text-truncate'>{currencyFormater(product.price * itemCount[product.part_no])}</b>
-                    </Col>
-                    <Col xs={{ span: 1, order: 2 }} md={{ span: 1, order: 5 }}>
-                        <CloseButton onClick={() => setVisible(false)} />
-                    </Col>
-                </Row>
-            </CSSTransition >
-        );
-    }
-
-    return <>{cartItems.map((product) => <CartItem key={product.part_no} product={product} />)}</>;
+                    </p>
+                    <p className='small text-muted text-truncate'>{product.part_no}</p>
+                </Col>
+                <Col xs={{ span: 4, order: 3 }} sm={5} md={{ span: 2, order: 2 }} className='d-flex justify-content-center'>
+                    <NumField initValue={product.count} id={product.part_no} onChange={itemCountHandle} />
+                </Col>
+                <Col xs={{ span: 4, order: 4 }} sm={{ span: 3, offset: 1 }} md={{ span: 2, order: 3, offset: 0 }} style={{ overflow: 'scroll' }}>
+                    <span className='text-primary text-truncate'>{currencyFormater(product.price)}</span>
+                </Col>
+                <Col xs={{ span: 4, order: 5 }} sm={3} md={{ span: 2, order: 4 }} style={{ overflow: 'scroll' }}>
+                    <b className='text-secondary text-truncate'>{currencyFormater(product.price * (product.count || 1))}</b>
+                </Col>
+                <Col xs={{ span: 1, order: 2 }} md={{ span: 1, order: 5 }}>
+                    <CloseButton onClick={() => setVisible(false)} />
+                </Col>
+            </Row>
+        </CSSTransition >
+    </>, [product, visible, itemCountHandle]);
 }
+
 
 export default function Cart(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const router = useRouter();
-
-    const [cartCount, setCartCount] = useState(props.cartCount);
     const [cartItems, setCartItems] = useState(props.cartItems);
     const [showCheckout, setShowCheckout] = useState(false);
 
     const subTotal = (() => {
         let sub = 0;
-        cartItems.forEach((product) => sub += product.price * cartCount[product.part_no]);
+        cartItems.forEach((product) => sub += product.price * (product.count ?? 0));
         return sub;
     })();
 
     const vat = subTotal * VAT_PERCENT;
     const total = subTotal + vat + SHIPPING_COST;
 
+    const itemCountHandle = useCallback((fieldId: string, count: number) => {
+        setCartItems(currCartItems => {
+            if (!count) {
+                appendCart(fieldId, 0)
+                return currCartItems.filter((product) => product.part_no !== fieldId)
+            } else {
+                return currCartItems.map(item => {
+                    return (item.part_no === fieldId) ? { ...item, count: appendCart(fieldId, count) } : item;
+                })
+            }
+        });
+    },[])
 
     return (
         <>
@@ -122,16 +118,8 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                             <h3 className='mx-2 mb-0'>Your items</h3>
                             <strong className='text-muted ms-auto me-4 mb-0'>{cartItems.length || 'No'}&nbsp;item{cartItems.length === 1 ? '' : 's'}</strong>
                         </Card.Header>
-                        <Card.Body className='mx-4' style={{ height: !cartItems.length ? '70vh' : '100%', overflow: 'scroll' }}>
-                            {!cartItems.length ? (
-                                <div className='d-flex flex-column justify-content-center'>
-                                    <picture className='text-center'>
-                                        <source srcSet='/assets/empty_cart.svg' type='image/svg+xml' />
-                                        <img className='my-5 big-pic' src='/assets/empty_cart.svg' alt="Empty cart picture" />
-                                    </picture>
-                                    <strong className='h5 mx-auto text-muted'>Your cart is empty</strong>
-                                </div>
-                            ) : (
+                        <Card.Body className='mx-4' style={{ height: cartItems.length ? '100%' : '70vh', overflow: 'scroll' }}>
+                            {cartItems.length ? (
                                 <>
                                     <Row className='d-none d-md-flex p-0 p-sm-2 justify-content-md-between align-items-center'>
                                         <Col md={{ span: 4, offset: 1 }}>
@@ -147,15 +135,17 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                                             <span className='h6'>Subtotal</span>
                                         </Col>
                                     </Row>
-                                    <CartItems
-                                        cartItems={cartItems}
-                                        itemCount={cartCount}
-                                        itemCountHandle={(fieldId: string, count: number) => {
-                                            setCartCount(appendCart(fieldId, count));
-                                            if (!count) setCartItems(cartItems.filter(el => !(el.part_no === fieldId)));
-                                        }}
-                                    />
+                                    {cartItems.map((product) => <CartItem key={product.part_no} product={product} itemCountHandle={itemCountHandle} />)}
                                 </>
+                            ) : (
+                                <div className='d-flex flex-column justify-content-center'>
+                                    <picture className='text-center'>
+                                        <source srcSet='/assets/empty_cart.svg' type='image/svg+xml' />
+                                        <img className='my-5 big-pic' src='/assets/empty_cart.svg' alt="Empty cart picture" />
+                                    </picture>
+                                    <strong className='h5 mx-auto text-muted'>Your cart is empty</strong>
+                                </div>
+
                             )}
                         </Card.Body>
                         {Boolean(cartItems.length) && (

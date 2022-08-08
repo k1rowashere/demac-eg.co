@@ -4,12 +4,12 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { getCart, appendCart } from '../utils/cart';
 
 
-export default function AddToCart({ id, count = 1 }: { id: string, count?: number }) {
+export default function AddToCart({ id }: { id: string }) {
     const [productAdded, setProductAdded] = useState(false);
 
     useEffect(() => {
         setProductAdded(Boolean(getCart()[id]))
-    }, []);
+    }, [id]);
 
     const handleAddToCart = () => {
         appendCart(id, +!productAdded)

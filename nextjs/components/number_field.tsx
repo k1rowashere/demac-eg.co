@@ -1,39 +1,33 @@
-import React, { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const MAX_COUNT = 10;
+const MIN_COUNT = 1;
 
-export default function NumField({ value = 1, onChange = (x:string, y:number) => {}, id = ''}) {
-    const [num, setNum] = useState(value);
+export default function NumField({ id, initValue, onChange }: { initValue: number | undefined, onChange: (id: string, count: number) => void, id: string }) {
+    const [value, setValue] = useState(initValue ?? 1)
 
     const incNum = () => {
-        if (num < MAX_COUNT) {
-            setNum(Number(num) + 1);
-            onChange(id, Number(num) + 1);
-        }
+        const newVal = Math.min(value + 1, MAX_COUNT);
+        setValue(newVal);
+        onChange(id, newVal);
     };
 
-    const decNum = () => {
-        if (num > 1) {
-            setNum(Number(num) - 1);
-            onChange(id, Number(num) - 1);
-        }
+    const decNum = () => { 
+        const newVal = Math.max(value - 1, MIN_COUNT);
+        setValue(newVal);
+        onChange(id, newVal);
     };
+    const changeHandle = (e: React.ChangeEvent<HTMLInputElement>) => setValue(Math.max(Math.min(Number(e.target.value), MAX_COUNT), MIN_COUNT));
+    const blurHandle = (e: React.FocusEvent<HTMLInputElement>) => onChange(id, value);
 
-    const blurHandle = (e: React.FocusEvent<HTMLInputElement> ) => {
-        onChange(id, Number(e.target.value) || 1);
-        if (!e.target.value) setNum(1)
-    };
-
-    return (
-        <>
-            <Button className='no-print pe-0' size='sm' variant='link' disabled={num === 1} onClick={decNum}>
-                <i className="bi bi-dash h4" />
-            </Button>
-            <Form.Control style={{ width: '3em' }} type="number" size="sm" value={num} min={1} max={10} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNum(+e.currentTarget.value)} onBlur={blurHandle} />
-            <Button className='no-print ps-0' size='sm' variant='link' disabled={num === MAX_COUNT} onClick={incNum}>
-                <i className="bi bi-plus h4" />
-            </Button>
-        </>
-    );
+    return <>
+        <Button className='no-print pe-0' size='sm' variant='link' disabled={value === MIN_COUNT} onClick={decNum}>
+            <i className="bi bi-dash h4" />
+        </Button>
+        <Form.Control style={{ width: '3em' }} type="number" size="sm" value={value} min={MIN_COUNT} max={MAX_COUNT} onChange={changeHandle} onBlur={blurHandle} />
+        <Button className='no-print ps-0' size='sm' variant='link' disabled={value === MAX_COUNT} onClick={incNum}>
+            <i className="bi bi-plus h4" />
+        </Button>
+    </>;
 }

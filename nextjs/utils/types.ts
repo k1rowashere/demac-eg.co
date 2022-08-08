@@ -1,8 +1,8 @@
-export interface categories {
+export type categories = {
     [x: string]: categories | {};
 }
 
-export interface product {
+export type product = {
     path: string;
     part_no: string;
     name: string;
@@ -10,9 +10,10 @@ export interface product {
     price: number;
     manufacturer_link: string;
     img_link: string;
+    count?: number;
 }
 
-export interface contactInfo {
+export type contactInfo = {
     firstName: string;
     companyName: string;
     lastName: string;

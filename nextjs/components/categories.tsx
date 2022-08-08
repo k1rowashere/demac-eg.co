@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Collapse from 'react-bootstrap/Collapse';
 
@@ -16,49 +16,61 @@ interface categories {
     [x: string]: categories | {};
 }
 
-export default function Categories({ categories, activePath }: { categories: categories, activePath: string[] }) {
-    function CategoryItem(thisPath: string[], level: number, key: string, children: categories) {
-        const hasChildren = Object.keys(children).length === 0;
+type CategoryItem = { prevPath: string[], name: string, level: number, currCategories: categories, activePath: string[] }
+
+function CategoryItem({ prevPath, name, level, currCategories, activePath }: CategoryItem) {
+    const thisPath = prevPath.concat([name.replaceAll(/\s/g, '-').toLowerCase()]);
+    const hasChildren = Object.keys(currCategories).length === 0;
+    const [expanded, setExpanded] = useState(level < 1 || isPartOfPath(thisPath, activePath));
+    
+    return useMemo(() => {
+        const chevronHandle = () => {setExpanded(!expanded)}
         const icons = ['bi bi-chevron-right', 'bi bi-chevron-down'];
-        const [expanded, setExpanded] = useState(level < 1 || isPartOfPath(thisPath, activePath));
-        const chevronHandle = () => {
-            setExpanded(!expanded);
-        };
-
-        return (
+        return <>
             <ListGroup.Item as="li" className='text-truncate' active={arrayEquals(activePath, thisPath)} key={thisPath.toString()}>
-                {hasChildren ? <i className='bi bi-dash text-muted' /> : <i role='button' className={icons[Number(expanded)]} onClick={chevronHandle} style={{ transition: 'all .3s ease' }} />}
+                {hasChildren
+                    ? <i className='bi bi-dash text-muted' />
+                    : <i role='button' className={icons[Number(expanded)]} onClick={chevronHandle} style={{ transition: 'all .3s ease' }} />
+                }
 
-                {!hasChildren ? <a href='#;' tabIndex={0} onClick={chevronHandle}>{key}</a> : <Link href={thisPath.join('/')} passHref scroll={false}><a>{key}</a></Link>}
+                {!hasChildren
+                    ? <a href='#;' tabIndex={0} onClick={chevronHandle}>{name}</a>
+                    : <Link href={thisPath.join('/')} passHref scroll={false}><a>{name}</a></Link>
+                }
                 {/* recurse over all children */}
                 <Collapse in={expanded}>
-                    <div>{jsxGen(children, thisPath, level + 1)}</div>
+                    <div>
+                        <ListGroup as="ul">
+                            {Object.entries(currCategories)
+                                .map(([key, value]) => <CategoryItem
+                                    key={key}
+                                    prevPath={thisPath}
+                                    name={key}
+                                    level={level + 1}
+                                    currCategories={value}
+                                    activePath={activePath}
+                                />)}
+                        </ListGroup>
+                    </div>
                 </Collapse>
             </ListGroup.Item>
-        );
-    }
+        </>
+    }, [expanded, activePath, currCategories, hasChildren, level, name, thisPath]);
+}
 
-    // json tree to jsx tree
-    function jsxGen(categories: categories, path: string[] = [], level = 0) {
+export default function Categories({ categories, activePath }: { categories: categories, activePath: string[] }) {
+    return (
+        <ListGroup as='ul'>
+            {Object.entries(categories)
+                .map(([key, value]) => <CategoryItem
+                    key={key}
+                    prevPath={[]}
+                    name={key}
+                    level={0}
+                    currCategories={value}
+                    activePath={activePath}
+                />)}
+        </ListGroup>
+    )
 
-        if (Object.keys(categories).length === 0) return <></>;
-
-        let listItems = [];
-        for (let [key, value] of Object.entries(categories)) {
-            //get new path from old path + current item name
-            let thisPath = path.concat([key.replaceAll(/\s/g, '-').toLowerCase()]);
-
-            listItems.push(
-                CategoryItem(thisPath, level, key, value)
-            );
-        }
-
-        return (
-            <ListGroup as="ul">
-                {listItems}
-            </ListGroup>
-        );
-    }
-
-    return jsxGen(categories);
 }

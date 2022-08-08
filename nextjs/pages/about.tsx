@@ -42,7 +42,7 @@ export default function About() {
                             </Breadcrumb>
                         </Col>
                         <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-center'>
-                            <Image src={boilerImage} style={{ clipPath: 'circle(closest-side at 60% 50%)' }} />
+                            <Image src={boilerImage} style={{ clipPath: 'circle(closest-side at 60% 50%)' }} alt='boiler decorative image' />
                         </Col>
                     </Row>
                     <Stack className='mt-mb-auto mt-5 pb-5' direction='horizontal' gap={4}>

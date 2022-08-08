@@ -66,7 +66,7 @@ function ProductCard({ product }: { product: product }) {
                     <div className='text-center'>
                         <h6 className='card-title truncate fw-bolder' style={{ height: '2.4em' }} data-bs-toggle='tooltip' data-bs-placement='bottom' title={product.name}>
                             <Link href={`product/${product.part_no}`} scroll={true} passHref>
-                                <a className=''>{product.img_link}</a>
+                                <a className=''>{product.name}</a>
                             </Link>
                         </h6>
                         <p className='small text-muted text-truncate'><span style={{ borderBottom: '1px dotted gray' }}>{product.part_no}</span></p>
@@ -74,7 +74,7 @@ function ProductCard({ product }: { product: product }) {
                     </div>
                 </Card.Body>
                 <Card.Footer className='p-4 pt-0 border-top-0 bg-transparent text-center'>
-                    <AddToCart id={product.part_no} count={1} />
+                    <AddToCart id={product.part_no} />
                 </Card.Footer>
             </Card>
         </Col>

@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UseFormReturn, SubmitHandler } from 'react-hook-form';
 
-import ReCAPTCHA from 'react-google-recaptcha';
+import dynamic from "next/dynamic";
+const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
+
 import { Button, Form, InputGroup, Stack, Spinner } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
 import SuccessModal from './success_status_modal';
@@ -41,16 +43,16 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
     const { watch, setValue, register, handleSubmit, formState: { errors }, clearErrors } = form
     const [confirm, setConfirm] = useState(0); // 0: no clicks, 1: waiting for confirm, 2: loading
     const [successStatus, setSuccessStatus] = useState({ show: false, status: 0 } as { show: boolean, status?: number });
-    const captchaRef = useRef<ReCAPTCHA>(null);
-    useEffect(() => { register('captchaToken', { required: true }) });
+    useEffect(() => { register('captchaToken', { required: true }) },[]);
+
     const required = { required: { value: true, message: "Required" } }
-    const nameValid = { minLength: { value: 3, message: 'Too short' }, maxLength: { value: 32, message: 'Too long' } }
+    const nameValid = {maxLength: { value: 32, message: 'Too long' } }
     const emailValid = { pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g, message: 'Invalid email' } }
-    const mobileValid = { minLength: { value: 12, message: 'Invalid' }, maxLength: { value: 12, message: 'Invalid' } }
+    const mobileValid = { minLength: { value: 5, message: 'Invalid' } }
     const phoneValid = {
         pattern: { value: /^[0-9]*$/, message: 'Invalid number' },
-        minLength: { value: 9, message: 'Too short' },
-        maxLength: { value: 10, message: 'Too long' }
+        minLength: { value: 5, message: 'Too short' },
+        maxLength: { value: 12, message: 'Too long' }
     }
 
 
@@ -66,7 +68,6 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
         setConfirm(2);
 
         const status = await sendInfo(data);
-        captchaRef.current?.reset();
         
         setConfirm(0);
         setSuccessStatus({ show: true, status });
@@ -80,8 +81,9 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
         }
     };
 
-    const handleCaptchaVerify = () => {
-        setValue('captchaToken', captchaRef.current?.getValue() as string);
+    const handleCaptchaVerify = async (token: string | null) => {
+        if (!token) return;
+        setValue('captchaToken', token);
         clearErrors('captchaToken');
     };
 
@@ -126,7 +128,7 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
                 {/* <MyFormControl type='tel' label='Mobile number' register={register('mobile', { ...required, ...mobileValid })} errors={errors} /> */}
                 <Form.Floating error-message={errors.mobile && errors.mobile.message}>
                     <PhoneInput
-                        inputProps={{ required: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid }) }}
+                        inputProps={{ required: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid}) }}
                         inputClass={errors.mobile && ' is-invalid'}
                         containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
                         value={watch('mobile')}
@@ -147,7 +149,7 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
                 <MyFormControl type='text' label='Address' register={register('address', { ...required, ...nameValid })} errors={errors} />
             </InputGroup>
 
-            <ReCAPTCHA className='mt-3' ref={captchaRef} sitekey='6LfAZEwhAAAAADvzYyVWY8mxPuunCbiJVtTbX6jR' onChange={handleCaptchaVerify} />
+            <ReCAPTCHA className='mt-3' sitekey='6LfAZEwhAAAAADvzYyVWY8mxPuunCbiJVtTbX6jR' onChange={handleCaptchaVerify} />
             {errors.captchaToken ? <p className='text-danger my-0 small'>Please verify that you are not a robot 🤖.</p> : <></>}
             <p className='text-danger my-0 small'>* Required</p>
 
