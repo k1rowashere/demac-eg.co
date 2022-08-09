@@ -46,25 +46,25 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
     //JSON LD Schema
     const structuredData = {
-        "@context": "https://schema.org/", 
-        "@type": "Product", 
+        "@context": "https://schema.org/",
+        "@type": "Product",
         "name": product.name,
         "image": product.img_link,
         "description": product.description,
         "brand": {
-          "@type": "Brand",
-          "name": "Siemens"
+            "@type": "Brand",
+            "name": "Siemens"
         },
         "sku": product.part_no,
         "offers": {
-          "@type": "Offer",
-          "url": "",
-          "priceCurrency": "EGP",
-          "price": +product.price,
-          "availability": "https://schema.org/InStock",
-          "itemCondition": "https://schema.org/NewCondition"
+            "@type": "Offer",
+            "url": "https://demac-eg.co/store/product/" + pid,
+            "priceCurrency": "EGP",
+            "price": +product.price,
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition"
         }
-      }
+    }
 
 
     return {
@@ -85,11 +85,16 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
     return (
         <>
             <Head>
-                <title>DEMAC - Products</title>
+                <title>DEMAC - Products | {product.name}</title>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(props.structuredData) }}
                 />
+                <meta name="description" content={`Buy: ${product.name}`} />
+                <meta name='robots' content='index, follow'/>
+                <meta property="og:title" content={`Demac - Products | ${product.name}`} />
+                <meta property="og:description" content={`Buy original Siemens spare parts from DEMAC Store!`} />
+                <meta property="og:image" content={product.img_link} />
             </Head>
             <Navbar activePage='store' />
             <main className='container-fluid py-5 bg-light'>

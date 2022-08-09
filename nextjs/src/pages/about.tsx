@@ -13,7 +13,15 @@ import Header from 'components/Header';
 export default function About() {
     return (
         <>
-            <Head><title>DEMAC - About</title></Head>
+            <Head>
+                <title>DEMAC - About</title>
+                <meta name="description" content="Since 2010, we have provided complete engineering solutions in Egypt and the surrounding region." />
+                <meta name='robots' content='index, follow'/>
+                <meta property="og:title" content="DEMAC - About" />
+                <meta property="og:type" content="website" />
+                <meta property="og:description"content="Since 2010, we have provided complete engineering solutions in Egypt and the surrounding region." />
+                <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
+            </Head>
             <Navbar activePage='about' />
             <Header h1='About us' />
             <main className='bg-dark text-white'>

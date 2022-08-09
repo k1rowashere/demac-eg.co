@@ -14,10 +14,18 @@ import type { contactInfo } from 'utils/types';
 
 export default function Contact() {
     const form = useForm<contactInfo>();
-    
+
     return (
         <>
-            <Head><title>DEMAC - Contact Us</title></Head>
+            <Head>
+                <title>DEMAC - Constact Us</title>
+                <meta name="description" content="Leave us a message demac@demac-egypt.com or call us: +20 1099 747 581" />
+                <meta name='robots' content='index, follow' />
+                <meta property="og:title" content="DEMAC - Contact Us" />
+                <meta property="og:type" content="website" />
+                <meta property="og:description" content="Leave us a message demac@demac-egypt.com or call us: +20 1099 747 581" />
+                <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
+            </Head>
             <Navbar activePage='contact_us' />
             <Header h1='Contact Us' h2='Leave us a message and we will get intouch as soon as possible.' />
             <main className='py-5 bg-light'>
@@ -41,7 +49,7 @@ export default function Contact() {
                                     <span className='text-end'>{`${form.watch('message')?.length || 0}/500 characters`}</span>
                                     <picture className='d-none d-md-block text-center my-auto'>
                                         <source srcSet='/assets/paper_plane.svg' type='image/svg+xml' />
-                                        <img src='/assets/paper_plane.svg' alt='' style={{opacity: '0.5'}}/>
+                                        <img src='/assets/paper_plane.svg' alt='' style={{ opacity: '0.5' }} />
                                     </picture>
                                 </Col>
                                 <Col>

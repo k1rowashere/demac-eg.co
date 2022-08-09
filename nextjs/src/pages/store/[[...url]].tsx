@@ -75,7 +75,14 @@ export default function Store({ products, categories, url }: InferGetStaticProps
 
     return (
         <>
-            <Head><title>DEMAC - Store</title></Head>
+            <Head>
+                <title>DEMAC - Store</title>
+                <meta name="description" content="Buy original Siemens spare parts in Egypt." />
+                <meta property="og:title" content="DEMAC - Store" />
+                <meta property="og:type" content="website" />
+                <meta property="og:description" content="Buy original Siemens spare parts in Egypt." />
+                <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
+            </Head>
             <Navbar activePage='store' />
             <Header h1='Welcome to demac store' h2='Lorem ipsum' classNames={{ child: 'bg bg-img-1' }} />
             <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
