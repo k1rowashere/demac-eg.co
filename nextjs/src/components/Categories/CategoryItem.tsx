@@ -12,13 +12,13 @@ function isPartOfPath(thisPath: any[], activePath: any[]) {
     return thisPath.length < activePath.length && thisPath.every((el, index) => activePath[index] === el)
 }
 
-interface categories {
+type categories = {
     [x: string]: categories | {};
 }
 
 type CategoryItem = { prevPath: string[], name: string, level: number, currCategories: categories, activePath: string[] }
 
-function CategoryItem({ prevPath, name, level, currCategories, activePath }: CategoryItem) {
+export default function CategoryItem({ prevPath, name, level, currCategories, activePath }: CategoryItem) {
     const thisPath = prevPath.concat([name.replaceAll(/\s/g, '-').toLowerCase()]);
     const hasChildren = Object.keys(currCategories).length === 0;
     const [expanded, setExpanded] = useState(level < 1 || isPartOfPath(thisPath, activePath));
@@ -56,21 +56,4 @@ function CategoryItem({ prevPath, name, level, currCategories, activePath }: Cat
             </ListGroup.Item>
         </>
     }, [expanded, activePath, currCategories, hasChildren, level, name, thisPath]);
-}
-
-export default function Categories({ categories, activePath }: { categories: categories, activePath: string[] }) {
-    return (
-        <ListGroup as='ul'>
-            {Object.entries(categories)
-                .map(([key, value]) => <CategoryItem
-                    key={key}
-                    prevPath={[]}
-                    name={key}
-                    level={0}
-                    currCategories={value}
-                    activePath={activePath}
-                />)}
-        </ListGroup>
-    )
-
 }

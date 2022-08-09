@@ -1,9 +1,9 @@
 import 'react-phone-input-2/lib/bootstrap.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'nprogress/nprogress.css'
-import '../styles/globals.css';
-import '../styles/styles.css';
-import '../styles/print.css';
+import '../../styles/globals.css';
+import '../../styles/styles.css';
+import '../../styles/print.css';
 
 import NProgress from 'nprogress'
 import Head from 'next/head'

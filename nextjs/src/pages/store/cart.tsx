@@ -6,18 +6,18 @@ import { useCallback, useMemo, useState } from 'react';
 import { Card, Container, Button, CloseButton, Row, Col } from 'react-bootstrap';
 import { CSSTransition } from 'react-transition-group';
 
-import Navbar from '../../components/navigation';
-import Header from '../../components/header';
-import Footer from '../../components/footer';
-import NumField from '../../components/number_field';
-import ImageWithFallback from '../../components/image_fallback';
-import CheckoutForm from '../../components/checkout';
+import Navbar from 'components/Navbar';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import NumField from 'components/NumField';
+import ImageWithFallback from 'components/ImageWithFallback';
+import CheckoutForm from 'components/Checkout/CheckoutContainer';
 
-import dbQuery from '../../utils/db_fetch';
-import { currencyFormater } from '../../utils/constants';
-import { appendCart, getCart } from '../../utils/cart';
+import dbQuery from 'utils/db_fetch';
+import { currencyFormater } from 'utils/constants';
+import { appendCart, getCart } from 'utils/cart';
 
-import type { product } from '../../utils/types';
+import type { product } from 'utils/types';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 
 const SHIPPING_COST = 150;

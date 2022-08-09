@@ -4,16 +4,18 @@ import { useRouter } from 'next/router';
 
 import { CloseButton } from 'react-bootstrap';
 
-import Navbar from '../../../components/navigation';
-import Footer from '../../../components/footer';
-import ImageWithFallback from '../../../components/image_fallback';
-import Breadcrumb from '../../../components/breadcrumb';
-import AddToCart from '../../../components/add_to_cart';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
+import ImageWithFallback from 'components/ImageWithFallback';
+import Breadcrumb from 'components/Breadcrumb';
+import AddToCart from 'components/ProductDisplay/AddToCart';
 
-import dbQuery from '../../../utils/db_fetch';
+import dbQuery from 'utils/db_fetch';
 
-import type { product } from '../../../utils/types';
+import type { product } from 'utils/types';
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const res = await dbQuery(`
@@ -49,39 +51,41 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 }
 
 
+
 export default function Product(props: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
+    const { product } = props;
     return (
         <>
             <Head><title>DEMAC - Products</title></Head>
             <Navbar activePage='store' />
             <main className='container-fluid py-5 bg-light'>
                 <div className='px-4 px-lg-5 d-flex align-items-center'>
-                    <Link href={'/store' + props.product.path.replace(/(\/[^\/]+)$/, '').replaceAll(/\s/g, '-').toLowerCase()}>
+                    <Link href={'/store' + product.path.replace(/(\/[^\/]+)$/, '').replaceAll(/\s/g, '-').toLowerCase()}>
                         <a>
                             <i role='button' className='bi bi-chevron-left mx-2' style={{ WebkitTextStroke: '2px' }} />
                         </a>
                     </Link>
-                    <Breadcrumb className='mx-2 mb-0' activePath={props.product.path.split('/').filter(el => { return el != ''; })} pid={props.pid} />
+                    <Breadcrumb className='mx-2 mb-0' activePath={product.path.split('/').filter(el => { return el != ''; })} pid={props.pid} />
                     <CloseButton className='ms-auto' onClick={() => router.back()} />
                 </div>
                 <div className='container px-4 px-lg-5 mt-3'>
                     <div className='row gx-4 gx-lg-5 align-items-center'>
                         <div className='col-md-6'>
-                            <ImageWithFallback width={'100%'} src={props.product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={props.product.name} />
+                            <ImageWithFallback width={'100%'} src={product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={product.name} />
                         </div>
                         <div className='col-md-6'>
-                            <div className='small mb-1'>Part No.: {props.product.part_no}</div>
-                            <h1 className='display-5 fw-bolder'>{props.product.name}</h1>
+                            <div className='small mb-1'>Part No.: {product.part_no}</div>
+                            <h1 className='display-5 fw-bolder'>{product.name}</h1>
                             <div className='fs-5 mb-5'>
-                                <span>{Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(props.product.price)}</span>
+                                <span>{Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(product.price)}</span>
                             </div>
                             <p className='text-muted text-truncate' style={{ textDecoration: 'underline', textDecorationStyle: 'dotted' }}>
-                                <a href={props.product.manufacturer_link}><small>{props.product.manufacturer_link}</small></a>
+                                <a href={product.manufacturer_link}><small>{product.manufacturer_link}</small></a>
                             </p>
-                            <p className='lead'>{props.product.description}</p>
+                            <p className='lead'>{product.description}</p>
                             <div className='d-flex'>
-                                <AddToCart id={props.product.part_no} />
+                                <AddToCart id={product.part_no} />
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,14 @@
+.contact {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.contact li p {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.contact li i {
+    text-align: center;
+    vertical-align: top;
+}

@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 
 import { Container, Modal } from 'react-bootstrap';
-import ContactForm from './contact_form';
+import ContactForm from './ContactForm';
 
-import type { contactInfo } from '../utils/types';
+import type { contactInfo } from 'utils/types';
 
-export default function CheckoutForm({ show, setShow }: { show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function CheckoutContainer({ show, setShow }: { show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>> }) {
     const form = useForm<contactInfo>();
 
     const handleClose = () => {

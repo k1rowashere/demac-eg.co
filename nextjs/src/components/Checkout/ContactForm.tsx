@@ -6,9 +6,9 @@ const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
 
 import { Button, Form, InputGroup, Stack, Spinner } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
-import SuccessModal from './success_status_modal';
+import SuccessModal from '../SuccessModal';
 
-import type { contactInfo } from '../utils/types';
+import type { contactInfo } from 'utils/types';
 
 type MyFormControl = {
     type?: string;

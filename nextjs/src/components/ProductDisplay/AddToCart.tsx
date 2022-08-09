@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-import { getCart, appendCart } from '../utils/cart';
+import { getCart, appendCart } from 'utils/cart';
 
 
 export default function AddToCart({ id }: { id: string }) {

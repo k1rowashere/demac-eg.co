@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import boilerImage from '../public/assets/boiler.png';
+import boilerImage from '../../public/assets/boiler.png';
 
-import Navbar from '../components/navigation';
-import Footer from '../components/footer';
+import Navbar from 'components/Navbar';
+import Footer from 'components/Footer';
 
-import { Col, Row, Card, Container, Button, Stack, Breadcrumb } from 'react-bootstrap';
-import Header from '../components/header';
+import { Col, Row, Container, Button, Stack, Breadcrumb } from 'react-bootstrap';
+import Header from 'components/Header';
 
 
 export default function About() {

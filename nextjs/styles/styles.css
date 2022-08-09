@@ -240,30 +240,6 @@ input[type=number] {
 /*----------------------------------------*/
 
 
-/* Footer */
-.footer-links {
-    content: "|";
-    font-weight: 300;
-    font-size: 1em;
-}
-
-.footer-contact {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.footer-contact li p {
-    display: inline-block;
-    vertical-align: top;
-}
-
-.footer-contact li i {
-    text-align: center;
-    vertical-align: top;
-}
-
-/*----------------------------------------*/
-
 
 /* Backgrounds */
 

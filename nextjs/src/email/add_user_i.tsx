@@ -1,6 +1,6 @@
 import React from "react";
-import { currencyFormater } from "../../utils/constants";
-import { contactInfo, product } from "../../utils/types";
+import { currencyFormater } from "utils/constants";
+import { contactInfo, product } from "utils/types";
 
 export function AddUserInternal({ cartCount, cartItems, contactInfo }: { cartCount: { [x: string]: number }, cartItems: product[], contactInfo: contactInfo }) {
     return <>

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Demac from '/public/assets/demac_logo.svg'
 import { Breadcrumb, Col, Container, Row } from 'react-bootstrap'
 
+import footer from './footer.module.css'
 
 export default function Footer() {
     return (
@@ -29,7 +30,7 @@ export default function Footer() {
                         </p>
                     </Col>
                     <Col as='address' md={5} lg={4} className='mt-sm-0'>
-                        <ul className='footer-contact'>
+                        <ul className={footer.contact}>
                             <li><a href='https://goo.gl/maps/XWLV5Q1jb4qkRZRJ8' target='_blank' rel="noreferrer"><i className='bi bi-geo-alt-fill me-2' /><p><span>274 Abdel Salam Aref, El Saray</span><br />Alexandria, Egypt</p></a></li>
                             <li><a href='tel:+201099747581' target='_blank' rel="noreferrer"><i className='bi bi-telephone-fill me-2' /><p>+20-10-9974-7581</p></a></li>
                             <li><a href='mailto:demac@demac-egypt.com' target='_blank' rel="noreferrer"><i className='bi bi-envelope-fill me-2' /><p>demac@demac-egypt.com</p></a></li>

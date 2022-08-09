@@ -4,12 +4,12 @@ import { useForm } from 'react-hook-form';
 
 import { Container, Col, Row, Card, Form } from 'react-bootstrap';
 
-import Navbar from '../components/navigation';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import ContactForm from '../components/contact_form';
+import Navbar from 'components/Navbar';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import ContactForm from 'components/Checkout/ContactForm';
 
-import type { contactInfo } from '../utils/types';
+import type { contactInfo } from 'utils/types';
 
 
 export default function Contact() {

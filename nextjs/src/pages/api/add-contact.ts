@@ -4,12 +4,12 @@ import { renderToString } from 'react-dom/server';
 import requestIp from 'request-ip';
 import nodemailer from 'nodemailer';
 
-import { AddUserInternal } from '../../components/email/add_user_i';
+import { AddUserInternal } from '../../email/add_user_i';
 
-import dbQuery from '../../utils/db_fetch'
-import rateLimit from '../../utils/rate_limit';
-import { contactInfo, product } from '../../utils/types';
-import { emailTrasportOptions } from '../../utils/constants';
+import dbQuery from 'utils/db_fetch'
+import rateLimit from 'utils/rate_limit';
+import { contactInfo, product } from 'utils/types';
+import { emailTrasportOptions } from 'utils/constants';
 
 export const config = { api: { bodyParser: { sizeLimit: '5kb' } } }
 const limiterIp = rateLimit({ interval: 5 * 60 * 1000, uniqueTokenPerInterval: 500 })

@@ -2,9 +2,9 @@ import Head from 'next/head'
 
 import { Container } from 'react-bootstrap';
 
-import Navbar from '../components/navigation'
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Navbar from 'components/Navbar'
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 export default function Home() {
     return (
