@@ -41,11 +41,38 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
             FROM products 
             WHERE part_no = ?;
     `, [pid]) as product[];
+
+    const product = { ...res[0] }
+
+    //JSON LD Schema
+    const structuredData = {
+        "@context": "https://schema.org/", 
+        "@type": "Product", 
+        "name": product.name,
+        "image": product.img_link,
+        "description": product.description,
+        "brand": {
+          "@type": "Brand",
+          "name": "Siemens"
+        },
+        "sku": product.part_no,
+        "offers": {
+          "@type": "Offer",
+          "url": "",
+          "priceCurrency": "EGP",
+          "price": +product.price,
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        }
+      }
+
+
     return {
         props: {
             //fix 'error serializing' bug
-            product: { ...res[0] },
+            product,
             pid,
+            structuredData,
         }
     };
 }
@@ -57,7 +84,13 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
     const { product } = props;
     return (
         <>
-            <Head><title>DEMAC - Products</title></Head>
+            <Head>
+                <title>DEMAC - Products</title>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(props.structuredData) }}
+                />
+            </Head>
             <Navbar activePage='store' />
             <main className='container-fluid py-5 bg-light'>
                 <div className='px-4 px-lg-5 d-flex align-items-center'>

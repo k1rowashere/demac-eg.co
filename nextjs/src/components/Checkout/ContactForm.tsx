@@ -43,7 +43,7 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
     const { watch, setValue, register, handleSubmit, formState: { errors }, clearErrors } = form
     const [confirm, setConfirm] = useState(0); // 0: no clicks, 1: waiting for confirm, 2: loading
     const [successStatus, setSuccessStatus] = useState({ show: false, status: 0 } as { show: boolean, status?: number });
-    useEffect(() => { register('captchaToken', { required: true }) },[]);
+    useEffect(() => { register('captchaToken', { required: true }) },[register]);
 
     const required = { required: { value: true, message: "Required" } }
     const nameValid = {maxLength: { value: 32, message: 'Too long' } }
