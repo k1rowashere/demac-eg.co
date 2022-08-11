@@ -7,8 +7,8 @@ import { CloseButton } from 'react-bootstrap';
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
 import ImageWithFallback from 'components/ImageWithFallback';
-import Breadcrumb from 'components/Breadcrumb';
-import AddToCart from 'components/ProductDisplay/AddToCart';
+import Breadcrumb from 'components/StoreFront/Breadcrumb';
+import AddToCart from 'components/StoreFront/ProductDisplay/AddToCart';
 
 import dbQuery from 'utils/db_fetch';
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import ImageWithFallback from '../ImageWithFallback';
+import ImageWithFallback from '../../ImageWithFallback';
 import AddToCart from './AddToCart';
 import Pagination  from './Pagination';
 
@@ -105,7 +105,7 @@ export default function ProductDisplay({ products }: { products: product[] }) {
                     <source srcSet='/assets/no_products.svg' type='image/svg+xml' />
                     <img className='my-5 big-pic' src='/assets/no_products.svg' alt='No products image' />
                 </picture>
-                <h5 className='mx-auto text-muted'>No products matches your search</h5>
+                <h5 className='mx-auto text-muted'>No product matches your search</h5>
             </div>
         )
     );

@@ -1,17 +1,16 @@
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { InferGetStaticPropsType } from 'next';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Head from 'next/head';
 
-import { Button, Card, Col, Offcanvas, Row } from 'react-bootstrap';
+import { Button, Card, Col, Form, InputGroup, Offcanvas, Row } from 'react-bootstrap';
 
 import Navbar from 'components/Navbar';
 import Header from 'components/Header';
-import Breadcrumb from 'components/Breadcrumb';
 import Categories from 'components/Categories';
-import ProductDisplay from 'components/ProductDisplay';
+import StoreFront from 'components/StoreFront';
 import Footer from 'components/Footer';
 
 import dbQuery from 'utils/db_fetch';
@@ -66,8 +65,9 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
 
 export default function Store({ products, categories, url }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const router = useRouter();
     const [showOffcanvas, setShowOffcanvas] = useState(false);
+    const router = useRouter();
+
     //turn off offcanvase on router change
     useEffect(() => {
         setShowOffcanvas(false);
@@ -86,23 +86,7 @@ export default function Store({ products, categories, url }: InferGetStaticProps
             <Navbar activePage='store' />
             <Header h1='Welcome to demac store' h2='Lorem ipsum' classNames={{ child: 'bg bg-img-1' }} />
             <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
-                <div className='px-4 px-lg-5 d-flex'>
-                    <Button variant='outline-dark' className='d-block d-xl-none' onClick={() => setShowOffcanvas(true)}>
-                        <i className='bi bi-funnel-fill' />
-                    </Button>
-                    <Breadcrumb className='mx-2 my-auto' activePath={url} />
-                </div>
-                <Row className='px-4 px-lg-5 mt-3'>
-                    <Card id='categories' className='col-2 d-none d-xl-block p-0 mb-3'>
-                        <Card.Body className='py-3 px-1'>
-                            <Card.Title><h3 className='p-2 px-3'>Categories:</h3></Card.Title>
-                            <Categories categories={categories} activePath={url} />
-                        </Card.Body>
-                    </Card>
-                    <Col id='offers' style={{ minHeight: '75vh' }}>
-                        <ProductDisplay products={products} />
-                    </Col>
-                </Row>
+                <StoreFront setShowOffcanvas={setShowOffcanvas} url={url} categories={categories} products={products} />
             </main>
 
             <Footer />

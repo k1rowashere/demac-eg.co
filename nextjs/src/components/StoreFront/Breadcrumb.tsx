@@ -5,7 +5,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 export default function _Breadcrumb(props: {activePath: string[], pid?: string, [x: string]: any}) {
     const { activePath, pid, ...rest } = props;
     return (
-        <Breadcrumb listProps={{className: 'my-auto'}} {...rest}>
+        <Breadcrumb listProps={{className: 'my-auto', style:{'--bs-breadcrumb-item-padding-x': '0.3rem'} as React.CSSProperties}} {...rest}>
             <Link href='/store' scroll={false} passHref><Breadcrumb.Item className='h4' key='store'>STORE</Breadcrumb.Item></Link>
             {activePath.map((page, index) => {
                 return (
