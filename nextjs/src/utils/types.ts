@@ -25,3 +25,13 @@ export type contactInfo = {
     message?: string;
     captchaToken: string;
 };
+
+export type User = {
+    isLoggedIn: boolean;
+};
+
+declare module "iron-session" {
+    interface IronSessionData {
+        user?: User;
+    }
+}
