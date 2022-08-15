@@ -30,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: false,
+        fallback: 'blocking',
     }
 }
 
@@ -41,6 +41,17 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
             FROM products 
             WHERE part_no = ?;
     `, [pid]) as product[];
+
+    if (res.length === 0) {
+        return {
+            notFound: true,
+            props: {
+                product: {} as product,
+                pid,
+                structuredData: {},
+            }
+        }
+    }
 
     const product = { ...res[0] }
 
@@ -66,14 +77,14 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
         }
     }
 
-
     return {
         props: {
             //fix 'error serializing' bug
             product,
             pid,
             structuredData,
-        }
+        },
+        revalidate: 60,
     };
 }
 
@@ -81,17 +92,17 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
 export default function Product(props: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
-    const { product } = props;
+    const { product, pid, structuredData } = props;
     return (
         <>
             <Head>
                 <title>DEMAC - Products | {product.name}</title>
                 <script
                     type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(props.structuredData) }}
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
                 />
                 <meta name="description" content={`Buy: ${product.name}`} />
-                <meta name='robots' content='index, follow'/>
+                <meta name='robots' content='index, follow' />
                 <meta property="og:title" content={`Demac - Products | ${product.name}`} />
                 <meta property="og:description" content={`Buy original Siemens spare parts from DEMAC Store!`} />
                 <meta property="og:image" content={product.img_link} />
@@ -104,7 +115,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                             <i role='button' className='bi bi-chevron-left mx-2' style={{ WebkitTextStroke: '2px' }} />
                         </a>
                     </Link>
-                    <Breadcrumb className='mx-2 mb-0' activePath={product.path.split('/').filter(el => { return el != ''; })} pid={props.pid} />
+                    <Breadcrumb className='mx-2 mb-0' activePath={product.path.split('/').filter(el => { return el != ''; })} pid={pid} />
                     <CloseButton className='ms-auto' onClick={() => router.back()} />
                 </div>
                 <div className='container px-4 px-lg-5 mt-3'>

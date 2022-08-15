@@ -37,7 +37,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: false, // can also be true or 'blocking'
+        fallback: 'blocking',
     }
 }
 
@@ -58,7 +58,8 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
             products: res1.map((result) => ({ ...result })),
             categories: pathsToTree(res2),
             url,
-        }
+        },
+        revalidate: 60,
     };
 }
 
