@@ -10,6 +10,7 @@ export function currencyFormater(x: number) {
 
 export const sessionOptions: IronSessionOptions = {
     password: process.env.SECRET_COOKIE_PASSWORD as string,
+    ttl: 15 * 60, //15 mins
     cookieName: "demac-eg.co_admin_sess",
     cookieOptions: {
       secure: process.env.NODE_ENV === "production",

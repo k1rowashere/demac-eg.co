@@ -13,7 +13,7 @@ export default function Login() {
         const res = await fetch(`/api/admin/login`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ...form }),
+            body: JSON.stringify(form),
         });
         const status = await res.json() as User;
         if (!status.isLoggedIn)

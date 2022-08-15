@@ -7,7 +7,7 @@ import dbQuery from 'utils/db_fetch';
 export default withIronSessionApiRoute(productEdit, sessionOptions);
 
 
-type dbEditReq = {
+export type dbEditReq = {
     action: 'edit',
     part_no: string,
     fields: {
@@ -32,10 +32,11 @@ type dbAddReq = {
 };
 
 async function productEdit(req: NextApiRequest, res: NextApiResponse) {
+    //auth
     if (!req.session.user) return res.status(401).json({});
 
     const body = req.body as dbAddReq | dbEditReq;
-    let message= null;
+    let message = null;
 
     try {
         switch (body.action) {
@@ -58,15 +59,15 @@ async function productEdit(req: NextApiRequest, res: NextApiResponse) {
 
             case 'add':
                 {
-                    const {path, part_no, name, description, price, manufacturer_link, img_link} = req.body;
+                    const { path, part_no, name, description, price, manufacturer_link, img_link } = req.body;
                     message = await dbQuery(`INSERT INTO products (path, part_no, name, description, price, manufacturer_link, img_link)
-                                        VALUES (?,?,?,?,?,?,?);`, 
-                                    [path, part_no, name, description, price, manufacturer_link, img_link])
+                                        VALUES (?,?,?,?,?,?,?);`,
+                        [path, part_no, name, description, price, manufacturer_link, img_link])
                     break;
                 }
         }
     } catch (err) {
-        return res.status(500).end((err as Error).message)
+        return res.status(500).json({ message: (err as Error).message })
     }
 
     return res.status(200).json(message);

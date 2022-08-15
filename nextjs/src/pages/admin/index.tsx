@@ -2,23 +2,27 @@ import LogoutButton from 'components/admin/LogoutButton';
 import { withIronSessionSsr } from 'iron-session/next';
 import { GetServerSidePropsContext, GetServerSidePropsResult, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
+import { NextRequest } from 'next/server';
 import React from 'react';
 import { Button, Container, Stack } from 'react-bootstrap';
 import { sessionOptions } from 'utils/constants';
 
 
+async function handler(ctx: GetServerSidePropsContext) {
 
-async function handler(ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<{}>> {
     const user = ctx.req.session.user;
-
     if (!user?.isLoggedIn) {
-        ctx.res.statusCode = 302;
-        ctx.res.setHeader('Location', `/admin/login`);
+        return {
+            redirect: { destination: '/admin/login', permanent: false },
+            props: {},
+        };
+    } else {
+        return {
+            props: {},
+        };
     }
-    return {
-        props: {},
-    };
 }
+
 
 export const getServerSideProps = withIronSessionSsr(handler, sessionOptions)
 
