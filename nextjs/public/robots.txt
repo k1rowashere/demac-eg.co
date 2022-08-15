@@ -1,8 +1,8 @@
 Sitemap: https://demac-eg.co/sitemap.xml 
 User-agent: *
 Allow: /
-Disallow: /api/*
+
+Disallow: /api
 Disallow: /admin
-Disallow: /store/siemens/*
 Disallow: /store/cart
 Disallow: /store/search

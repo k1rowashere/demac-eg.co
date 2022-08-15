@@ -23,8 +23,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         str += values.join(',') + '\n';
     });
 
-    const form = new FormData();
-    form.append('db_dump', str);
     res.setHeader('Content-Disposition', 'attachment; filename=db_dump.csv');
     return res.status(200).send(str);
 }

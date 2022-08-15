@@ -1,947 +1,735 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-  <loc>https://demac-eg.co/</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>1.00</priority>
+	<loc>https://demac-eg.co/</loc>
+	<lastmod>2022-08-15T18:19:26+01:00</lastmod>
+	<priority>0.1</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://demac-eg.co/store</loc>
+	<lastmod>2022-08-15T18:19:26+01:00</lastmod>
+	<priority>0.1</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/about</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://demac-eg.co/about</loc>
+	<lastmod>2022-08-15T18:19:26+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/contact-us</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.80</priority>
+	<loc>https://demac-eg.co/contact-us</loc>
+	<lastmod>2022-08-15T18:19:26+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/accessories</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/projects</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/im</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/accessories</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/input-output/ai</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/im</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/input-output/ao</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/input-output/ai</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/input-output/di</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/input-output/ao</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/input-output/do</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/input-output/di</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/power-supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/input-output/do</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/special</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/power-supply</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/terminal-module</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/special</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/hmi/basic-panel</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/terminal-module</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/hmi/memory-card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/hmi/basic-panel</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/network</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/hmi/memory-card</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/power-supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/network</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/communication</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/power-supply</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/cpu</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/communication</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ai-ao</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/cpu</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ai</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ai-ao</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ao</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ai</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/di-do</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/ao</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/di</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/di-do</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output/do</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/di</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/memory-card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output/do</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/power-supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/memory-card</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/accessories</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/power-supply</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/communication</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/accessories</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/cpu</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/communication</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/fm</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/cpu</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/im</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/fm</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/ai-ao</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/im</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/ai</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/ai-ao</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/ao</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/ai</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/di-do</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/ao</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/di</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/di-do</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output/do</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/di</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/memory-card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output/do</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.2</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/power-supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/memory-card</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/s7-400/cpu</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-300/power-supply</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6AV2123-2GA03-0AX0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/siemens/s7-400/cpu</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6AV6647-0AC11-3AX0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6AV2123-2GA03-0AX0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.1</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6AV6647-0AH11-3AX0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6AV6647-0AC11-3AX0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6AV6671-1CB00-0AX2</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6AV6647-0AH11-3AX0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6AV6671-8XB10-0AX1</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6AV6671-1CB00-0AX2</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6EP1332-1LB00</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6AV6671-8XB10-0AX1</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6EP1332-1SH71</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6EP1332-1LB00</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6EP1333-1LB00</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6EP1332-1SH71</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6EP3436-8SB00-0AY0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6EP1333-1LB00</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7131-4BB01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6EP3436-8SB00-0AY0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7131-4BD01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6ES7131-4BB01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7131-4BF00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.64</priority>
+	<loc>https://demac-eg.co/store/product/6ES7131-4BD01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7131-4BF00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:30+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7972-0BA52-0XA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/siemens</loc>
+	<lastmod>2022-08-15T18:19:31+01:00</lastmod>
+	<priority>0.8</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7972-0BB52-0XA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7972-0BA52-0XA0</loc>
+	<lastmod>2022-08-15T18:19:31+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7972-0BB52-0XA0</loc>
+	<lastmod>2022-08-15T18:19:31+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7151-1AA06-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7151-1CA00-1BL0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7151-1AA06-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7151-1CA00-3BL0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7151-1CA00-1BL0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7151-3AA23-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7151-1CA00-3BL0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/siemens/et200s/input-output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7151-3AA23-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7134-4FB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/siemens/et200s/input-output</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.4</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7134-4GB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7134-4FB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7134-4GB11-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7134-4GB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7134-4GD00-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7134-4GB11-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7135-4GB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
+	<loc>https://demac-eg.co/store/product/6ES7134-4GD00-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 <url>
-  <loc>https://demac-eg.co/store/product/6ES7131-4FB00-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7132-4BB01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7132-4BD02-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7132-4BF00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7132-4FB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7132-4HB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7138-4CA01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7138-4CB11-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7193-4CA40-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7193-4CC20-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7193-4CD20-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7193-4DL10-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/hmi</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6GK5005-0BA00-1AA3</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6GK5108-0BA00-2AA3</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6GK7242-5DX30-0XE0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7211-1AE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7211-1BE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7211-1HE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7212-1AE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7212-1BE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7212-1HE40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7214-1AG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7214-1BG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7214-1HG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7215-1AG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7215-1BG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7215-1HG40-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/s7-1200/input-output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7234-4HE32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7231-4HA30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7231-5QA30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7231-5QD32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7232-4HA30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7232-4HB32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7232-4HD32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-0BD30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-1BH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-1PH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-1PL32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-1QH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7223-3BD30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7221-1BF32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7221-1BH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7221-3BD30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7222-1BD30-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7222-1BF32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7222-1BH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7222-1HF32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7222-1HH32-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7954-8LC02-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/s7-300</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7390-1AE80-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7392-1AJ00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7392-1AM00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6GK7343-1CX10-0XE0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7313-5BG04-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7313-6CG04-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7315-2AH14-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7153-1AA03-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7153-2BA10-0XB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/s7-300/input-output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7334-0CE01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7331-1KF02-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7331-7KB02-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7331-7PF01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7332-5HB01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7332-5HD01-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7332-5HF00-0AB0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7323-1BL00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7321-1BH02-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7321-1BL00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7322-1BH01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7322-1BL00-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7953-8LG31-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/product/6ES7307-1EA01-0AA0</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/siemens/s7-400</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/HMI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/HMI/Basic%20Panel</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/HMI/Memory%20Card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/Power%20Supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Power%20Supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Input%20Output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Input%20Output/DI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.51</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/Accessories</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/IM</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Input%20Output/AI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Input%20Output/AO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Input%20Output/DO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Power%20Supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/ET200S/Terminal%20Module</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/Network</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Communication</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/CPU</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/AI%20AO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/AI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/AO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/DI%20DO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/DI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Input%20Output/DO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%201200/Memory%20Card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Accessories</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Communication</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/CPU</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/IM</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/AI%20AO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/AI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/AO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/DI%20DO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/DI</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Input%20Output/DO</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Memory%20Card</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
-</url>
-<url>
-  <loc>https://demac-eg.co/store/Siemens/S7%20300/Power%20Supply</loc>
-  <lastmod>2022-07-28T17:00:16+00:00</lastmod>
-  <priority>0.41</priority>
+	<loc>https://demac-eg.co/store/product/6ES7135-4GB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:32+01:00</lastmod>
+	<priority>0.6</priority>
 </url>
 
-
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7131-4FB00-0AB0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7138-4CA01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7138-4CB11-0AB0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7193-4CA40-0AA0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7193-4CC20-0AA0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7193-4CD20-0AA0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7193-4DL10-0AA0</loc>
+	<lastmod>2022-08-15T18:19:33+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/hmi</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6GK5005-0BA00-1AA3</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6GK5108-0BA00-2AA3</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/s7-1200</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7211-1AE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7211-1BE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7211-1HE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7212-1AE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7212-1BE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7212-1HE40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7214-1AG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7214-1BG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7214-1HG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7215-1AG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7215-1BG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7215-1HG40-0XB0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6GK7242-5DX30-0XE0</loc>
+	<lastmod>2022-08-15T18:19:34+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/s7-1200/input-output</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7234-4HE32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7132-4BB01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7132-4BD02-0AA0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7132-4BF00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7132-4FB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7132-4HB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7231-4HA30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7231-5QA30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7231-5QD32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-0BD30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-1BH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-1PH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-1PL32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-1QH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7223-3BD30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7232-4HA30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7232-4HB32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7232-4HD32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7222-1BD30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7222-1BF32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7222-1BH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7222-1HF32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7222-1HH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7221-1BF32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7221-1BH32-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7221-3BD30-0XB0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7954-8LC02-0AA0</loc>
+	<lastmod>2022-08-15T18:19:35+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/s7-300</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6GK7343-1CX10-0XE0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7390-1AE80-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7392-1AJ00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7392-1AM00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7313-5BG04-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7313-6CG04-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7315-2AH14-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7153-1AA03-0XB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7153-2BA10-0XB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/s7-300/input-output</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7331-1KF02-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7331-7KB02-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7331-7PF01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7332-5HB01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7332-5HD01-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7332-5HF00-0AB0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7334-0CE01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7321-1BH02-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7321-1BL00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7323-1BL00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7953-8LG31-0AA0</loc>
+	<lastmod>2022-08-15T18:19:36+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/siemens/s7-400</loc>
+	<lastmod>2022-08-15T18:19:37+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7322-1BH01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:37+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7322-1BL00-0AA0</loc>
+	<lastmod>2022-08-15T18:19:37+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://demac-eg.co/store/product/6ES7307-1EA01-0AA0</loc>
+	<lastmod>2022-08-15T18:19:37+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
 </urlset>
