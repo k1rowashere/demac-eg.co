@@ -29,7 +29,8 @@ module.exports = {
                         /add-to-cart/, /fade/, /collapse/, /cart/, // animations
                         // /align/, /bg/, /breadcrumb/, /btn/, /col/, /row/, /container/, /card/, /offcanvas/,
                         // /hstack/, /justify/, /list-group/,
-                        // /navbar/, /nav-/, /pagination/, /page-.*/,
+                        // /navbar/, /nav-/, /pagination/, 
+                        /page-.*/,
                         // /form-control/, /form-floating/, /dropdown/, /input-group/,
                         // /[pm].?(-..)?-(\d|auto)/, /order(-..)?-(\d|auto)/, /offset(-..)?-(\d|auto)/,
                         // /h\d/, /gap-\d/, /display-\d/,
