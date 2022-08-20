@@ -96,7 +96,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
     return (
         <>
             <Head>
-                <title>DEMAC - Products | {product.name}</title>
+                <title>{'DEMAC - Products |' + product.name}</title>
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

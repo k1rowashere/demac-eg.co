@@ -30,7 +30,7 @@ export default function CategoryItem({ prevPath, name, level, currCategories, ac
             <ListGroup.Item as="li" className='text-truncate' active={arrayEquals(activePath, thisPath)} key={thisPath.toString()}>
                 {hasChildren
                     ? <i className='bi bi-dash text-muted' />
-                    : <i role='button' className={icons[Number(expanded)]} onClick={chevronHandle} style={{ transition: 'all .3s ease' }} />
+                    : <i role='button' className={icons[Number(expanded)]} onClick={chevronHandle} />
                 }
 
                 {!hasChildren

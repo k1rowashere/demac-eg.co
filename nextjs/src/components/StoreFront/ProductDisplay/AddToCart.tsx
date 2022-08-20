@@ -24,7 +24,7 @@ export default function AddToCart({ id }: { id: string }) {
                 classNames='add-to-cart'
             >
                 <Button variant='outline-dark' onClick={handleAddToCart} active={productAdded} >
-                    {productAdded ? <>< i className='bi bi-cart-check me-1' /> Item Added </> : <><i className='bi-cart-fill me-1' /> Add to Cart </>}
+                    {productAdded ? <>< i className='bi bi-cart-check me-1' /> Item Added </> : <><i className='bi bi-cart-fill me-1' /> Add to Cart </>}
                 </Button>
             </CSSTransition>
         </SwitchTransition>
