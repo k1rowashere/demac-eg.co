@@ -1,8 +1,9 @@
+import input from './input.module.scss';
+
 import { useEffect, useState } from 'react';
 import { UseFormReturn, SubmitHandler } from 'react-hook-form';
-
 import dynamic from "next/dynamic";
-const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"));
+const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), { ssr: false })
 
 import { Button, Form, InputGroup, Stack, Spinner } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2'
@@ -39,14 +40,20 @@ async function sendInfo(body: contactInfo) {
     return res.status
 }
 
-export default function ContactForm({ handleClose = () => { }, showCancel = false, form }: { handleClose?: () => void, showCancel?: boolean, form: UseFormReturn<contactInfo> }) {
+type ContactForm = {
+    handleClose?: () => void;
+    showCancel?: boolean;
+    form: UseFormReturn<contactInfo>;
+}
+
+export default function ContactForm({ handleClose = () => { }, showCancel = false, form }: ContactForm) {
     const { watch, setValue, register, handleSubmit, formState: { errors }, clearErrors } = form
     const [confirm, setConfirm] = useState(0); // 0: no clicks, 1: waiting for confirm, 2: loading
     const [successStatus, setSuccessStatus] = useState({ show: false, status: 0 } as { show: boolean, status?: number });
-    useEffect(() => { register('captchaToken', { required: true }) },[register]);
+    useEffect(() => { register('captchaToken', { required: true }) }, [register]);
 
     const required = { required: { value: true, message: "Required" } }
-    const nameValid = {maxLength: { value: 32, message: 'Too long' } }
+    const nameValid = { maxLength: { value: 32, message: 'Too long' } }
     const emailValid = { pattern: { value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g, message: 'Invalid email' } }
     const mobileValid = { minLength: { value: 5, message: 'Invalid' } }
     const phoneValid = {
@@ -55,7 +62,6 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
         maxLength: { value: 12, message: 'Too long' }
     }
 
-
     //for testing
     // const required = {}
     // const nameValid = {}
@@ -63,12 +69,11 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
     // const mobileValid = {}
     // const phoneValid = {}
 
-
     const onSubmit: SubmitHandler<contactInfo> = async (data) => {
         setConfirm(2);
 
         const status = await sendInfo(data);
-        
+
         setConfirm(0);
         setSuccessStatus({ show: true, status });
     };
@@ -92,6 +97,7 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
             <h3>Personal Info</h3>
             <hr />
 
+            <div className={input["react-tel-input"]}></div>
             {/* Name */}
             <Stack direction='horizontal' gap={3} className='mt-3'>
                 <MyFormControl className='w-50' label='First name' register={register('firstName', { ...required, ...nameValid })} errors={errors} />
@@ -123,33 +129,35 @@ export default function ContactForm({ handleClose = () => { }, showCancel = fals
             </InputGroup>
 
             {/* phone/mobile */}
-            <InputGroup className='mt-3 stack'>
-                <InputGroup.Text><i className='bi bi-phone' /></InputGroup.Text>
-                {/* <MyFormControl type='tel' label='Mobile number' register={register('mobile', { ...required, ...mobileValid })} errors={errors} /> */}
-                <Form.Floating error-message={errors.mobile && errors.mobile.message}>
-                    <PhoneInput
-                        inputProps={{ required: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid}) }}
-                        inputClass={errors.mobile && ' is-invalid'}
-                        containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
-                        value={watch('mobile')}
-                        country='eg'
-                        countryCodeEditable={false}
-                        enableSearch
-                        placeholder=""
-                    />
-                    <label htmlFor='mobile'>Mobile number</label>
-                </Form.Floating>
-                <InputGroup.Text><i className='bi bi-telephone-fill' /></InputGroup.Text>
-                <MyFormControl type='tel' label='Phone number' required={false} register={register('phone', { ...phoneValid })} errors={errors} />
-            </InputGroup>
+            <div className={input.wrapper}>
+                <InputGroup className='mt-3 stack'>
+                    <InputGroup.Text><i className='bi bi-phone' /></InputGroup.Text>
+                    {/* <MyFormControl type='tel' label='Mobile number' register={register('mobile', { ...required, ...mobileValid })} errors={errors} /> */}
+                    <Form.Floating error-message={errors.mobile && errors.mobile.message}>
+                        <PhoneInput
+                            containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
+                            inputClass={errors.mobile && ' is-invalid'}
+                            inputProps={{ required: true, id: 'mobile', ...register('mobile', { ...required, ...mobileValid }) }}
+
+                            value={watch('mobile')}
+                            country='eg'
+                            countryCodeEditable={false}
+                            enableSearch
+                            placeholder=""
+                        />
+                        <label htmlFor='mobile'>Mobile number</label>
+                    </Form.Floating>
+                    <InputGroup.Text><i className='bi bi-telephone-fill' /></InputGroup.Text>
+                    <MyFormControl type='tel' label='Phone number' required={false} register={register('phone', { ...phoneValid })} errors={errors} />
+                </InputGroup>
+            </div>
 
             {/* Address */}
             <InputGroup className='mt-3'>
                 <InputGroup.Text><i className='bi bi-geo-alt-fill' /></InputGroup.Text>
                 <MyFormControl type='text' label='Address' register={register('address', { ...required, ...nameValid })} errors={errors} />
             </InputGroup>
-
-            <ReCAPTCHA className='mt-3' sitekey='6LfAZEwhAAAAADvzYyVWY8mxPuunCbiJVtTbX6jR' onChange={handleCaptchaVerify} />
+            <ReCAPTCHA className='mt-3' sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''} onChange={handleCaptchaVerify} />
             {errors.captchaToken ? <p className='text-danger my-0 small'>Please verify that you are not a robot 🤖.</p> : <></>}
             <p className='text-danger my-0 small'>* Required</p>
 

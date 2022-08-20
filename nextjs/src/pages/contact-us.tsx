@@ -10,9 +10,17 @@ import Footer from 'components/Footer';
 import ContactForm from 'components/Checkout/ContactForm';
 
 import type { contactInfo } from 'utils/types';
+import { InferGetStaticPropsType } from 'next';
 
+export const getStaticProps = async () => {
+    return {
+        props: {
+            sitekey: process.env.RECAPTCHA_SITE_KEY ?? ''
+        }
+    }
+}
 
-export default function Contact() {
+export default function Contact({ sitekey }: InferGetStaticPropsType<typeof getStaticProps>) {
     const form = useForm<contactInfo>();
 
     return (
