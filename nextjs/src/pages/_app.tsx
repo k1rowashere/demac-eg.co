@@ -1,5 +1,5 @@
-import 'react-phone-input-2/lib/bootstrap.css'
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'nprogress/nprogress.css'
 import 'styles/globals.scss';
 import 'styles/styles.css';
