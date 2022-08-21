@@ -43,10 +43,10 @@ export default function About() {
                                 while offering a competitive price-to-value proposition and delivering in a <b>timely fashion</b>.
                             </p>
                             <Breadcrumb style={{ '--bs-breadcrumb-divider': '"·"' } as React.CSSProperties}>
-                                <Breadcrumb.Item href='https://www.facebook.com/demac.company/' target='_blank'><i className='h5 mx-1 bi bi-facebook' /></Breadcrumb.Item>
-                                <Breadcrumb.Item href=''><i className='h5 mx-1 bi bi-linkedin' /></Breadcrumb.Item>
-                                <Breadcrumb.Item href='https://api.whatsapp.com/send?phone=201099747581'><i className='h5 mx-1 bi bi-whatsapp' /></Breadcrumb.Item>
-                                <Breadcrumb.Item href='mailto:demac@demac-egypt.com'><i className='h5 mx-1 bi bi-envelope-fill' /></Breadcrumb.Item>
+                                <Breadcrumb.Item href='https://www.facebook.com/demac.company/' target='_blank' title='facebook'><i className='h5 mx-1 bi bi-facebook' /></Breadcrumb.Item>
+                                <Breadcrumb.Item href='' title='linkedin'><i className='h5 mx-1 bi bi-linkedin' /></Breadcrumb.Item>
+                                <Breadcrumb.Item href='https://api.whatsapp.com/send?phone=201099747581' title='whatsapp'><i className='h5 mx-1 bi bi-whatsapp' /></Breadcrumb.Item>
+                                <Breadcrumb.Item href='mailto:demac@demac-egypt.com' title='email'><i className='h5 mx-1 bi bi-envelope-fill' /></Breadcrumb.Item>
                             </Breadcrumb>
                         </Col>
                         <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-center'>

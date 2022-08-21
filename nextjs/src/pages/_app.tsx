@@ -1,8 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'styles/bootstrap.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'nprogress/nprogress.css'
 import 'styles/globals.scss';
-import 'styles/styles.css';
+import 'styles/styles.scss';
 import 'styles/print.css';
 
 import NProgress from 'nprogress'

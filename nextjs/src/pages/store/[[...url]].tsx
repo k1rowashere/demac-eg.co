@@ -1,15 +1,11 @@
-import { GetStaticPaths, GetStaticPropsContext } from 'next';
-import { InferGetStaticPropsType } from 'next';
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 
 import Head from 'next/head';
 
-import { Button, Card, Col, Form, InputGroup, Offcanvas, Row } from 'react-bootstrap';
 
 import Navbar from 'components/Navbar';
 import Header from 'components/Header';
-import Categories from 'components/Categories';
 import StoreFront from 'components/StoreFront';
 import Footer from 'components/Footer';
 
@@ -22,7 +18,7 @@ import type { categories, product } from 'utils/types';
 export const getStaticPaths: GetStaticPaths = async () => {
     const res = await dbQuery('SELECT DISTINCT path FROM products;') as { path: string }[];
     const categoryTree = pathsToTree(res);
-    let paths: { params: { url: string[] } }[] = [{ params: { url: [] } }];
+    let paths: { params: ParsedUrlQuery }[] = [{ params: { url: [] } }];
 
     function getAllPaths(categoryTree: categories, currPath: string[] = []) {
         if (!categoryTree) return;
@@ -34,7 +30,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 
     getAllPaths(categoryTree);
-
+    
     return {
         paths,
         fallback: 'blocking',
@@ -66,40 +62,23 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
 
 export default function Store({ products, categories, url }: InferGetStaticPropsType<typeof getStaticProps>) {
-    const [showOffcanvas, setShowOffcanvas] = useState(false);
-    const router = useRouter();
-
-    //turn off offcanvase on router change
-    useEffect(() => {
-        setShowOffcanvas(false);
-    }, [router])
-
     return (
         <>
             <Head>
                 <title>DEMAC - Store</title>
-                <meta name="description" content="Buy original Siemens spare parts in Egypt." />
-                <meta property="og:title" content="DEMAC - Store" />
-                <meta property="og:type" content="website" />
-                <meta property="og:description" content="Buy original Siemens spare parts in Egypt." />
-                <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
+                <meta name='description' content='Buy original Siemens spare parts in Egypt.' />
+                <meta property='og:title' content='DEMAC - Store' />
+                <meta property='og:type' content='website' />
+                <meta property='og:description' content='Buy original Siemens spare parts in Egypt.' />
+                <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
             <Navbar activePage='store' />
-            <Header h1='Welcome to demac store' h2='Lorem ipsum' classNames={{ child: 'bg bg-img-1' }} />
+            <Header h1='Welcome to DEMAC store' h2='Buy original Siemens parts in Egypt!' classNames={{ child: 'bg bg-img-2' }} />
             <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
-                <StoreFront setShowOffcanvas={setShowOffcanvas} url={url} categories={categories} products={products} />
+                <StoreFront url={url} categories={categories} products={products} />
             </main>
-
+            <div id='CategoriesPortalOut' />
             <Footer />
-
-            <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Categories:</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <Categories categories={categories} activePath={url} />
-                </Offcanvas.Body>
-            </Offcanvas>
         </>
     );
 }

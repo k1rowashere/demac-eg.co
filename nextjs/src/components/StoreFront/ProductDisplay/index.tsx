@@ -13,6 +13,7 @@ import type { product } from 'utils/types';
 
 import NoProducts from 'assets/no_products.svg'
 
+import styles from './productDisplay.module.scss'
 
 
 
@@ -91,9 +92,10 @@ export default function ProductDisplay({ products }: { products: product[] }) {
                     <CSSTransition
                         key={currentPage}
                         addEndListener={(node, done) => {
-                            node.addEventListener("transitionend", done, false);
+                            node.addEventListener('transitionend', done, false);
                         }}
-                        classNames="fade"
+                        className={styles.wrapper}
+                        classNames='fade'
                     >
                         {pages[currentPage - 1]}
                     </CSSTransition>

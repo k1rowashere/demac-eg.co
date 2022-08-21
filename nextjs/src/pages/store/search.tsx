@@ -4,19 +4,17 @@ import { useRouter } from 'next/router';
 
 import Head from 'next/head';
 
-import { Button, Card, Col, Offcanvas, Row } from 'react-bootstrap';
+import { Offcanvas } from 'react-bootstrap';
 
 import Navbar from 'components/Navbar';
 import Header from 'components/Header';
-import Breadcrumb from 'components/StoreFront/Breadcrumb';
-import Categories from 'components/Categories';
-import ProductDisplay from 'components/StoreFront/ProductDisplay';
+import Categories from 'components/StoreFront/Categories';
 import Footer from 'components/Footer';
 
 import Fuse from 'fuse.js';
 import dbQuery from 'utils/db_fetch';
 import { pathsToTree } from 'utils/constants';
-import type { categories, product } from 'utils/types';
+import type { product } from 'utils/types';
 import StoreFront from 'components/StoreFront';
 
 const fuseOptions = {
@@ -64,7 +62,7 @@ export default function Search({ products, categories }: InferGetServerSideProps
     return (
         <>
             <Head>
-                <title>DEMAC - Store - Search</title>
+                <title>DEMAC - Search</title>
                 <meta name="description" content="Buy original Siemens spare parts in Egypt." />
                 <meta property="og:title" content="DEMAC - Store" />
                 <meta property="og:type" content="website" />
@@ -72,9 +70,9 @@ export default function Search({ products, categories }: InferGetServerSideProps
                 <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
             </Head>
             <Navbar activePage='store' />
-            <Header h1='Welcome to demac store' h2='Lorem ipsum' classNames={{ child: 'bg bg-img-1' }} />
+            <Header h1='Welcome to DEMAC store' h2='Buy original Siemens parts in Egypt!' classNames={{ child: 'bg bg-img-2' }} />
             <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
-                <StoreFront setShowOffcanvas={setShowOffcanvas} url={['search']} categories={categories} products={products} />
+                <StoreFront url={['search']} categories={categories} products={products} />
             </main>
 
             <Footer />

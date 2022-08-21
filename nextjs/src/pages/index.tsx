@@ -16,7 +16,7 @@ export default function Home() {
                 <meta property="og:description"content="Development in Electro-Mechanical Engigneering | Siemens PLC Automation | Buy Spare Parts" />
                 <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
             </Head>
-            <div className='test text-white'>
+            <div className='bg-home-gradient text-white'>
                 <Navbar activePage="home" bg='nah' />
                 <Header h1='Development in Electro-Mechanical Automation' h2='A Consultancy and Engineering Agency.' classNames={{ parent: '' }} />
                 <main className="py-5 h-100" style={{ minHeight: '50vh' }} >

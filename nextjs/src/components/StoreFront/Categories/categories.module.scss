@@ -1,0 +1,22 @@
+.wrapper :global {
+    .list-group-item {
+        border-width: 0px !important;
+        padding-inline: 0.75rem;
+        padding-top: 2px;
+        padding-bottom: 0px;
+
+        &.active {
+            background-color: inherit;
+            color: var(--bs-primary);
+        }
+
+        .bi {
+            margin-right: 5px;
+        }
+
+        .text-underline-hover:hover {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+    }
+}

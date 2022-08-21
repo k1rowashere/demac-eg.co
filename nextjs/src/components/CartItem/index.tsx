@@ -11,15 +11,22 @@ import { currencyFormater } from 'utils/constants';
 
 import type { product } from 'utils/types';
 
+import styles from './cartItem.module.scss'
 
 export default function CartItem({ product, itemCountHandle }: { product: product, itemCountHandle: (fieldId: string, count: number) => void }) {
     const [visible, setVisible] = useState(true);
     return useMemo(() => <>
-        <CSSTransition in={visible} timeout={300} classNames='cart' unmountOnExit onExited={() => itemCountHandle(product.part_no, 0)}>
-            <Row className='mb-3 p-0 p-sm-2 justify-content-md-between align-items-center'>
+        <CSSTransition
+            in={visible}
+            timeout={300}
+            classNames='cart'
+            unmountOnExit
+            onExited={() => itemCountHandle(product.part_no, 0)}
+        >
+            <Row className={styles.wrapper + ' mb-3 p-0 p-sm-2 justify-content-md-between align-items-center'}>
                 <Col xs={{ span: 4, order: 0 }} sm={5} md={{ span: 1, order: 0 }} className='p-0'>
                     <Link href={`product/${product.part_no}`} scroll={true} passHref>
-                        <a><ImageWithFallback className='img-fluid rounded-3' width={'100%'} src={product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={product.name} /></a>
+                        <a><ImageWithFallback className='img-fluid rounded-3' src={product.img_link} fallbackSrc={'/assets/no_img.svg'} alt={product.name} /></a>
                     </Link>
                 </Col>
                 <Col xs={{ span: 6, order: 1 }} md={{ span: 4, order: 1 }} className='pe-0'>
@@ -47,4 +54,3 @@ export default function CartItem({ product, itemCountHandle }: { product: produc
     </>, [product, visible, itemCountHandle]);
 }
 
-  

@@ -12,17 +12,10 @@ import ContactForm from 'components/Checkout/ContactForm';
 import PaperPlane from 'assets/paper_plane.svg';
 
 import type { contactInfo } from 'utils/types';
-import { InferGetStaticPropsType } from 'next';
 
-export const getStaticProps = async () => {
-    return {
-        props: {
-            sitekey: process.env.RECAPTCHA_SITE_KEY ?? ''
-        }
-    }
-}
 
-export default function Contact({ sitekey }: InferGetStaticPropsType<typeof getStaticProps>) {
+
+export default function Contact() {
     const form = useForm<contactInfo>();
 
     return (

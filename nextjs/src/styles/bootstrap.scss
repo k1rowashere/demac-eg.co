@@ -49,3 +49,38 @@
 // Utilities
 @import "bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
+
+// Override
+.offcanvas:not(.show) .bg-dark {
+    background-color: inherit !important;
+}
+
+.breadcrumb-item {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navbar-nav {
+    .nav-link {
+        border: .2rem solid transparent;
+        border-radius: 4px;
+
+        &.active {
+            border-bottom-color: #aaa;
+        }
+
+        &:hover {
+            border-bottom-color: #555;
+        }
+    }
+}
+
+//card test
+
+.card {
+    // background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    // backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
