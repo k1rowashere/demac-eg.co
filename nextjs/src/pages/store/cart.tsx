@@ -18,6 +18,8 @@ import type { product } from 'utils/types';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import CartItem from 'components/CartItem';
 
+import EmptyCart from 'assets/empty_cart.svg';
+
 const SHIPPING_COST = 150;
 const VAT_PERCENT = 0.14;
 
@@ -66,13 +68,13 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                 })
             }
         });
-    },[])
+    }, [])
 
     return (
         <>
             <Head>
                 <title>DEMAC - Cart</title>
-                <meta name='robots' content='noindex'/>
+                <meta name='robots' content='noindex' />
             </Head>
             <Navbar activePage='cart' />
             <Header h1='Shopping cart' h2='Lorem ipsum' />
@@ -105,10 +107,7 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                                 </>
                             ) : (
                                 <div className='d-flex flex-column justify-content-center'>
-                                    <picture className='text-center'>
-                                        <source srcSet='/assets/empty_cart.svg' type='image/svg+xml' />
-                                        <img className='my-5 big-pic' src='/assets/empty_cart.svg' alt="Empty cart picture" />
-                                    </picture>
+                                    <EmptyCart className='my-5 big-pic' alt='Empty cart picture' />
                                     <strong className='h5 mx-auto text-muted'>Your cart is empty</strong>
                                 </div>
 

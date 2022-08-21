@@ -11,6 +11,7 @@ import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { currencyFormater } from 'utils/constants';
 import type { product } from 'utils/types';
 
+import NoProducts from 'assets/no_products.svg'
 
 
 
@@ -101,10 +102,7 @@ export default function ProductDisplay({ products }: { products: product[] }) {
             </>
         ) : (
             <div className='d-flex flex-column justify-content-center'>
-                <picture className='text-center'>
-                    <source srcSet='/assets/no_products.svg' type='image/svg+xml' />
-                    <img className='my-5 big-pic' src='/assets/no_products.svg' alt='No products image' />
-                </picture>
+                <NoProducts className='my-5 big-pic' />
                 <h5 className='mx-auto text-muted'>No product matches your search</h5>
             </div>
         )

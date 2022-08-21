@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import boilerImage from '../../public/assets/boiler.png';
+import boilerImage from 'assets/boiler.png';
 
 import Navbar from 'components/Navbar';
 import Footer from 'components/Footer';
@@ -50,7 +50,7 @@ export default function About() {
                             </Breadcrumb>
                         </Col>
                         <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-center'>
-                            <Image src={boilerImage} style={{ clipPath: 'circle(closest-side at 60% 50%)' }} alt='boiler decorative image' />
+                            <Image src={boilerImage} style={{ clipPath: 'circle(closest-side at 50% 50%)' }} alt='boiler decorative image' />
                         </Col>
                     </Row>
                     <Stack className='mt-mb-auto mt-5 pb-5' direction='horizontal' gap={4}>

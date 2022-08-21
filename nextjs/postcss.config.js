@@ -26,7 +26,7 @@ module.exports = {
                     standard: ['html', 'body', 'input', 'active', 'border-top-0', 'disabled', 'show', 'stack'],
                     greedy: [
                         /svg__/, /react-tel-input/,
-                        /add-to-cart/, /fade/, /collapse/, /cart/, // animations
+                        /collapse/, // animations
                         // /align/, /bg/, /breadcrumb/, /btn/, /col/, /row/, /container/, /card/, /offcanvas/,
                         // /hstack/, /justify/, /list-group/,
                         // /navbar/, /nav-/, /pagination/, 
