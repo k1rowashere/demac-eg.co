@@ -11,7 +11,7 @@ export default function _Pagination({ pageCount, currentPage, onPageChange }: { 
     if (items.length > 8) {
         // DO NOT TOUCH THIS: pagination splitting logic
         return (
-            <Pagination className='align-self-end justify-content-center'>
+            <Pagination className='mt-auto align-self-center'>
                 <Pagination.Prev onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} />
                 {items[0]}
                 {!(currentPage - 2 <= 1) && <Pagination.Ellipsis disabled />}
@@ -28,7 +28,7 @@ export default function _Pagination({ pageCount, currentPage, onPageChange }: { 
         );
     } else {
         return (
-            <Pagination className='align-self-end justify-content-center'>
+            <Pagination className='mt-auto align-self-center'>
                 <Pagination.Prev onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1} />
                 {items}
                 <Pagination.Next onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === pageCount} />
