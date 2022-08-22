@@ -1,0 +1,13 @@
+.wrapper :global {
+    .demac_logo_svg__underline {
+        fill: #ff0000;
+    }
+    
+    .demac_logo_svg__text {
+        fill: #fff;
+    }
+    
+    .dark .demac_logo_svg__text {
+        fill: #000;
+    }
+}

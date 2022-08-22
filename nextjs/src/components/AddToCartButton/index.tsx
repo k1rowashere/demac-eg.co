@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { getCart, appendCart } from 'utils/cart';
 
+import styles from './addToCart.module.scss'
 
 export default function AddToCart({ id }: { id: string }) {
     const [productAdded, setProductAdded] = useState(false);
@@ -20,6 +21,7 @@ export default function AddToCart({ id }: { id: string }) {
         <SwitchTransition mode='out-in' >
             <CSSTransition
                 key={id + (productAdded ? 'added' : 'not_added')}
+                className={styles.wrapper}
                 addEndListener={(node, done) => node.addEventListener("transitionend", done, false)}
                 classNames='add-to-cart'
             >

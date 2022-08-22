@@ -1,0 +1,27 @@
+.wrapper {
+    &:global(.add-to-cart-enter) {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    &:global(.add-to-cart-enter-active) {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &:global(.add-to-cart-exit) {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+
+    &:global(.add-to-cart-exit-active) {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    &:global(.add-to-cart-enter-active),
+    &:global(.add-to-cart-exit-active) {
+        transition: all 100ms ease-in-out;
+    }
+}

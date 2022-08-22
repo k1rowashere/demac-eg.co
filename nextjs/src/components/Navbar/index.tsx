@@ -1,21 +1,24 @@
+// import styles from './navbar.module.scss';
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Demac from '/public/assets/demac_logo.svg';
+import demac from 'styles/demac.module.scss'
 
 import { Button, Container, Nav, Navbar, NavDropdown, Offcanvas } from 'react-bootstrap';
 
-export default function _Navbar({ activePage, bg = 'dark' }: {activePage: string, bg?: string}) {
+export default function _Navbar({ activePage, bg = 'dark' }: { activePage: string, bg?: string }) {
     const [expand, setExpand] = useState('');
     useEffect(() => {
         setExpand('md');
     }, [])
-    
+
     return (
         <Navbar variant='dark' bg={bg} expand={expand}>
             <Container fluid className='px-4 px-md-5'>
-                <Demac className='light demac-logo me-4' style={{ height: '32px' }} alt='demac logo' />
-                <Navbar.Toggle aria-controls='offcanvasNavbarLabel' />
-                <Navbar.Offcanvas placement='end'>
+                <Demac className={demac.wrapper + ' me-4'} style={{ height: '32px' }} alt='demac logo' />
+                <Navbar.Toggle aria-controls='offcanvasNavbar' />
+                <Navbar.Offcanvas placement='end' id='offcanvasNavbar'>
                     <Offcanvas.Header className='bg-dark text-white' closeButton closeVariant='white'>
                         <Offcanvas.Title> Navigation </Offcanvas.Title>
                     </Offcanvas.Header>
@@ -34,7 +37,7 @@ export default function _Navbar({ activePage, bg = 'dark' }: {activePage: string
                         <Nav className='mb-2 mb-md-0'>
                             <Link href='/store/cart' passHref>
                                 <Button className='d-flex align-content-center' variant='outline-light' active={activePage === 'cart'}>
-                                    <i className='bi-cart-fill me-1 my-auto' />
+                                    <i className='bi bi-cart-fill me-1 my-auto' />
                                     <span className='my-auto'>My&nbsp;Cart</span>
                                 </Button>
                             </Link>

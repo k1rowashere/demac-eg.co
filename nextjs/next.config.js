@@ -5,7 +5,16 @@ const nextConfig = {
 }
 
 module.exports = {
-    experimental: { scrollRestoration: true },
+    experimental: {
+        scrollRestoration: true,
+        images: {
+            remotePatterns: [
+                {
+                    hostname: '**.siemens.com'
+                }
+            ]
+        }
+    },
     webpack5: true,
     webpack: (config) => {
         config.resolve.fallback = { fs: false, net: false, tls: false };
@@ -15,8 +24,5 @@ module.exports = {
             use: ['@svgr/webpack'],
         })
         return config;
-    },
-    images: {
-        domains: ['mall.industry.siemens.com'],
     }
 }

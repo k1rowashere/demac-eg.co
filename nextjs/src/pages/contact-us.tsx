@@ -9,7 +9,10 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 import ContactForm from 'components/Checkout/ContactForm';
 
+import PaperPlane from 'assets/paper_plane.svg';
+
 import type { contactInfo } from 'utils/types';
+
 
 
 export default function Contact() {
@@ -47,10 +50,7 @@ export default function Contact() {
                                         {...form.register('message')}
                                     />
                                     <span className='text-end'>{`${form.watch('message')?.length || 0}/500 characters`}</span>
-                                    <picture className='d-none d-md-block text-center my-auto'>
-                                        <source srcSet='/assets/paper_plane.svg' type='image/svg+xml' />
-                                        <img src='/assets/paper_plane.svg' alt='' style={{ opacity: '0.5' }} />
-                                    </picture>
+                                    <PaperPlane className='d-none d-md-block text-center my-auto' style={{ opacity: '0.5' }} alt='Paper plane decoration' />
                                 </Col>
                                 <Col>
                                     <ContactForm form={form} />
