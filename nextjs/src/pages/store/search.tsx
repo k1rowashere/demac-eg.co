@@ -70,7 +70,7 @@ export default function Search({ products, categories }: InferGetServerSideProps
                 <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
             </Head>
             <Navbar activePage='store' />
-            <Header h1='Welcome to DEMAC store' h2='Buy original Siemens parts in Egypt!' classNames={{ child: 'bg bg-img-2' }} />
+            <Header h1='Welcome to DEMAC store' h2='Buy original Siemens parts in Egypt!' classNames={{ child: 'bg bg-img-2' }} showSeperator />
             <main className='container-fluid py-5 bg-light' style={{ overflow: 'hidden' }}>
                 <StoreFront url={['search']} categories={categories} products={products} />
             </main>

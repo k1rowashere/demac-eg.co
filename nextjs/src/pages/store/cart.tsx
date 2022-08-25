@@ -77,7 +77,7 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                 <meta name='robots' content='noindex' />
             </Head>
             <Navbar activePage='cart' />
-            <Header h1='Shopping cart' h2='Lorem ipsum' />
+            <Header h1='Shopping cart' h2='Lorem ipsum' showSeperator />
             <main className='py-5 bg-light'>
                 <Container fluid='lg'>
                     <Card>

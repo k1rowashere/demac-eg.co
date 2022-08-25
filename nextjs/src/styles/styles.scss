@@ -59,7 +59,7 @@
         right: 0;
         height: 100%;
     }
-    
+
     &.bg-img-0:before {
         /* gears */
         background-image: url(/assets/gears.svg);
@@ -69,7 +69,7 @@
             linear-gradient(120deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.7) 100%);
         opacity: 10%;
     }
-    
+
     &.bg-img-1:before {
         /* siemens image */
         background-image: url(/assets/test.jpg);
@@ -78,7 +78,7 @@
         background-position: right;
         mask-image: linear-gradient(120deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 1) 100%);
     }
-    
+
     &.bg-img-2:before {
         /* circuit */
         background-image: url(/assets/Computer_Circuit_Board_Skelton.svg);
@@ -90,3 +90,32 @@
 
 
 /*----------------------------------------*/
+.divider {
+    position: relative;
+    padding-bottom: 50px;
+    svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 50px;
+        path {
+            fill: var(--bs-light);
+        }
+    }
+
+}
+
+
+.divider-top {
+    top: -151px;
+    transform: rotate(180deg);
+
+    @extend .divider;
+}

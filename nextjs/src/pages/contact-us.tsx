@@ -30,7 +30,7 @@ export default function Contact() {
                 <meta property="og:image" content="https:/demac-eg.co/assets/demac_logo.svg" />
             </Head>
             <Navbar activePage='contact_us' />
-            <Header h1='Contact Us' h2='Leave us a message and we will get intouch as soon as possible.' />
+            <Header h1='Contact Us' h2='Leave us a message and we will get intouch as soon as possible.' showSeperator />
             <main className='py-5 bg-light'>
                 <Container fluid='lg'>
                     <Card>
