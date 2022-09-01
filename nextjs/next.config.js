@@ -1,28 +1,31 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true' && process.env.NODE_ENV === 'production',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-}
-
-module.exports = {
+    compress: process.env.NODE_ENV === 'development', // handled by nginx in production
     experimental: {
         scrollRestoration: true,
         images: {
+            allowFutureImage: true,
             remotePatterns: [
                 {
-                    hostname: '**.siemens.com'
-                }
-            ]
-        }
+                    hostname: '**.siemens.com',
+                },
+            ],
+        },
     },
-    webpack5: true,
     webpack: (config) => {
-        config.resolve.fallback = { fs: false, net: false, tls: false };
         config.module.rules.push({
             test: /\.svg$/i,
             issuer: /\.[jt]sx?$/,
             use: ['@svgr/webpack'],
-        })
+        });
         return config;
-    }
-}
+    },
+};
+
+module.exports = withBundleAnalyzer(nextConfig);

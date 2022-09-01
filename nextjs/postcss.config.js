@@ -13,33 +13,35 @@ module.exports = {
                 }
             }
         ],
-        [
-            '@fullhuman/postcss-purgecss',
-            {
-                content: [
-                    './src/pages/**/*.{js,jsx,ts,tsx}',
-                    './src/components/**/*.{js,jsx,ts,tsx}',
-                    './node_modules/bootstrap/dist/css/bootstrap.min.css'
-                ],
-                defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-                safelist: {
-                    standard: ['html', 'body', 'input', 'active', 'border-top-0', 'disabled', 'show', 'stack'],
-                    greedy: [
-                        /svg__/, /react-tel-input/,
-                        /collapse/, // animations
-                        // /align/, /bg/, /breadcrumb/, /btn/, /col/, /row/, /container/, /card/, /offcanvas/,
-                        // /hstack/, /justify/, /list-group/,
-                        // /navbar/, /nav-/, /pagination/, 
-                        /page-.*/,
-                        // /form-control/, /form-floating/, /dropdown/, /input-group/,
-                        // /[pm].?(-..)?-(\d|auto)/, /order(-..)?-(\d|auto)/, /offset(-..)?-(\d|auto)/,
-                        // /h\d/, /gap-\d/, /display-\d/,
-                        // /d(-..)?-(block|none|flex|grid)/,
-                        // /text-/,
-                        // /w-\d+/,
-                    ]
+        (process.env.NODE_ENV === 'production')
+            ? [
+                '@fullhuman/postcss-purgecss',
+                {
+                    content: [
+                        './src/pages/**/*.{js,jsx,ts,tsx}',
+                        './src/components/**/*.{js,jsx,ts,tsx}',
+                        './node_modules/bootstrap/dist/css/bootstrap.min.css'
+                    ],
+                    defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+                    safelist: {
+                        standard: ['html', 'body', 'input', 'active', 'border-top-0', 'disabled', 'show', 'stack'],
+                        greedy: [
+                            /svg__/, /react-tel-input/, /__nextjs/,
+                            /collapse/, /collapsing/,// animations
+                            // /align/, /bg/, /breadcrumb/, /btn/, /col/, /row/, /container/, /card/, /offcanvas/,
+                            // /hstack/, /justify/, /list-group/,
+                            // /navbar/, /nav-/, /pagination/, 
+                            /page-.*/,
+                            // /form-control/, /form-floating/, /dropdown/, /input-group/,
+                            // /[pm].?(-..)?-(\d|auto)/, /order(-..)?-(\d|auto)/, /offset(-..)?-(\d|auto)/,
+                            // /h\d/, /gap-\d/, /display-\d/,
+                            // /d(-..)?-(block|none|flex|grid)/,
+                            // /text-/,
+                            // /w-\d+/,
+                        ]
+                    }
                 }
-            }
-        ],
+            ]
+            : undefined,
     ]
 }
