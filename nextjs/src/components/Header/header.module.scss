@@ -1,0 +1,27 @@
+.divider {
+    position: relative;
+    padding-bottom: 50px !important;
+
+    // TODO:
+    // mask-image: linear-gradient(to left, #000, #000),url(/assets/test.svg);
+    // mask-repeat: no-repeat;
+    // mask-position: bottom;
+    // mask-composite: subtract;
+
+    svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+
+        display: block;
+        height: 50px;
+
+        path {
+            fill: var(--bs-light);
+        }
+    }
+}
