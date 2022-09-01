@@ -1,34 +1,37 @@
 import 'styles/bootstrap.scss';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css';
 import 'styles/globals.scss';
 import 'styles/styles.scss';
 import 'styles/print.css';
 
-import NProgress from 'nprogress'
-import Head from 'next/head'
-import Router from 'next/router'
-import type { AppProps } from 'next/app'
-import { SSRProvider } from 'react-bootstrap';
+import NProgress from 'nprogress';
+import Head from 'next/head';
+import Router from 'next/router';
+import type { AppProps } from 'next/app';
+import SSRProvider from 'react-bootstrap/SSRProvider';
 
 // Loading bar things
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 NProgress.configure({ showSpinner: false });
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <link rel="icon" type="image/x-icon" href="/assets/favicon.svg" />
+                <meta charSet='utf-8' />
+                <meta
+                    name='viewport'
+                    content='width=device-width, initial-scale=1, shrink-to-fit=no'
+                />
+                <link rel='icon' type='image/x-icon' href='/assets/favicon.svg' />
             </Head>
             <SSRProvider>
-                <Component {...pageProps} />
+                <Component {...pageProps} className='bg bg-triangles' />
             </SSRProvider>
         </>
-    )
+    );
 }
-export default MyApp
+export default MyApp;

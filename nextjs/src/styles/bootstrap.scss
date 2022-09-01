@@ -1,53 +1,52 @@
-@import "bootstrap/scss/mixins/banner";
-@include bsBanner("");
-
+@import 'bootstrap/scss/mixins/banner';
+@include bsBanner('');
 
 // scss-docs-start import-stack
 // Configuration
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/maps";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/utilities";
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
 
 // Layout & components
-@import "bootstrap/scss/root";
-@import "bootstrap/scss/reboot";
-@import "bootstrap/scss/type";
-@import "bootstrap/scss/images";
-@import "bootstrap/scss/containers";
-@import "bootstrap/scss/grid";
-@import "bootstrap/scss/tables";
-@import "bootstrap/scss/forms";
-@import "bootstrap/scss/buttons";
-@import "bootstrap/scss/transitions";
-@import "bootstrap/scss/dropdown";
-@import "bootstrap/scss/button-group";
-@import "bootstrap/scss/nav";
-@import "bootstrap/scss/navbar";
-@import "bootstrap/scss/card";
-@import "bootstrap/scss/accordion";
-@import "bootstrap/scss/breadcrumb";
-@import "bootstrap/scss/pagination";
-@import "bootstrap/scss/badge";
-@import "bootstrap/scss/alert";
-@import "bootstrap/scss/progress";
-@import "bootstrap/scss/list-group";
-@import "bootstrap/scss/close";
-@import "bootstrap/scss/toasts";
-@import "bootstrap/scss/modal";
-@import "bootstrap/scss/tooltip";
-@import "bootstrap/scss/popover";
-@import "bootstrap/scss/carousel";
-@import "bootstrap/scss/spinners";
-@import "bootstrap/scss/offcanvas";
-@import "bootstrap/scss/placeholders";
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/tables';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/button-group';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/accordion';
+@import 'bootstrap/scss/breadcrumb';
+@import 'bootstrap/scss/pagination';
+@import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/progress';
+@import 'bootstrap/scss/list-group';
+@import 'bootstrap/scss/close';
+@import 'bootstrap/scss/toasts';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/tooltip';
+@import 'bootstrap/scss/popover';
+@import 'bootstrap/scss/carousel';
+@import 'bootstrap/scss/spinners';
+@import 'bootstrap/scss/offcanvas';
+@import 'bootstrap/scss/placeholders';
 
 // Helpers
-@import "bootstrap/scss/helpers";
+@import 'bootstrap/scss/helpers';
 
 // Utilities
-@import "bootstrap/scss/utilities/api";
+@import 'bootstrap/scss/utilities/api';
 // scss-docs-end import-stack
 
 // Override
@@ -60,9 +59,13 @@
     margin-bottom: auto;
 }
 
+.list-group-item {
+    background-color: unset;
+}
+
 .navbar-nav {
     .nav-link {
-        border: .2rem solid transparent;
+        border: 0.2rem solid transparent;
         border-radius: 4px;
 
         &.active {
@@ -75,12 +78,21 @@
     }
 }
 
-//card test
-
 .card {
-    // background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    // backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bg-glass-transparent {
+    @extend .card;
+    background: #ffffff00;
+    backdrop-filter: unset;
+}
+
+.card-footer,
+.card-header {
+    background-color: unset;
 }
