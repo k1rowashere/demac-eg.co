@@ -3,10 +3,6 @@ import Link from 'next/link';
 import Image from 'next/future/image';
 import ImageInCircle from 'assets/touch-screen.png';
 
-import Header from 'components/Header';
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
-
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -14,6 +10,17 @@ import Button from 'react-bootstrap/Button';
 import Stack from 'react-bootstrap/Stack';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Card from 'react-bootstrap/Card';
+
+About.layoutProps = {
+    className: 'bg-home-gradient bg bg-triangles text-white',
+    navbarProps: { activePage: 'about', bg: 'nah' },
+    headerProps: {
+        h1: 'About us',
+        h2: 'Buy original Siemens parts in Egypt!',
+        classNames: { parent: '' },
+        showSeperator: false,
+    },
+} as LayoutProps;
 
 export default function About() {
     return (
@@ -33,31 +40,26 @@ export default function About() {
                 />
                 <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
-            <div className='bg-home-gradient bg bg-triangles text-white'>
-                <Navbar activePage='about' bg='nah' />
-                <Header h1='About us' classNames={{ parent: '' }} />
-                <main className='pb-5'>
-                    <Container>
-                        <Row xs={1} lg={2}>
-                            <Col
-                                xs={{ order: 1 }}
-                                lg={{ order: 0 }}
-                                className='d-flex flex-column about-p'
-                            >
-                                <AboutCard />
-                            </Col>
-                            <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-start'>
-                                <Image
-                                    src={ImageInCircle}
-                                    className='about-img'
-                                    alt='boiler decorative image'
-                                />
-                            </Col>
-                        </Row>
-                    </Container>
-                </main>
-            </div>
-            <Footer />
+            <main className='pb-5'>
+                <Container>
+                    <Row xs={1} lg={2}>
+                        <Col
+                            xs={{ order: 1 }}
+                            lg={{ order: 0 }}
+                            className='d-flex flex-column about-p'
+                        >
+                            <AboutCard />
+                        </Col>
+                        <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-start'>
+                            <Image
+                                src={ImageInCircle}
+                                className='about-img'
+                                alt='boiler decorative image'
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </main>
         </>
     );
 }

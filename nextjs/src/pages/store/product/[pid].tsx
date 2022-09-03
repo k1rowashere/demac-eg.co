@@ -7,8 +7,6 @@ import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import CloseButton from 'react-bootstrap/CloseButton';
 
-import Navbar from 'components/Navbar';
-import Footer from 'components/Footer';
 import ImageWithFallback from 'components/ImageWithFallback';
 import Breadcrumb from 'components/StoreFront/Breadcrumb';
 import AddToCart from 'components/AddToCartButton';
@@ -93,6 +91,11 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
     };
 };
 
+Product.layoutProps = {
+    navbarProps: { activePage: 'store' },
+    headerProps: { showSeperator: true },
+} as LayoutProps;
+
 export default function Product(props: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
     const {
@@ -117,7 +120,6 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                 />
                 <meta property='og:image' content={img_link} />
             </Head>
-            <Navbar activePage='store' />
             <main className='py-5'>
                 <div className='mx-0 mx-lg-5 px-4 px-lg-5 d-flex align-items-center'>
                     <Link
@@ -182,7 +184,6 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                     </Card.Body>
                 </Card>
             </main>
-            <Footer />
         </>
     );
 }

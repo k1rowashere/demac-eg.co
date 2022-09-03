@@ -6,10 +6,7 @@ import Head from 'next/head';
 
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
-import Navbar from 'components/Navbar';
-import Header from 'components/Header';
 import Categories from 'components/StoreFront/Categories';
-import Footer from 'components/Footer';
 
 import Fuse from 'fuse.js';
 import dbQuery from 'utils/db_fetch';
@@ -48,6 +45,15 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     };
 };
 
+Search.layoutProps = {
+    navbarProps: { activePage: 'store' },
+    headerProps: {
+        h1: 'DEMAC Store Search',
+        h2: 'Buy original Siemens parts in Egypt!',
+        showSeperator: true,
+    },
+} as LayoutProps;
+
 export default function Search({
     products,
     categories,
@@ -72,18 +78,10 @@ export default function Search({
                 />
                 <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
-            <Navbar activePage='store' />
-            <Header
-                h1='Welcome to DEMAC store'
-                h2='Buy original Siemens parts in Egypt!'
-                // classNames={{ child: 'bg bg-circuit' }}
-                showSeperator
-            />
-            <main className='container-fluid py-5' style={{ overflow: 'hidden' }}>
+
+            <main className='container-fluid py-5'>
                 <StoreFront url={['search']} categories={categories} products={products} />
             </main>
-
-            <Footer />
 
             <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
                 <Offcanvas.Header closeButton>

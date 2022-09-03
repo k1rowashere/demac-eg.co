@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import styles from './header.module.scss';
 
 type Header = {
-    h1: string;
+    h1?: string;
     h2?: string;
     showSeperator?: boolean;
     classNames?: { parent?: string; child?: string };
@@ -14,10 +14,13 @@ export default function Header({ h1, h2, classNames, showSeperator }: Header) {
             <div
                 className={`py-3 ${showSeperator ? styles.divider : ''} ${classNames?.child ?? ''}`}
             >
-                <Container className='px-4 px-lg-5 my-5'>
-                    <h1 className='display-4 fw-bolder text-uppercase text-white'>{h1}</h1>
-                    {h2 && <h2 className='lead fw-normal text-white-50 mb-0'>{h2}</h2>}
-                </Container>
+                {h1 && (
+                    <Container className='px-4 px-lg-5 my-5'>
+                        <h1 className='display-4 fw-bolder text-uppercase text-white'>{h1}</h1>
+
+                        {h2 && <h2 className='lead fw-normal text-white-50 mb-0'>{h2}</h2>}
+                    </Container>
+                )}
 
                 {showSeperator && (
                     <svg

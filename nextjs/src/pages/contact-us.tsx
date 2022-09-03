@@ -7,14 +7,20 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
-import Navbar from 'components/Navbar';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import ContactForm from 'components/Checkout/ContactForm';
 
 import PaperPlane from 'assets/paper_plane.svg';
 
 import type { contactInfo } from 'utils/types';
+
+Contact.layoutProps = {
+    navbarProps: { activePage: 'contact_us' },
+    headerProps: {
+        h1: 'Contact us',
+        h2: 'Leave us a message and we will get intouch as soon as possible.',
+        showSeperator: true,
+    },
+} as LayoutProps;
 
 export default function Contact() {
     const form = useForm<contactInfo>();
@@ -36,12 +42,6 @@ export default function Contact() {
                 />
                 <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
-            <Navbar activePage='contact_us' />
-            <Header
-                h1='Contact Us'
-                h2='Leave us a message and we will get intouch as soon as possible.'
-                showSeperator
-            />
             <main className='py-5'>
                 <Container fluid='lg'>
                     <Card>
@@ -77,7 +77,6 @@ export default function Contact() {
                     </Card>
                 </Container>
             </main>
-            <Footer />
         </>
     );
 }

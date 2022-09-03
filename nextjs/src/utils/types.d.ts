@@ -1,6 +1,10 @@
+declare global {
+    type LayoutProps = React.ComponentProps<typeof import('components/Layout').default>;
+}
+
 export type categories = {
     [x: string]: categories | {};
-}
+};
 
 export type product = {
     path: string;
@@ -11,7 +15,7 @@ export type product = {
     manufacturer_link: string;
     img_link: string;
     count?: number;
-}
+};
 
 export type contactInfo = {
     firstName: string;
@@ -30,7 +34,7 @@ export type User = {
     isLoggedIn: boolean;
 };
 
-declare module "iron-session" {
+declare module 'iron-session' {
     interface IronSessionData {
         user?: User;
     }
