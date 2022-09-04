@@ -16,7 +16,6 @@ About.layoutProps = {
     navbarProps: { activePage: 'about', bg: 'nah' },
     headerProps: {
         h1: 'About us',
-        h2: 'Buy original Siemens parts in Egypt!',
         classNames: { parent: '' },
         showSeperator: false,
     },

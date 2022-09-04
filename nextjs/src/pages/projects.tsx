@@ -46,18 +46,17 @@ const svg = (
     </svg>
 );
 
-type Projects = InferGetStaticPropsType<typeof getStaticProps>;
-
 Projects.layoutProps = {
     className: 'bg-home-gradient bg bg-triangles text-white',
     navbarProps: { activePage: 'projects', bg: 'nah' },
     headerProps: {
-        h1: 'About us',
-        h2: 'Buy original Siemens parts in Egypt!',
+        h1: 'Projects',
         classNames: { parent: '' },
         showSeperator: false,
     },
 } as LayoutProps;
+
+type Projects = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Projects({ renderedProjects }: Projects) {
     return (
