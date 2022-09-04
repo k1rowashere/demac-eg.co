@@ -12,13 +12,12 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
         overflow: hidden;
         line-height: 0;
         transform: rotate(180deg);
-
         display: block;
         height: 50px;
+        width: clamp(1000px, 100vw, 100vw);
 
         path {
             fill: var(--bs-light);

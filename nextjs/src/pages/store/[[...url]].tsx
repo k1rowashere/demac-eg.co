@@ -3,10 +3,7 @@ import { ParsedUrlQuery } from 'querystring';
 
 import Head from 'next/head';
 
-import Navbar from 'components/Navbar';
-import Header from 'components/Header';
 import StoreFront from 'components/StoreFront';
-import Footer from 'components/Footer';
 
 import dbQuery from 'utils/db_fetch';
 import { pathsToTree } from 'utils/constants';
@@ -58,6 +55,16 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
     };
 };
 
+Store.layoutProps = {
+    navbarProps: { activePage: 'store' },
+    headerProps: {
+        h1: 'Welcome to DEMAC store',
+        h2: 'Buy original Siemens parts in Egypt!',
+
+        showSeperator: true,
+    },
+} as LayoutProps;
+
 export default function Store({
     products,
     categories,
@@ -76,18 +83,10 @@ export default function Store({
                 />
                 <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
-            <Navbar activePage='store' />
-            <Header
-                h1='Welcome to DEMAC store'
-                h2='Buy original Siemens parts in Egypt!'
-                // classNames={{ child: 'bg bg-circuit' }}
-                showSeperator
-            />
             <main className='container-fluid py-5'>
                 <StoreFront url={url} categories={categories} products={products} />
             </main>
             <div id='CategoriesPortalOut' />
-            <Footer />
         </>
     );
 }

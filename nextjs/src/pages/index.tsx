@@ -1,8 +1,22 @@
 import Head from 'next/head';
 
-import Navbar from 'components/Navbar';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+Home.navbarProps = { activePage: 'home', bg: 'nah' };
+Home.headerProps = {
+    h1: 'Development in Electro-Mechanical Automation',
+    h2: 'A Consultancy and Engineering Agency.',
+    classNames: { parent: '' },
+};
+
+Home.layoutProps = {
+    className: 'bg-home-gradient bg bg-triangles text-white',
+    navbarProps: { activePage: 'home', bg: 'nah' },
+    headerProps: {
+        h1: 'Development in Electro-Mechanical Automation',
+        h2: 'A Consultancy and Engineering Agency.',
+        classNames: { parent: '' },
+        showSeperator: false,
+    },
+} as LayoutProps;
 
 export default function Home() {
     return (
@@ -25,21 +39,12 @@ export default function Home() {
                 />
                 <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
             </Head>
-            <div className='bg-home-gradient bg bg-triangles text-white'>
-                <Navbar activePage='home' bg='nah' />
-                <Header
-                    h1='Development in Electro-Mechanical Automation'
-                    h2='A Consultancy and Engineering Agency.'
-                    classNames={{ parent: '' }}
-                />
-                <main className='py-5'>
-                    <div className='row px-4 px-lg-5 mt-5'>
-                        <div id='categories' className='col-2 d-none d-lg-block'></div>
-                        <div id='offers' className='col'></div>
-                    </div>
-                </main>
-            </div>
-            <Footer />
+            <main className='py-5'>
+                <div className='row px-4 px-lg-5 mt-5'>
+                    <div id='categories' className='col-2 d-none d-lg-block'></div>
+                    <div id='offers' className='col'></div>
+                </div>
+            </main>
         </>
     );
 }

@@ -10,6 +10,7 @@ import Head from 'next/head';
 import Router from 'next/router';
 import type { AppProps } from 'next/app';
 import SSRProvider from 'react-bootstrap/SSRProvider';
+import Layout from 'components/Layout';
 
 // Loading bar things
 Router.events.on('routeChangeStart', () => NProgress.start());
@@ -17,7 +18,11 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 NProgress.configure({ showSpinner: false });
 
-function MyApp({ Component, pageProps }: AppProps) {
+type _AppProps = AppProps & {
+    Component: { layoutProps: React.ComponentProps<typeof Layout> };
+};
+
+function MyApp({ Component, pageProps }: _AppProps) {
     return (
         <>
             <Head>
@@ -29,7 +34,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <link rel='icon' type='image/x-icon' href='/assets/favicon.svg' />
             </Head>
             <SSRProvider>
-                <Component {...pageProps} className='bg bg-triangles' />
+                <Layout {...Component.layoutProps}>
+                    <Component {...pageProps} />
+                </Layout>
             </SSRProvider>
         </>
     );

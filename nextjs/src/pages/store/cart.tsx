@@ -10,9 +10,6 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-import Navbar from 'components/Navbar';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
 import CheckoutForm from 'components/Checkout/CheckoutContainer';
 
 import dbQuery from 'utils/db_fetch';
@@ -48,6 +45,14 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     }
     return { props: { cartItems } };
 };
+
+Cart.layoutProps = {
+    navbarProps: { activePage: 'cart' },
+    headerProps: {
+        h1: 'Shopping Cart',
+        showSeperator: true,
+    },
+} as LayoutProps;
 
 export default function Cart(props: InferGetServerSidePropsType<typeof getServerSideProps>) {
     const router = useRouter();
@@ -85,8 +90,6 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                 <title>DEMAC - Cart</title>
                 <meta name='robots' content='noindex' />
             </Head>
-            <Navbar activePage='cart' />
-            <Header h1='Shopping cart' h2='Lorem ipsum' showSeperator />
             <main className='py-5'>
                 <Container fluid='lg'>
                     <Card>
@@ -193,7 +196,6 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                     </Card>
                 </Container>
             </main>
-            <Footer />
 
             <CheckoutForm show={showCheckout} setShow={setShowCheckout} />
         </>

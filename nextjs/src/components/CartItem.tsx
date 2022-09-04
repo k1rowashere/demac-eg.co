@@ -12,8 +12,6 @@ import { currencyFormater } from 'utils/constants';
 
 import type { product } from 'utils/types';
 
-import styles from './cartItem.module.scss';
-
 type CartItem = {
     product: product;
     itemCountHandle: (fieldId: string, count: number) => void;
@@ -22,7 +20,7 @@ type CartItem = {
 export default function CartItem({ product, itemCountHandle }: CartItem) {
     return useMemo(
         () => (
-            <Row className={styles.wrapper + ' mb-3 p-0 p-sm-2 align-items-center'}>
+            <Row className={'mb-3 p-0 p-sm-2 align-items-center'}>
                 <Col xs={{ span: 4, order: 0 }} sm={5} md={{ span: 1, order: 0 }} className='p-0'>
                     <Link href={`product/${product.part_no}`} scroll={true} passHref>
                         <a>
