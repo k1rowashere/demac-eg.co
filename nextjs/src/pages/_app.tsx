@@ -19,7 +19,10 @@ Router.events.on('routeChangeError', () => NProgress.done());
 NProgress.configure({ showSpinner: false });
 
 type _AppProps = AppProps & {
-    Component: { layoutProps: React.ComponentProps<typeof Layout> };
+    Component: {
+        layoutProps: React.ComponentProps<typeof Layout>;
+        disableLayout?: boolean;
+    };
 };
 
 function MyApp({ Component, pageProps }: _AppProps) {
@@ -34,9 +37,13 @@ function MyApp({ Component, pageProps }: _AppProps) {
                 <link rel='icon' type='image/x-icon' href='/assets/favicon.svg' />
             </Head>
             <SSRProvider>
-                <Layout {...Component.layoutProps}>
+                {Component.disableLayout ? (
                     <Component {...pageProps} />
-                </Layout>
+                ) : (
+                    <Layout {...Component.layoutProps}>
+                        <Component {...pageProps} />
+                    </Layout>
+                )}
             </SSRProvider>
         </>
     );

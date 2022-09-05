@@ -64,8 +64,8 @@ export default function Projects({ renderedProjects }: Projects) {
             <Head>
                 <title>DEMAC - About</title>
             </Head>
-            {/* TODO: add content table + breifing */}
-            <main>
+            <TableOfContents headings={['']} />
+            <main className='py-5'>
                 <Container className='p-0'>
                     <ProjectDisplay renderedProjects={renderedProjects} />
                 </Container>
@@ -75,3 +75,18 @@ export default function Projects({ renderedProjects }: Projects) {
         </>
     );
 }
+
+//function that returns a table of contents for projects component
+const TableOfContents = ({ headings }: { headings: string[] }) => {
+    return (
+        <ul className='list-group list-group-flush'>
+            {headings.map((heading) => {
+                return (
+                    <li key={heading} className='list-group-item'>
+                        <a href={`#${heading}`}>{heading}</a>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+};

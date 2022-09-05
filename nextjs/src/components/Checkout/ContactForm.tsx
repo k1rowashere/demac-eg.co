@@ -52,7 +52,7 @@ function MyFormControl({
 }
 
 async function sendInfo(body: contactInfo) {
-    const res = await fetch(`/api/add-contact`, {
+    const res = await fetch('/api/contact-us', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

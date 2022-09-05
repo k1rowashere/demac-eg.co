@@ -52,6 +52,7 @@ export default function About() {
                         <Col className='mt-5 mt-lg-0 d-flex flex-column justify-content-start'>
                             <Image
                                 src={ImageInCircle}
+                                priority
                                 className='about-img'
                                 alt='boiler decorative image'
                             />

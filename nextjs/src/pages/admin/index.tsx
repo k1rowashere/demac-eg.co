@@ -25,10 +25,12 @@ async function handler(ctx: GetServerSidePropsContext) {
 
 export const getServerSideProps = withIronSessionSsr(handler, sessionOptions);
 
+Admin.disableLayout = true;
+
 export default function Admin(props: InferGetServerSidePropsType<typeof handler>) {
     return (
-        <>
-            <LogoutButton />
+        <Container className='py-2'>
+            <LogoutButton className='float-end' />
             <Container className='my-5'>
                 <h1>Admin Panel</h1>
                 <Stack direction='horizontal' gap={5}>
@@ -37,6 +39,6 @@ export default function Admin(props: InferGetServerSidePropsType<typeof handler>
                     </Link>
                 </Stack>
             </Container>
-        </>
+        </Container>
     );
 }

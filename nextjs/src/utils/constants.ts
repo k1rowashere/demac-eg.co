@@ -1,21 +1,26 @@
 import type { categories } from './types';
 import { CookieSerializeOptions } from 'next/dist/server/web/types';
 import { IronSessionOptions } from 'iron-session';
+import { Prisma } from '@prisma/client';
 
 export const COOKIES_ATTRIBUTES: CookieSerializeOptions = {
-    maxAge: 60 * 60 * 24 * 30,
+    maxAge: 60 * 60 * 24 * 30, // 30 days in seconds
     path: '/',
     sameSite: 'lax',
     secure: true,
 };
 
-export function currencyFormater(x: number) {
+export function currencyFormater(x: Prisma.Decimal | number | string) {
+    // convert x to number if it is a string or decimal
+    if (typeof x === 'string' || x instanceof Prisma.Decimal) {
+        x = Number(x);
+    }
     return Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(x);
 }
 
 export const sessionOptions: IronSessionOptions = {
     password: process.env.SECRET_COOKIE_PASSWORD as string,
-    ttl: 15 * 60, //15 mins
+    ttl: 60 * 60 * 24 * 7, // 1 week in seconds
     cookieName: 'demac-eg.co_admin_sess',
     cookieOptions: {
         secure: process.env.NODE_ENV === 'production',

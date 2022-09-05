@@ -9,6 +9,8 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 import { User } from 'utils/types';
 
+Login.disableLayout = true;
+
 export default function Login() {
     const router = useRouter();
     const [form, setForm] = useState({ username: '', password: '' });

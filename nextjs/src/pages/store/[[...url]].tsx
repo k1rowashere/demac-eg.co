@@ -1,16 +1,24 @@
-import { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import { ParsedUrlQuery } from 'querystring';
-
 import Head from 'next/head';
 
 import StoreFront from 'components/StoreFront';
 
-import dbQuery from 'utils/db_fetch';
+import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import type { ParsedUrlQuery } from 'querystring';
+import type { categories } from 'utils/types';
+
 import { pathsToTree } from 'utils/constants';
-import type { categories, product } from 'utils/types';
+import { prisma } from 'utils/prisma';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = (await dbQuery('SELECT DISTINCT path FROM products;')) as { path: string }[];
+    // get paths from db for categories
+    const res = await prisma.products.findMany({
+        select: {
+            path: true,
+        },
+        distinct: ['path'],
+    });
+    prisma.$disconnect();
+
     const categoryTree = pathsToTree(res);
     let paths: { params: ParsedUrlQuery }[] = [{ params: { url: [] } }];
 
@@ -32,23 +40,43 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
+    // finds all products that match the path in the url
     let { url = [] } = ctx.params as { url: string[] };
     let pathStr = `/${url.length ? url.join('/').replaceAll('-', ' ') + '/' : ''}%`;
-    const res1 = (await dbQuery(
-        `
-            SELECT part_no, name, price, img_link FROM products
-                WHERE UPPER(path) LIKE UPPER(?)
-                    AND price <> 0;
-        `,
-        [pathStr]
-    )) as product[];
-    const res2 = (await dbQuery('SELECT DISTINCT path FROM products;')) as { path: string }[];
 
+    const _products = await prisma.products.findMany({
+        where: {
+            path: {
+                contains: pathStr,
+            },
+            price: {
+                not: 0,
+            },
+        },
+        select: {
+            part_no: true,
+            name: true,
+            price: true,
+            img_link: true,
+        },
+    });
+
+    // convert decimal to number in products to fix serialization error
+    const products = _products.map((product) => ({ ...product, price: Number(product.price) }));
+
+    // get paths from db for categories
+    const paths = await prisma.products.findMany({
+        select: {
+            path: true,
+        },
+        distinct: ['path'],
+    });
+
+    prisma.$disconnect();
     return {
         props: {
-            //fix 'error serializing' bug
-            products: res1.map((result) => ({ ...result })),
-            categories: pathsToTree(res2),
+            products,
+            categories: pathsToTree(paths),
             url,
         },
         revalidate: 60,

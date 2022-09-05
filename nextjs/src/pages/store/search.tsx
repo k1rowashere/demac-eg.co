@@ -9,10 +9,9 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Categories from 'components/StoreFront/Categories';
 
 import Fuse from 'fuse.js';
-import dbQuery from 'utils/db_fetch';
 import { pathsToTree } from 'utils/constants';
-import type { product } from 'utils/types';
 import StoreFront from 'components/StoreFront';
+import { prisma } from 'utils/prisma';
 
 const fuseOptions = {
     minMatchCharLength: 3,
@@ -23,24 +22,35 @@ const fuseOptions = {
 };
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    let { s } = ctx.query;
-    const res2 = (await dbQuery('SELECT DISTINCT path FROM products;')) as { path: string }[];
-    let products: product[] = [];
+    const { s } = ctx.query;
 
-    if (s && !(s.toString().length < 3)) {
-        const query = (await dbQuery(`
-                SELECT part_no, name, price, img_link, description FROM products
-                    WHERE price <> 0;
-            `)) as product[];
-        const fuse = new Fuse(query, fuseOptions);
+    // get paths from db for categories
+    const paths = await prisma.products.findMany({
+        select: {
+            path: true,
+        },
+        distinct: ['path'],
+    });
 
-        products = fuse.search(s.toString()).map((el) => ({ ...el.item }));
-    }
+    // guard against empty search or less than 3 characters
+    if (!s || s.toString().length < 3)
+        return { props: { products: [], categories: pathsToTree(paths) } };
+
+    // get products from db then filter with fuse
+    const query = await prisma.products.findMany({ where: { price: { not: 0 } } });
+    const fuse = new Fuse(query, fuseOptions);
+    const _products = fuse.search(s.toString()).map((el) => el.item);
+
+    // convert decimal to number in products to fix serialization error
+    const products = _products.map((product) => ({ ...product, price: Number(product.price) }));
+
+    prisma.$disconnect();
 
     return {
         props: {
             products,
-            categories: pathsToTree(res2),
+            categories: pathsToTree(paths),
+            url: ['search'],
         },
     };
 };
@@ -54,43 +64,6 @@ Search.layoutProps = {
     },
 } as LayoutProps;
 
-export default function Search({
-    products,
-    categories,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    const router = useRouter();
-    const [showOffcanvas, setShowOffcanvas] = useState(false);
-    //turn off offcanvase on router change
-    useEffect(() => {
-        setShowOffcanvas(false);
-    }, [router]);
-
-    return (
-        <>
-            <Head>
-                <title>DEMAC - Search</title>
-                <meta name='description' content='Buy original Siemens spare parts in Egypt.' />
-                <meta property='og:title' content='DEMAC - Store' />
-                <meta property='og:type' content='website' />
-                <meta
-                    property='og:description'
-                    content='Buy original Siemens spare parts in Egypt.'
-                />
-                <meta property='og:image' content='https:/demac-eg.co/assets/demac_logo.svg' />
-            </Head>
-
-            <main className='container-fluid py-5'>
-                <StoreFront url={['search']} categories={categories} products={products} />
-            </main>
-
-            <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Categories:</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <Categories categories={categories} activePath={[]} />
-                </Offcanvas.Body>
-            </Offcanvas>
-        </>
-    );
-}
+// uses the same function as the store page
+import Search from 'pages/store/[[...url]]';
+export default Search;

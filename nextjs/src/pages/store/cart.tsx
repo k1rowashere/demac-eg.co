@@ -10,15 +10,14 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import CartItem from 'components/CartItem';
 import CheckoutForm from 'components/Checkout/CheckoutContainer';
 
-import dbQuery from 'utils/db_fetch';
+import { prisma } from 'utils/prisma';
 import { currencyFormater } from 'utils/constants';
 import { appendCart, getCart } from 'utils/cart';
 
-import type { product } from 'utils/types';
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import CartItem from 'components/CartItem';
 
 import EmptyCart from 'assets/empty_cart.svg';
 
@@ -26,23 +25,26 @@ const SHIPPING_COST = 150;
 const VAT_PERCENT = 0.14;
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-    const cartCount = getCart(ctx);
-    let cartItems: product[] = [];
+    const cartCookie = getCart(ctx);
 
-    if (Object.keys(cartCount).length) {
-        const cartKeys = Object.keys(cartCount);
-        const res = (await dbQuery(
-            `
-        SELECT part_no, name, price, img_link FROM products
-        WHERE part_no IN (${cartKeys.map(() => {
-            return '?';
-        })})
-        AND price <> 0;
-        `,
-            cartKeys
-        )) as product[];
-        cartItems = res.map((result) => ({ ...result, count: cartCount[result.part_no] }));
-    }
+    // if cart is empty, return empty array
+    if (!Object.keys(cartCookie).length) return { props: { cartItems: [] } };
+
+    // get all products in cart
+    const res = await prisma.products.findMany({
+        where: {
+            part_no: { in: Object.keys(cartCookie) },
+            price: { not: 0 },
+        },
+    });
+    prisma.$disconnect();
+
+    const cartItems = res.map((item) => ({
+        ...item,
+        qty: cartCookie[item.part_no],
+        price: Number(item.price),
+    }));
+
     return { props: { cartItems } };
 };
 
@@ -62,22 +64,22 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
 
     const subTotal = (() => {
         let sub = 0;
-        cartItems.forEach((product) => (sub += product.price * (product.count ?? 0)));
+        cartItems.forEach((product) => (sub += product.price * (product.qty ?? 0)));
         return sub;
     })();
 
     const vat = subTotal * VAT_PERCENT;
     const total = subTotal + vat + SHIPPING_COST;
 
-    const itemCountHandle = useCallback((fieldId: string, count: number) => {
+    const itemCountHandle = useCallback((fieldId: string, qty: number) => {
         setCartItems((currCartItems) => {
-            if (!count) {
+            if (!qty) {
                 appendCart(fieldId, 0);
                 return currCartItems.filter((product) => product.part_no !== fieldId);
             } else {
                 return currCartItems.map((item) => {
                     return item.part_no === fieldId
-                        ? { ...item, count: appendCart(fieldId, count) }
+                        ? { ...item, qty: appendCart(fieldId, qty) }
                         : item;
                 });
             }

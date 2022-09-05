@@ -11,20 +11,25 @@ import ImageWithFallback from 'components/ImageWithFallback';
 import Breadcrumb from 'components/StoreFront/Breadcrumb';
 import AddToCart from 'components/AddToCartButton';
 
-import dbQuery from 'utils/db_fetch';
+import type { GetStaticPaths, GetStaticPropsContext } from 'next';
+import type InferGetStaticPropsType from 'infer-next-props-type';
 
-import type { product } from 'utils/types';
-import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { currencyFormater } from 'utils/constants';
+import { prisma } from 'utils/prisma';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const res = (await dbQuery(`
-        SELECT part_no 
-            FROM products 
-            WHERE price <> 0;
-    `)) as { part_no: string }[];
+    const partNumberList = await prisma.products.findMany({
+        where: {
+            price: {
+                not: 0,
+            },
+        },
+        select: {
+            part_no: true,
+        },
+    });
 
-    const paths = res.map((item) => {
+    const paths = partNumberList.map((item) => {
         return { params: { pid: item.part_no } };
     });
 
@@ -35,58 +40,42 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async (ctx: GetStaticPropsContext) => {
-    let { pid } = ctx.params as { pid: string };
-    const res = (await dbQuery(
-        `
-        SELECT path, part_no, name, price, description, img_link, manufacturer_link 
-            FROM products 
-            WHERE part_no = ?;
-    `,
-        [pid]
-    )) as product[];
+    const { pid } = ctx.params as { pid: string };
 
-    if (res.length === 0) {
-        return {
-            notFound: true,
-            props: {
-                product: {} as product,
-                pid,
-                structuredData: {},
-            },
-        };
-    }
+    // get product from db
+    const _product = await prisma.products.findUnique({ where: { part_no: pid } });
+    prisma.$disconnect();
 
-    const product = { ...res[0] };
+    // if product not found, redirect to 404
+    if (!_product) return { notFound: true };
+
+    // convert decimal to number in products to fix serialization error
+    const product = { ..._product, price: Number(_product.price) };
 
     //JSON LD Schema
-    const structuredData = {
+    const structuredData = JSON.stringify({
         '@context': 'https://schema.org/',
         '@type': 'Product',
-        name: product.name,
-        image: product.img_link,
-        description: product.description,
+        name: _product.name,
+        image: _product.img_link,
+        description: _product.description,
         brand: {
             '@type': 'Brand',
             name: 'Siemens',
         },
-        sku: product.part_no,
+        sku: _product.part_no,
         offers: {
             '@type': 'Offer',
             url: 'https://demac-eg.co/store/product/' + pid,
             priceCurrency: 'EGP',
-            price: +product.price,
+            price: +_product.price,
             availability: 'https://schema.org/InStock',
             itemCondition: 'https://schema.org/NewCondition',
         },
-    };
+    });
 
     return {
-        props: {
-            //fix 'error serializing' bug
-            product,
-            pid,
-            structuredData,
-        },
+        props: { product, pid, structuredData },
         revalidate: 60,
     };
 };
@@ -98,27 +87,23 @@ Product.layoutProps = {
 
 export default function Product(props: InferGetStaticPropsType<typeof getStaticProps>) {
     const router = useRouter();
-    const {
-        product: { path, part_no, name, description, price, img_link, manufacturer_link },
-        pid,
-        structuredData,
-    } = props;
+    const { product, pid, structuredData } = props;
     return (
         <>
             <Head>
-                <title>{'DEMAC - Products |' + name}</title>
+                <title>{'DEMAC - Products |' + product.name}</title>
                 <script
                     type='application/ld+json'
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                    dangerouslySetInnerHTML={{ __html: structuredData }}
                 />
-                <meta name='description' content={`Buy: ${name}`} />
+                <meta name='description' content={`Buy: ${product.name}`} />
                 <meta name='robots' content='index, follow' />
-                <meta property='og:title' content={`Demac - Products | ${name}`} />
+                <meta property='og:title' content={`Demac - Products | ${product.name}`} />
                 <meta
                     property='og:description'
                     content={`Buy original Siemens spare parts from DEMAC Store!`}
                 />
-                <meta property='og:image' content={img_link} />
+                <meta property='og:image' content={product.img_link} />
             </Head>
             <main className='py-5'>
                 <Card className='container py-5 px-lg-5 mt-3'>
@@ -126,7 +111,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                         <Link
                             href={
                                 '/store' +
-                                path
+                                product.path
                                     .replace(/(\/[^\/]+)$/, '')
                                     .replaceAll(/\s/g, '-')
                                     .toLowerCase()
@@ -142,7 +127,7 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                         </Link>
                         <Breadcrumb
                             className='mx-2 mb-0'
-                            activePath={path.split('/').filter((el) => {
+                            activePath={product.path.split('/').filter((el) => {
                                 return el != '';
                             })}
                             pid={pid}
@@ -154,17 +139,17 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                             <Col>
                                 <ImageWithFallback
                                     priority
-                                    src={img_link}
+                                    src={product.img_link}
                                     fallbackSrc={'/assets/no_img.svg'}
-                                    alt={name}
+                                    alt={product.name}
                                     style={{ width: '100%', height: 'auto' }}
                                 />
                             </Col>
                             <Col>
-                                <small className='mb-1'>Part No.: {part_no}</small>
-                                <h1 className='display-5 fw-bolder'>{name}</h1>
+                                <small className='mb-1'>Part No.: {product.part_no}</small>
+                                <h1 className='display-5 fw-bolder'>{product.name}</h1>
                                 <div className='fs-5 mb-5'>
-                                    <span>{currencyFormater(price)}</span>
+                                    <span>{currencyFormater(product.price)}</span>
                                 </div>
                                 <p
                                     className='text-muted text-truncate'
@@ -173,12 +158,12 @@ export default function Product(props: InferGetStaticPropsType<typeof getStaticP
                                         textDecorationStyle: 'dotted',
                                     }}
                                 >
-                                    <a href={manufacturer_link}>
-                                        <small>{manufacturer_link}</small>
+                                    <a href={product.manufacturer_link}>
+                                        <small>{product.manufacturer_link}</small>
                                     </a>
                                 </p>
-                                <p className='lead'>{description}</p>
-                                <AddToCart id={part_no} />
+                                <p className='lead'>{product.description}</p>
+                                <AddToCart id={product.part_no} />
                             </Col>
                         </Row>
                     </Card.Body>

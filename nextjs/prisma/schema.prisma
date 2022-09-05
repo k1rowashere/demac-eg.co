@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+model products {
+  path              String  @default("/") @db.VarChar(45)
+  part_no           String  @id @unique(map: "part_no_UNIQUE") @db.VarChar(20)
+  name              String  @db.VarChar(100)
+  description       String  @db.VarChar(1000)
+  price             Decimal @db.Decimal(8, 2)
+  manufacturer_link String  @db.VarChar(256)
+  img_link          String  @db.VarChar(256)
+
+  @@index([path], map: "path")
+}
