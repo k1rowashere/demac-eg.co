@@ -1,7 +1,7 @@
-import { products } from '@prisma/client';
-import React from 'react';
 import { currencyFormater } from 'utils/constants';
-import { contactInfo } from 'utils/types';
+
+import type { contactInfo } from 'utils/types';
+import type { products } from '@prisma/client';
 
 type AllOrNone<T> = T | { [K in keyof T]?: never };
 type Props = AllOrNone<{
@@ -51,7 +51,7 @@ export default function ContactUsInternal({ cartCount, cartItems, contactInfo }:
                                 {el.name}
                             </th>
                             <th>{el.part_no}</th>
-                            <th>{currencyFormater(el.price)}</th>
+                            <th>{currencyFormater(el.price.toNumber())}</th>
                             <th>{cartCount[el.part_no]}</th>
                         </tr>
                     ))}

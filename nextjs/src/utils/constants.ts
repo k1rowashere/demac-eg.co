@@ -1,7 +1,6 @@
 import type { categories } from './types';
 import { CookieSerializeOptions } from 'next/dist/server/web/types';
 import { IronSessionOptions } from 'iron-session';
-import { Prisma } from '@prisma/client';
 
 export const COOKIES_ATTRIBUTES: CookieSerializeOptions = {
     maxAge: 60 * 60 * 24 * 30, // 30 days in seconds
@@ -10,9 +9,9 @@ export const COOKIES_ATTRIBUTES: CookieSerializeOptions = {
     secure: true,
 };
 
-export function currencyFormater(x: Prisma.Decimal | number | string) {
+export function currencyFormater(x: number | string) {
     // convert x to number if it is a string or decimal
-    if (typeof x === 'string' || x instanceof Prisma.Decimal) {
+    if (typeof x === 'string') {
         x = Number(x);
     }
     return Intl.NumberFormat('en-EG', { style: 'currency', currency: 'EGP' }).format(x);

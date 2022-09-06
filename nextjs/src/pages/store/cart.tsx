@@ -11,7 +11,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import CartItem from 'components/CartItem';
-import CheckoutForm from 'components/Checkout/CheckoutContainer';
+// import checkout form dynamically
+import dynamic from 'next/dynamic';
+const CheckoutForm = dynamic(() => import('components/Checkout/CheckoutContainer'));
 
 import { prisma } from 'utils/prisma';
 import { currencyFormater } from 'utils/constants';

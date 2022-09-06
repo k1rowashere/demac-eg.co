@@ -12,15 +12,17 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Breadcrumb from './Breadcrumb';
 import ProductDisplay from './ProductDisplay';
 import Categories from 'components/StoreFront/Categories';
-import { categories, product } from 'utils/types';
 
-type StoreFront = {
+import type { categories } from 'utils/types';
+import type { Products } from './ProductDisplay/ProductCard';
+
+type Props = {
     url: string[];
     categories: categories;
-    products: product[];
+    products: Products[];
 };
 
-export default function StoreFront({ url, categories, products }: StoreFront) {
+export default function StoreFront({ url, categories, products }: Props) {
     const [showOffcanvas, setShowOffcanvas] = useState(false);
     const router = useRouter();
     const Categories_ = <Categories categories={categories} activePath={url} />;

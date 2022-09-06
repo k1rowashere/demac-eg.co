@@ -1,16 +1,7 @@
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-
-import Head from 'next/head';
-
-import Offcanvas from 'react-bootstrap/Offcanvas';
-
-import Categories from 'components/StoreFront/Categories';
+import { GetServerSidePropsContext } from 'next';
 
 import Fuse from 'fuse.js';
 import { pathsToTree } from 'utils/constants';
-import StoreFront from 'components/StoreFront';
 import { prisma } from 'utils/prisma';
 
 const fuseOptions = {

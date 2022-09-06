@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useMemo } from 'react';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -9,10 +8,10 @@ import NumField from 'components/NumField';
 import ImageWithFallback from 'components/ImageWithFallback';
 
 import { currencyFormater } from 'utils/constants';
-import { products } from '@prisma/client';
+import type { products } from '@prisma/client';
 
 type CartItem = {
-    product: Omit<products, 'price'> & { price: number; qty: number };
+    product: Pick<products, 'part_no' | 'name' | 'img_link'> & { qty: number; price: number };
     itemCountHandle: (fieldId: string, qty: number) => void;
 };
 

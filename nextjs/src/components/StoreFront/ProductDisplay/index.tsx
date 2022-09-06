@@ -6,11 +6,12 @@ import Pagination from './Pagination';
 
 import { SwitchTransition, Transition } from 'react-transition-group';
 import Row from 'react-bootstrap/Row';
-import type { product } from 'utils/types';
 
 import NoProducts from 'assets/no_products.svg';
 
-function ProductDisplay({ products }: { products: product[] }) {
+import type { Products } from './ProductCard';
+
+function ProductDisplay({ products }: { products: Products[] }) {
     const nodeRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +22,7 @@ function ProductDisplay({ products }: { products: product[] }) {
         let page = Number((router.asPath.match(/\?page=((?!0)\d+)/) || [])[1]) || 1;
         page = isNaN(page) ? 1 : page;
         setCurrentPage(page);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Event Listener for window resise to calc number of items per page
