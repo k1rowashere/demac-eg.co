@@ -2,12 +2,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true' && process.env.NODE_ENV === 'production',
 });
 
+const withPreact = require('next-plugin-preact');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     compress: process.env.NODE_ENV === 'development', // handled by nginx in production
     experimental: {
+        // temp till fix
+        esmExternals: false,
         scrollRestoration: true,
         images: {
             allowFutureImage: true,
@@ -28,4 +32,4 @@ const nextConfig = {
     },
 };
 
-module.exports = withBundleAnalyzer(nextConfig);
+module.exports = withBundleAnalyzer(withPreact(nextConfig));
