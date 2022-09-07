@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useForm } from 'react-hook-form';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -7,11 +6,15 @@ import Container from 'react-bootstrap/Container';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 
-import ContactForm from 'components/Checkout/ContactForm';
+// dynamic import ContactForm with noSSR
+import dynamic from 'next/dynamic';
+const ContactForm = dynamic(() => import('components/Checkout/ContactForm'), { ssr: false });
 
 import PaperPlane from 'assets/paper_plane.svg';
 
 import type { contactInfo } from 'utils/types';
+import SuccessModal from 'components/SuccessModal';
+import { useEffect, useState } from 'react';
 
 Contact.layoutProps = {
     navbarProps: { activePage: 'contact_us' },
@@ -23,7 +26,40 @@ Contact.layoutProps = {
 } as LayoutProps;
 
 export default function Contact() {
-    const form = useForm<contactInfo>();
+    // state for showing the success modal
+    const [showSuccessModal, setShowSuccessModal] = useState({
+        show: false,
+        status: 0,
+    });
+    const [initialValues, setInitialValues] = useState<contactInfo | undefined>();
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async (data: contactInfo) => {
+        // store data in local storage
+        localStorage.setItem('contactInfo', JSON.stringify(data));
+
+        // append message to data
+        data.message = message;
+
+        // send data to backend
+        const res = await fetch('/api/contact-us', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        // show success modal
+        setShowSuccessModal({ show: true, status: res.status });
+        setInitialValues(undefined);
+        setMessage('');
+    };
+
+    useEffect(() => {
+        const data = localStorage.getItem('contactInfo');
+        setInitialValues(data ? JSON.parse(data) : undefined);
+    }, []);
 
     return (
         <>
@@ -58,11 +94,12 @@ export default function Contact() {
                                         rows={8}
                                         maxLength={500}
                                         style={{ resize: 'none' }}
-                                        {...form.register('message')}
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
                                     />
-                                    <span className='text-end'>{`${
-                                        form.watch('message')?.length || 0
-                                    }/500 characters`}</span>
+                                    <span className='text-end'>
+                                        {`${message.length || 0}/500 characters`}
+                                    </span>
                                     <PaperPlane
                                         className='d-none d-md-block text-center my-auto'
                                         style={{ opacity: '0.5' }}
@@ -70,13 +107,18 @@ export default function Contact() {
                                     />
                                 </Col>
                                 <Col>
-                                    <ContactForm form={form} />
+                                    <ContactForm
+                                        handleSubmit={handleSubmit}
+                                        initialValues={initialValues}
+                                    />
                                 </Col>
                             </Row>
                         </Card.Body>
                     </Card>
                 </Container>
             </main>
+
+            <SuccessModal showState={[showSuccessModal, setShowSuccessModal]} />
         </>
     );
 }

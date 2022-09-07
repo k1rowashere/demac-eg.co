@@ -13,15 +13,18 @@ import Card from 'react-bootstrap/Card';
 import CartItem from 'components/CartItem';
 // import checkout form dynamically
 import dynamic from 'next/dynamic';
-const CheckoutForm = dynamic(() => import('components/Checkout/CheckoutContainer'));
+const CheckoutModal = dynamic(() => import('components/Checkout/CheckoutModal'));
 
+import nookies from 'nookies';
 import { prisma } from 'utils/prisma';
-import { currencyFormater } from 'utils/constants';
+import { COOKIES_ATTRIBUTES, currencyFormater } from 'utils/constants';
 import { appendCart, getCart } from 'utils/cart';
 
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next';
 
 import EmptyCart from 'assets/empty_cart.svg';
+import SuccessModal from 'components/SuccessModal';
+import { contactInfo } from 'utils/types';
 
 const SHIPPING_COST = 150;
 const VAT_PERCENT = 0.14;
@@ -62,6 +65,10 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
     const router = useRouter();
     const [cartItems, setCartItems] = useState(props.cartItems);
     const [showCheckout, setShowCheckout] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState<{ show: boolean; status: number }>({
+        show: false,
+        status: 0,
+    });
     const [parent] = useAutoAnimate<HTMLDivElement>();
 
     const subTotal = (() => {
@@ -72,6 +79,30 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
 
     const vat = subTotal * VAT_PERCENT;
     const total = subTotal + vat + SHIPPING_COST;
+
+    const handleSubmit = async (data: contactInfo) => {
+        // append cart to data
+        const payload = { cartItems: cartItems, ...data };
+
+        // send data to server
+        const res = await fetch('/api/place-order', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        console.log(res);
+        if (res.status === 200) {
+            // clear cart
+            nookies.set(null, 'cart', '{}', COOKIES_ATTRIBUTES);
+            // redirect to success page
+            router.push('/checkout/success');
+        } else {
+            setShowCheckout(false);
+            // show error modal and close checkout modal
+            setShowSuccessModal({ show: true, status: 500 });
+        }
+    };
 
     const itemCountHandle = useCallback((fieldId: string, qty: number) => {
         setCartItems((currCartItems) => {
@@ -201,7 +232,12 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
                 </Container>
             </main>
 
-            <CheckoutForm show={showCheckout} setShow={setShowCheckout} />
+            <CheckoutModal
+                handleSubmit={handleSubmit}
+                showState={[showCheckout, setShowCheckout]}
+            />
+
+            <SuccessModal showState={[showSuccessModal, setShowSuccessModal]} />
         </>
     );
 }

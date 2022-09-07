@@ -7,39 +7,40 @@ import ContactUsInteral from 'email/ContactUsInternal';
 
 import { contactInfo } from 'utils/types';
 import { emailTrasportOptions } from 'utils/constants';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from 'utils/prisma';
+import captchaCheck from 'utils/captcha';
 
 export const config = { api: { bodyParser: { sizeLimit: '5kb' } } };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     let body = req.body as contactInfo;
 
-    //Only allow POST requests
+    //Only allow POST requests and application/json content type
     if (req.method !== 'POST') return res.status(404).json({});
     if (req.headers['content-type'] !== 'application/json')
         return res.status(415).json({ error: 'content-type must be application/json' });
 
-    // guard no recaptcha env variables
-    if (!process.env.RECAPTCHA_SECRET) return res.status(500).json({});
-
-    // validate captcha
-    if (process.env.NODE_ENV !== 'development') {
-        const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                secret: process.env.RECAPTCHA_SECRET,
-                response: body.captchaToken,
-            }),
-        });
-        const captchaResponseJson = await captchaResponse.json();
-        if (!captchaResponseJson.success) return res.status(400).json({ error: 'captcha failed' });
-    }
+    // captcha check
+    if (!(await captchaCheck(body.captchaToken)))
+        return res.status(400).json({ error: 'captcha failed' });
 
     // --------------------------- //
 
     //TODO: add customer confirm email
     //TODO: add db store
+
+    // store contact info in db
+    // const prisma = new PrismaClient();
+    // const contact = await prisma.contact.create({
+    //     data: {
+    //         id: uuidv4(),
+    //         email: body.email,
+    //         name: body.name,
+    //         company: body.company,
+    //         phone: body.phone,
+    //         message: body.message,
+    //     },
+    // });
 
     //send email to admin
     const html = renderToString(ContactUsInteral({ contactInfo: body }));

@@ -12,11 +12,11 @@ export type contactInfo = {
     lastName: string;
     jobTitle: string;
     email: string;
-    mobile: string;
-    phone: string;
+    mobileNumber: string;
+    phoneNumber: string;
     address: string;
     message?: string;
-    captchaToken: string;
+    captchaToken: string | null;
 };
 
 export type User = {

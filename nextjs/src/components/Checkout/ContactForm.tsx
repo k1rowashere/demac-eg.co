@@ -1,310 +1,216 @@
-import input from './input.module.scss';
-
-import { useEffect, useState } from 'react';
-import { UseFormReturn, SubmitHandler } from 'react-hook-form';
-import dynamic from 'next/dynamic';
-const ReCAPTCHA = dynamic(() => import('react-google-recaptcha'), { ssr: false });
+// form using formik that has first name, last name, company name, job title,  email, mobile number, phone number and address
+import { Formik } from 'formik';
+import { FormikHelpers, FormikProps } from 'formik/dist/types';
 
 import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Spinner from 'react-bootstrap/Spinner';
+import MyFormControl from './MyFormControl';
+import Stack from 'react-bootstrap/Stack';
 
-import PhoneInput from 'react-phone-input-2';
-import SuccessModal from '../SuccessModal';
+import * as Yup from 'yup';
 
-import type { contactInfo } from 'utils/types';
+import 'yup-phone-lite';
 
-type MyFormControl = {
-    type?: string;
-    register: any;
-    label?: string;
-    errors: any;
-    required?: boolean;
-    [x: string]: any;
-};
+import { contactInfo } from 'utils/types';
 
-function MyFormControl({
-    type = 'text',
-    register,
-    label = '',
-    errors,
-    required = true,
-    ...rest
-}: MyFormControl) {
-    return (
-        <Form.Floating
-            error-message={errors[register.name] && errors[register.name].message}
-            {...rest}
-        >
-            <Form.Control
-                id={register.name}
-                type={type}
-                isInvalid={errors[register.name]}
-                required={required}
-                placeholder=''
-                {...register}
-            />
-            <label htmlFor={register.name}>{label}</label>
-        </Form.Floating>
-    );
-}
+import { useRef, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 
-async function sendInfo(body: contactInfo) {
-    const res = await fetch('/api/contact-us', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-    });
+import ReCAPTCHA from 'react-google-recaptcha';
 
-    return res.status;
-}
-
-type ContactForm = {
+// formkit onSubmit type
+type FormikOnSubmit<T> = (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<any>;
+type contactInfoWoutMessage = Omit<contactInfo, 'message'>;
+type Props = {
+    initialValues?: contactInfoWoutMessage;
+    handleSubmit: (values: any) => Promise<void>;
     handleClose?: () => void;
     showCancel?: boolean;
-    form: UseFormReturn<contactInfo>;
 };
 
+const contactUsSchema = Yup.object().shape({
+    firstName: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    lastName: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    companyName: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    jobTitle: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    email: Yup.string().required('Required').email('Invalid email'),
+    // match phone number format with yup-phone
+    mobileNumber: Yup.string().required('Required').phone('EG', 'Invalid phone number'),
+    phoneNumber: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .matches(
+            // numbers, spaces, dashes, parentheses, and plus signs
+            /^[\d\s-()+]*$/,
+            'Invalid phone number'
+        ),
+    address: Yup.string().required('Required').min(2, 'Too Short!').max(50, 'Too Long!'),
+    captchaToken: Yup.string().required('Required'),
+});
+
+const emptyContactForm: contactInfoWoutMessage = {
+    firstName: '',
+    lastName: '',
+    companyName: '',
+    jobTitle: '',
+    email: '',
+    mobileNumber: '',
+    phoneNumber: '',
+    address: '',
+    captchaToken: '',
+};
+
+const requiredFields = [
+    'firstName',
+    'lastName',
+    'companyName',
+    'jobTitle',
+    'email',
+    'mobileNumber',
+    'address',
+];
+
 export default function ContactForm({
-    handleClose = () => {},
-    showCancel = false,
-    form,
-}: ContactForm) {
-    const {
-        watch,
-        setValue,
-        register,
-        handleSubmit,
-        formState: { errors },
-        clearErrors,
-    } = form;
+    initialValues = emptyContactForm,
+    handleSubmit,
+    handleClose = () => null,
+    showCancel,
+}: Props) {
     const [confirm, setConfirm] = useState(0); // 0: no clicks, 1: waiting for confirm, 2: loading
-    const [successStatus, setSuccessStatus] = useState({ show: false, status: 0 } as {
-        show: boolean;
-        status?: number;
-    });
-    useEffect(() => {
-        register('captchaToken', { required: true });
-    }, [register]);
-
-    const required = { required: { value: true, message: 'Required' } };
-    const nameValid = { maxLength: { value: 32, message: 'Too long' } };
-    const emailValid = {
-        pattern: {
-            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g,
-            message: 'Invalid email',
-        },
-    };
-    const mobileValid = { minLength: { value: 5, message: 'Invalid' } };
-    const phoneValid = {
-        pattern: { value: /^[0-9]*$/, message: 'Invalid number' },
-        minLength: { value: 5, message: 'Too short' },
-        maxLength: { value: 12, message: 'Too long' },
-    };
-
-    //for testing
-    // const required = {}
-    // const nameValid = {}
-    // const emailValid = {}
-    // const mobileValid = {}
-    // const phoneValid = {}
-
-    const onSubmit: SubmitHandler<contactInfo> = async (data) => {
-        setConfirm(2);
-
-        const status = await sendInfo(data);
-
-        setConfirm(0);
-        setSuccessStatus({ show: true, status });
-    };
+    const formRef = useRef<FormikProps<contactInfoWoutMessage>>(null);
+    const captchaRef = useRef<ReCAPTCHA>(null);
 
     const handleSubmitClick = async () => {
-        if (/* await trigger('',{ shouldFocus: true }) && */ confirm === 0) {
+        if (confirm === 0) {
             setConfirm(1);
         } else if (confirm === 1) {
-            handleSubmit(onSubmit)();
+            setConfirm(2);
+            await formRef.current?.submitForm();
+            setConfirm(0);
         }
     };
 
-    const handleCaptchaVerify = async (token: string | null) => {
-        if (!token) return;
-        setValue('captchaToken', token);
-        clearErrors('captchaToken');
+    // formik onSubmit
+    const onSubmit: FormikOnSubmit<typeof initialValues> = async (values, { resetForm }) => {
+        //reset captcha
+        captchaRef.current?.reset();
+
+        resetForm({ values: emptyContactForm });
+        await handleSubmit(values);
     };
 
     return (
-        <>
-            <Form as='form'>
-                <h3>Personal Info</h3>
-                <hr />
+        <Formik
+            innerRef={formRef}
+            validationSchema={contactUsSchema}
+            onSubmit={onSubmit}
+            initialValues={{ ...initialValues, captchaToken: '' }}
+        >
+            {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => {
+                const createFormControlProps = (
+                    name: keyof typeof values,
+                    label: string,
+                    icon?: string
+                ) => ({
+                    required: requiredFields.includes(name),
+                    name,
+                    label,
+                    icon,
+                    value: values[name],
+                    handleChange,
+                    touched: touched[name],
+                    error: errors[name],
+                });
 
-                <div className={input['react-tel-input']}></div>
-                {/* Name */}
-                <Stack direction='horizontal' gap={3} className='mt-3'>
-                    <MyFormControl
-                        className='w-50'
-                        label='First name'
-                        register={register('firstName', { ...required, ...nameValid })}
-                        errors={errors}
-                    />
-                    <MyFormControl
-                        className='w-50'
-                        label='Last name'
-                        register={register('lastName', { ...required, ...nameValid })}
-                        errors={errors}
-                    />
-                </Stack>
+                const formControlProps = [
+                    createFormControlProps('firstName', 'First Name'),
+                    createFormControlProps('lastName', 'Last Name'),
+                    createFormControlProps('companyName', 'Company Name', 'bi-building'),
+                    createFormControlProps('jobTitle', 'Job Title', 'bi-briefcase'),
+                    createFormControlProps('email', 'Email', 'bi-envelope'),
+                    createFormControlProps('mobileNumber', 'Mobile Number', 'bi-phone'),
+                    createFormControlProps('phoneNumber', 'Phone Number', 'bi-telephone'),
+                    createFormControlProps('address', 'Address', 'bi-geo-alt'),
+                ];
 
-                {/* Company */}
-                <InputGroup className='mt-3'>
-                    <InputGroup.Text>
-                        <i className='bi bi-building' />
-                    </InputGroup.Text>
-                    <MyFormControl
-                        label='Company name'
-                        register={register('companyName', { ...required, ...nameValid })}
-                        errors={errors}
-                    />
-                </InputGroup>
+                return (
+                    <>
+                        <h3>Personal Info</h3>
+                        <hr />
+                        <Form noValidate onSubmit={handleSubmit}>
+                            <Stack direction='horizontal' gap={3}>
+                                {formControlProps.slice(0, 2).map((props) => (
+                                    <MyFormControl key={props.name} {...props} />
+                                ))}
+                            </Stack>
 
-                {/* job title */}
-                <InputGroup className='mt-3'>
-                    <InputGroup.Text>
-                        <i className='bi bi-person-lines-fill' />
-                    </InputGroup.Text>
-                    <MyFormControl
-                        label='Job title'
-                        register={register('jobTitle', { ...required, ...nameValid })}
-                        errors={errors}
-                    />
-                </InputGroup>
+                            {formControlProps.slice(2, 4).map((props) => (
+                                <MyFormControl key={props.name} {...props} />
+                            ))}
+                            <h3>Contact Info</h3>
+                            <hr />
 
-                <h3 className='mt-3'>Contact Info</h3>
-                <hr />
+                            <MyFormControl {...formControlProps[4]} />
 
-                {/* email */}
-                <InputGroup className='mt-3'>
-                    <InputGroup.Text>@</InputGroup.Text>
-                    <MyFormControl
-                        type='email'
-                        label='Email'
-                        register={register('email', {
-                            ...required,
-                            ...emailValid,
-                        })}
-                        errors={errors}
-                    />
-                </InputGroup>
+                            <Stack direction='horizontal' gap={2} className='minBreakpoint-md'>
+                                {formControlProps.slice(5, 7).map((props) => (
+                                    <MyFormControl key={props.name} {...props} />
+                                ))}
+                            </Stack>
 
-                {/* phone/mobile */}
-                <div className={input.wrapper}>
-                    <InputGroup className='mt-3 stack'>
-                        <InputGroup.Text>
-                            <i className='bi bi-phone' />
-                        </InputGroup.Text>
-                        {/* <MyFormControl type='tel' label='Mobile number' register={register('mobile', { ...required, ...mobileValid })} errors={errors} /> */}
-                        <Form.Floating error-message={errors.mobile && errors.mobile.message}>
-                            <PhoneInput
-                                containerClass={Boolean(watch('mobile')) ? 'has-value' : ''}
-                                inputClass={errors.mobile && ' is-invalid'}
-                                inputProps={{
-                                    required: true,
-                                    id: 'mobile',
-                                    ...register('mobile', { ...required, ...mobileValid }),
-                                }}
-                                value={watch('mobile')}
-                                country='eg'
-                                countryCodeEditable={false}
-                                enableSearch
-                                placeholder=''
+                            <MyFormControl {...formControlProps[7]} />
+
+                            <ReCAPTCHA
+                                ref={captchaRef}
+                                className='mt-3'
+                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
+                                onChange={(token) => (values.captchaToken = token)}
                             />
-                            <label htmlFor='mobile'>Mobile number</label>
-                        </Form.Floating>
-                        <InputGroup.Text>
-                            <i className='bi bi-telephone-fill' />
-                        </InputGroup.Text>
-                        <MyFormControl
-                            type='tel'
-                            label='Phone number'
-                            required={false}
-                            register={register('phone', { ...phoneValid })}
-                            errors={errors}
-                        />
-                    </InputGroup>
-                </div>
-
-                {/* Address */}
-                <InputGroup className='mt-3'>
-                    <InputGroup.Text>
-                        <i className='bi bi-geo-alt-fill' />
-                    </InputGroup.Text>
-                    <MyFormControl
-                        type='text'
-                        label='Address'
-                        register={register('address', { ...required, ...nameValid })}
-                        errors={errors}
-                    />
-                </InputGroup>
-                <ReCAPTCHA
-                    className='mt-3'
-                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
-                    onChange={handleCaptchaVerify}
-                />
-                {errors.captchaToken ? (
-                    <p className='text-danger my-0 small'>
-                        Please verify that you are not a robot 🤖.
-                    </p>
-                ) : (
-                    <></>
-                )}
-                <p className='text-danger my-0 small'>* Required</p>
-
-                <Stack className='mt-4' direction='horizontal' gap={3}>
-                    {showCancel ? (
-                        <Button
-                            className='w-50'
-                            variant='outline-dark'
-                            size='lg'
-                            onClick={handleClose}
-                        >
-                            Cancel
-                        </Button>
-                    ) : null}
-                    <Button
-                        className={showCancel ? 'w-50' : 'w-100'}
-                        variant={confirm ? 'success' : 'primary'}
-                        size='lg'
-                        type='button'
-                        onClick={handleSubmitClick}
-                        onBlur={() => {
-                            if (confirm === 1) setConfirm(0);
-                        }}
-                    >
-                        {confirm === 0 ? (
-                            'Contact Sales'
-                        ) : confirm === 1 ? (
-                            'Confirm?'
-                        ) : (
-                            <Spinner
-                                as='span'
-                                animation='border'
-                                size='sm'
-                                role='status'
-                                aria-hidden='true'
-                            />
-                        )}
-                    </Button>
-                </Stack>
-            </Form>
-            <SuccessModal
-                {...successStatus}
-                handleClose={() => {
-                    setSuccessStatus({ show: false });
-                    handleClose();
-                }}
-            />
-        </>
+                            {errors.captchaToken ? (
+                                <p className='text-danger my-0 small'>
+                                    Please verify that you are not a robot 🤖.
+                                </p>
+                            ) : null}
+                            <Stack className='mt-4' direction='horizontal' gap={3}>
+                                {showCancel ? (
+                                    <Button
+                                        className='w-50'
+                                        variant='outline-dark'
+                                        size='lg'
+                                        onClick={handleClose}
+                                    >
+                                        Cancel
+                                    </Button>
+                                ) : null}
+                                <Button
+                                    className={showCancel ? 'w-50' : 'w-100'}
+                                    variant={confirm ? 'success' : 'primary'}
+                                    size='lg'
+                                    type='button'
+                                    onClick={handleSubmitClick}
+                                    onBlur={() => {
+                                        if (confirm === 1) setConfirm(0);
+                                    }}
+                                >
+                                    {confirm === 0 ? (
+                                        'Contact Sales'
+                                    ) : confirm === 1 ? (
+                                        'Confirm?'
+                                    ) : (
+                                        <Spinner
+                                            as='span'
+                                            animation='border'
+                                            size='sm'
+                                            role='status'
+                                            aria-hidden='true'
+                                        />
+                                    )}
+                                </Button>
+                            </Stack>
+                        </Form>
+                    </>
+                );
+            }}
+        </Formik>
     );
 }

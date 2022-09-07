@@ -6,6 +6,12 @@
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/utilities';
 
+// @media (max-width: 576px) {
+//     .hstack {
+//         display: unset;
+//     }
+// }
+
 .about-img {
     clip-path: circle(closest-side at 50% 50%);
 }
@@ -18,6 +24,11 @@
     }
 }
 
+@include media-breakpoint-down(md) {
+    .hstack.minBreakpoint-md {
+        display: unset;
+    }
+}
 .read-more {
     word-break: normal;
     overflow: hidden;

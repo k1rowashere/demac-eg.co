@@ -9,6 +9,7 @@ import ContactUsInteral from 'email/ContactUsInternal';
 import { contactInfo } from 'utils/types';
 import { emailTrasportOptions } from 'utils/constants';
 import { prisma } from 'utils/prisma';
+import captchaCheck from 'utils/captcha';
 
 export const config = { api: { bodyParser: { sizeLimit: '5kb' } } };
 
@@ -22,22 +23,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // guard no empty cart
     if (!body) return res.status(400).json({ error: 'body is empty' });
 
-    // guard no recaptcha env variables
-    if (!process.env.RECAPTCHA_SECRET) return res.status(500).json({});
-
-    // validate captcha
-    if (process.env.NODE_ENV !== 'development') {
-        const captchaResponse = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                secret: process.env.RECAPTCHA_SECRET,
-                response: body.captchaToken,
-            }),
-        });
-        const captchaResponseJson = await captchaResponse.json();
-        if (!captchaResponseJson.success) return res.status(400).json({ error: 'captcha failed' });
-    }
+    if (!(await captchaCheck(body.captchaToken)))
+        return res.status(400).json({ error: 'captcha failed' });
 
     // --------------------------- //
     //parse cart and sql query for items
