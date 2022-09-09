@@ -35,8 +35,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     // convert decimal to number in products to fix serialization error
     const products = _products.map((product) => ({ ...product, price: Number(product.price) }));
 
-    prisma.$disconnect();
-
     return {
         props: {
             products,

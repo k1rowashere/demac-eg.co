@@ -23,7 +23,6 @@ async function handler(ctx: GetServerSidePropsContext) {
 
     // else, get all products
     const _products = await prisma.products.findMany();
-    prisma.$disconnect();
 
     // convert decimal to number in products to fix serialization error
     const products = _products.map((product) => ({ ...product, price: Number(product.price) }));

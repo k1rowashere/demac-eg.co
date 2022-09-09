@@ -17,7 +17,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         // select everything from products table
         const result = await prisma.products.findMany();
-        await prisma.$disconnect();
 
         //convert query to csv string
         let str = 'path, part_no, name, description, price, manufacturer_link, img_link\n';
@@ -51,7 +50,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
                     return res.status(400).json({ message: 'Duplicate part_no' });
                 return res.status(500).json({ message: err });
             } finally {
-                await prisma.$disconnect();
             }
             return res.status(200).json({ message: 'success' });
         });

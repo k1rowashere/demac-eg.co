@@ -63,7 +63,6 @@ async function productEdit(req: NextApiRequest, res: NextApiResponse) {
             }
             return res.status(500).json({ message });
         } finally {
-            await prisma.$disconnect();
         }
     });
 }

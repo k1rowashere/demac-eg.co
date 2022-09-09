@@ -15,7 +15,6 @@ const nextConfig = {
         scrollRestoration: true,
     },
     images: {
-        allowFutureImage: true,
         remotePatterns: [
             {
                 hostname: '**.siemens.com',

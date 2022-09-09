@@ -44,7 +44,6 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
 
     // get product from db
     const _product = await prisma.products.findUnique({ where: { part_no: pid } });
-    prisma.$disconnect();
 
     // if product not found, redirect to 404
     if (!_product) return { notFound: true };

@@ -17,7 +17,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
         },
         distinct: ['path'],
     });
-    prisma.$disconnect();
 
     const categoryTree = pathsToTree(res);
     let paths: { params: ParsedUrlQuery }[] = [{ params: { url: [] } }];
@@ -72,7 +71,6 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
         distinct: ['path'],
     });
 
-    prisma.$disconnect();
     return {
         props: {
             products,

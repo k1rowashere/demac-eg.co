@@ -42,7 +42,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
             price: { not: 0 },
         },
     });
-    prisma.$disconnect();
 
     const cartItems = res.map((item) => ({
         ...item,
