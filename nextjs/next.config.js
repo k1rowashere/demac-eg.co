@@ -13,14 +13,14 @@ const nextConfig = {
         // temp till fix
         esmExternals: false,
         scrollRestoration: true,
-        images: {
-            allowFutureImage: true,
-            remotePatterns: [
-                {
-                    hostname: '**.siemens.com',
-                },
-            ],
-        },
+    },
+    images: {
+        allowFutureImage: true,
+        remotePatterns: [
+            {
+                hostname: '**.siemens.com',
+            },
+        ],
     },
     webpack: (config) => {
         config.module.rules.push({

@@ -15,7 +15,7 @@ const components: Components = {
             width,
             height,
             src: src || '',
-            alt,
+            alt: alt ?? '',
             style: { width: '100%', height: 'auto' },
             priority,
         });
