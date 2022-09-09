@@ -20,6 +20,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
         select: {
             path: true,
         },
+        orderBy: {
+            path: 'asc',
+        },
         distinct: ['path'],
     });
 
@@ -54,5 +57,5 @@ Search.layoutProps = {
 } as LayoutProps;
 
 // uses the same function as the store page
-import Search from 'pages/store/[[...url]]';
+import Search from 'pages/store/[...url]';
 export default Search;

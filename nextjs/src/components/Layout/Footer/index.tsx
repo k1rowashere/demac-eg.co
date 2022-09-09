@@ -8,12 +8,12 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import footer from './footer.module.css';
 import demac from 'styles/demac.module.scss';
 
-export default function Footer() {
+export default function Footer({ showDivider }: { showDivider?: boolean }) {
     return (
-        <footer>
+        <footer className={showDivider ? footer.spikes : ''}>
             <Container fluid className='pt-4 pb-2 px-4 px-md-5 bg-dark bg bg-gears text-white'>
                 <Row xs={1} sm={2} md={3} className='justify-content-between'>
-                    <Col md={4} lg={3}>
+                    <Col md={4} lg={3} className='mt-1'>
                         <Demac className={demac.wrapper + ' mb-3'} style={{ height: '1.5em' }} />
                         <Breadcrumb
                             style={{ '--bs-breadcrumb-divider': '"|"' } as React.CSSProperties}
@@ -33,7 +33,7 @@ export default function Footer() {
                         </Breadcrumb>
                         <small className='text-white-50'>demac-egypt.com © 2022</small>
                     </Col>
-                    <Col md={3} lg={4} className='d-none d-md-block text-white-50'>
+                    <Col md={3} lg={4} className='d-none d-lg-block text-white-50'>
                         <span className='text-white h4'>About Us</span>
                         <p>
                             Established in 2010. We provide complete engineering solutions for
@@ -44,7 +44,7 @@ export default function Footer() {
                             pricing.
                         </p>
                     </Col>
-                    <Col as='address' md={5} lg={4} className='mt-sm-0'>
+                    <Col as='address' md={5} lg={4} className='mt-3 mt-sm-0'>
                         <ul className={footer.contact}>
                             <li>
                                 <a

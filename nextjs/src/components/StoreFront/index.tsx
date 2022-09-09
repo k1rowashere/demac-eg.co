@@ -15,6 +15,7 @@ import Categories from 'components/StoreFront/Categories';
 
 import type { categories } from 'utils/types';
 import type { Products } from './ProductDisplay/ProductCard';
+import SearchBtn from './SearchBtn';
 
 type Props = {
     url: string[];
@@ -69,30 +70,7 @@ export default function StoreFront({ url, categories, products }: Props) {
                     <Breadcrumb className='mx-2 my-auto' activePath={url} />
                 </Col>
                 <Col lg={3} className='mt-3 mt-lg-0 d-flex'>
-                    <Form className='my-auto flex-grow-1'>
-                        <InputGroup>
-                            <Button
-                                variant='success'
-                                id='search'
-                                title='search'
-                                onClick={handleSearch}
-                            >
-                                <i className='bi bi-search' />
-                            </Button>
-                            <Form.Control
-                                ref={searchRef}
-                                defaultValue={router.query.s || ''}
-                                aria-label='search'
-                                aria-describedby='search'
-                                type='search'
-                                placeholder='Search'
-                                onFocus={(e: React.FocusEvent<HTMLInputElement>) =>
-                                    e.target.select()
-                                }
-                                onKeyDown={handleSearchEnter}
-                            />
-                        </InputGroup>
-                    </Form>
+                    <SearchBtn className='my-auto flex-grow-1' />
                 </Col>
             </Row>
             <Row className='px-4 px-lg-5 my-4' style={{ minHeight: '100vh' }}>

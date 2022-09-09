@@ -5,31 +5,34 @@ import Footer from './Footer';
 
 type Layout = {
     className?: string;
-    navbarProps: React.ComponentProps<typeof Navbar>;
-    headerProps: React.ComponentProps<typeof Header>;
+    navbarProps?: React.ComponentProps<typeof Navbar>;
+    headerProps?: React.ComponentProps<typeof Header>;
     children: React.ReactNode;
 };
 
 export default function Layout({ className, navbarProps, headerProps, children }: Layout) {
+    // undefined guard
+    const navbar = navbarProps ? <Navbar {...navbarProps} /> : null;
+
     return (
         <>
             {
                 // wraps with div if has a shared background
                 className ? (
                     <div className={className}>
-                        <Navbar {...navbarProps} />
+                        {navbar}
                         <Header {...headerProps} />
                         {children}
                     </div>
                 ) : (
                     <>
-                        <Navbar {...navbarProps} />
+                        {navbar}
                         <Header {...headerProps} />
                         {children}
                     </>
                 )
             }
-            <Footer />
+            <Footer showDivider={headerProps && headerProps.showSeperator} />
         </>
     );
 }

@@ -56,7 +56,7 @@ export default function CategoryItem({
                     active={arrayEquals(activePath, thisPath)}
                     key={thisPath.toString()}
                 >
-                    {hasChildren ? (
+                    {hasChildren || level < 1 ? (
                         <>
                             <i className='bi bi-dash text-muted' />
                             <Link href={thisPath.join('/')} passHref scroll={false}>

@@ -18,19 +18,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
         distinct: ['path'],
     });
 
-    const categoryTree = pathsToTree(res);
-    let paths: { params: ParsedUrlQuery }[] = [{ params: { url: [] } }];
+    let paths: { params: ParsedUrlQuery }[] = [];
 
+    // add paths to array recursively
     function getAllPaths(categoryTree: categories, currPath: string[] = []) {
         if (!categoryTree) return;
-        for (let [key, value] of Object.entries(categoryTree)) {
-            const newPath = currPath.concat(key.replaceAll(/\s/g, '-').toLowerCase());
+        // add current path to paths array
+        for (let [name, children] of Object.entries(categoryTree)) {
+            const newPath = currPath.concat(name.replaceAll(/\s/g, '-').toLowerCase());
             paths.push({ params: { url: newPath } });
-            getAllPaths(value, newPath);
+            // add children paths to paths array
+            getAllPaths(children, newPath);
         }
     }
 
-    getAllPaths(categoryTree);
+    getAllPaths(pathsToTree(res));
 
     return {
         paths,
@@ -67,6 +69,9 @@ export const getStaticProps = async (ctx: GetStaticPropsContext) => {
     const paths = await prisma.products.findMany({
         select: {
             path: true,
+        },
+        orderBy: {
+            path: 'asc',
         },
         distinct: ['path'],
     });

@@ -52,6 +52,7 @@ container-fluid
 container-lg
 d-block
 d-flex
+d-lg-block
 d-md-block
 d-none
 d-xl-block
@@ -91,10 +92,15 @@ justify-content-center
 justify-content-start
 list-group
 list-group-item
+mb-1
 mb-2
 mb-3
+mb-5
 mb-md-0
 mb-sm-3
+me-1
+me-2
+me-4
 me-auto
 minBreakpoint-xs
 * modal-backdrop
@@ -105,12 +111,13 @@ minBreakpoint-xs
 * modal-lg
 * modal-title
 ms-auto
+mt-1
 mt-3
 mt-5
 mt-auto
 mt-lg-0
-mt-mb-auto
 mt-sm-0
+my-3
 my-4
 my-5
 my-auto

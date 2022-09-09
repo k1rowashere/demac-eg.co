@@ -112,7 +112,7 @@ function AboutCard() {
                         <i className='h5 mx-1 bi bi-envelope-fill' />
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <Stack className='mt-mb-auto mt-5 pb-5' direction='horizontal' gap={4}>
+                <Stack className='mt-5 pb-5' direction='horizontal' gap={4}>
                     <Link href='/projects' passHref>
                         <Button variant='outline-light'>Learn about our Projects</Button>
                     </Link>
