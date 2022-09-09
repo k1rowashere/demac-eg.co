@@ -15,13 +15,12 @@
     "@prisma/client": "^4.3.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.2.0",
-    "bootstrap-icons": "^1.9.1",
     "csvtojson": "^2.0.10",
     "formidable": "^2.0.1",
     "formik": "^2.2.9",
     "fuse.js": "^6.6.2",
+    "hastscript": "^7.0.2",
     "iron-session": "^6.1.3",
-    "lru-cache": "^7.13.2",
     "next": "^12.2.5",
     "next-plugin-preact": "^3.0.7",
     "nodemailer": "^6.7.7",
@@ -31,15 +30,14 @@
     "postcss-preset-env": "^7.8.0",
     "preact": "^10.10.6",
     "preact-render-to-string": "^5.2.2",
+    "prisma": "^4.3.1",
     "react": "npm:@preact/compat@^17.1.1",
     "react-bootstrap": "^2.4.0",
     "react-dom": "npm:@preact/compat@^17.1.1",
     "react-google-recaptcha": "^2.1.0",
-    "react-hook-form": "^7.33.1",
     "react-markdown": "^8.0.3",
     "react-ssr-prepass": "npm:preact-ssr-prepass@^1.2.0",
     "react-transition-group": "^4.4.2",
-    "rehype-raw": "^6.1.1",
     "remark-directive": "^2.0.1",
     "remark-unwrap-images": "^3.0.1",
     "request-ip": "^3.3.0",
@@ -49,7 +47,6 @@
     "typescript": "^4.7.4",
     "uuid": "^8.3.2",
     "yup": "^0.32.11",
-    "yup-phone": "^1.3.2",
     "yup-phone-lite": "^1.1.2"
   },
   "devDependencies": {
@@ -68,7 +65,6 @@
     "@types/uuid": "^8.3.4",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.1",
-    "infer-next-props-type": "^0.0.4",
-    "prisma": "^4.3.1"
+    "infer-next-props-type": "^0.0.4"
   }
 }

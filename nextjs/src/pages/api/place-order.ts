@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { v4 as uuidv4 } from 'uuid';
 import { renderToString } from 'react-dom/server';
-import requestIp from 'request-ip';
 import nodemailer from 'nodemailer';
 
 import ContactUsInteral from 'email/ContactUsInternal';
