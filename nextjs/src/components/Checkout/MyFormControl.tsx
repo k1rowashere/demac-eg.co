@@ -17,14 +17,6 @@ export default function MyFormControl2(props: Props) {
     const { required, name, value, handleChange, label, icon, touched, error } = props;
     return (
         <>
-            <style>
-                {`
-                .form-floating .form-control:required ~ label::after {
-                    content: ' *';
-                    color: #dc3545;
-                }
-            `}
-            </style>
             <InputGroup hasValidation className='mb-3'>
                 {icon ? (
                     <InputGroup.Text>

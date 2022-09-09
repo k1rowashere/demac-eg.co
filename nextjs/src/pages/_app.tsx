@@ -1,5 +1,5 @@
 import 'styles/bootstrap.scss';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'styles/bootstrap-icons.css';
 import 'nprogress/nprogress.css';
 import 'styles/globals.scss';
 import 'styles/styles.scss';

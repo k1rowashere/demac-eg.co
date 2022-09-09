@@ -1,6 +1,5 @@
 // import styles from './navbar.module.scss';
 
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Demac from '/public/assets/demac_logo.svg';
 import demac from 'styles/demac.module.scss';
@@ -13,13 +12,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export default function _Navbar({ activePage, bg = 'dark' }: { activePage: string; bg?: string }) {
-    const [expand, setExpand] = useState('');
-    useEffect(() => {
-        setExpand('md');
-    }, []);
-
     return (
-        <Navbar variant='dark' bg={bg} expand={expand}>
+        <Navbar variant='dark' bg={bg} expand='md'>
             <Container fluid className='px-4 px-md-5'>
                 <Demac
                     className={demac.wrapper + ' me-4'}
@@ -75,15 +69,11 @@ export default function _Navbar({ activePage, bg = 'dark' }: { activePage: strin
                                 active={activePage === 'store'}
                             >
                                 <Link href='/store/' passHref>
-                                    <NavDropdown.Item className='dropdown-item'>
-                                        All Products
-                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>All Products</NavDropdown.Item>
                                 </Link>
                                 <NavDropdown.Divider />
                                 <Link href='/store/siemens' passHref>
-                                    <NavDropdown.Item className='dropdown-item'>
-                                        Siemens
-                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>Siemens</NavDropdown.Item>
                                 </Link>
                             </NavDropdown>
                         </Nav>

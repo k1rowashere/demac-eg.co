@@ -10,7 +10,12 @@ import type { products } from '@prisma/client';
 
 export type Products = Pick<products, 'part_no' | 'name' | 'img_link'> & { price: number };
 
-export default function ProductCard({ product }: { product: Products }) {
+type Props = {
+    product: Products;
+    priority?: boolean;
+};
+
+export default function ProductCard({ product, priority }: Props) {
     return (
         <>
             <Col className='mb-3' key={product.part_no}>
@@ -25,6 +30,7 @@ export default function ProductCard({ product }: { product: Products }) {
                                 }}
                             >
                                 <ImageWithFallback
+                                    priority={priority}
                                     className='card-img-top'
                                     src={product.img_link}
                                     fallbackSrc={'/assets/no_img.svg'}

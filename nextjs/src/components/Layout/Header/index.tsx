@@ -10,7 +10,7 @@ type Header = {
 
 export default function Header({ h1, h2, classNames, showSeperator }: Header) {
     return (
-        <header className={classNames?.parent ?? 'bg-dark '}>
+        <header className={'overflow-hidden ' + (classNames?.parent ?? 'bg-dark ')}>
             <div
                 className={`py-3 ${showSeperator ? styles.divider : ''} ${classNames?.child ?? ''}`}
             >

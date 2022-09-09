@@ -27,3 +27,17 @@ nextjs/.pnpm-debug.log*
 
 # vercel
 nextjs/.vercel
+nextjs/fontello/config.json
+nextjs/fontello/demo.html
+nextjs/fontello/README.txt
+nextjs/fontello/css/animation.css
+nextjs/fontello/css/fontello-codes.css
+nextjs/fontello/css/fontello-embedded.css
+nextjs/fontello/css/fontello-ie7-codes.css
+nextjs/fontello/css/fontello-ie7.css
+nextjs/fontello/css/fontello.css
+nextjs/fontello/font/fontello.eot
+nextjs/fontello/font/fontello.svg
+nextjs/fontello/font/fontello.ttf
+nextjs/fontello/font/fontello.woff
+nextjs/fontello/font/fontello.woff2

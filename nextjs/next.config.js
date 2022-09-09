@@ -8,7 +8,7 @@ const withPreact = require('next-plugin-preact');
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    compress: process.env.NODE_ENV === 'development', // handled by nginx in production
+    compress: !process.env.DISABLE_COMPRESSION, // handled by nginx in production
     experimental: {
         // temp till fix
         esmExternals: false,

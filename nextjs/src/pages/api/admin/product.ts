@@ -43,8 +43,6 @@ async function productEdit(req: NextApiRequest, res: NextApiResponse) {
                 });
                 return res.status(200).json({ message: 'Product updated' });
             } else if (req.method === 'DELETE') {
-                console.log('delete');
-
                 await prisma.products.delete({ where: { part_no: data.part_no } });
                 return res.status(200).json({ message: 'Product deleted' });
             } else {

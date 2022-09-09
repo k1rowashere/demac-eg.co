@@ -9,7 +9,16 @@ import Image from 'next/future/image';
 const remarkPlugins: PluggableList = [remarkDirective, remarkAttr2, remarkUnwrapImages];
 // const rehypePlugins = [rehypeRaw];
 const components: Components = {
-    img: ({ src, alt, width, height }) =>
-        Image({ width, height, src: src || '', alt, style: { width: '100%', height: 'auto' } }),
+    img: ({ src, alt, width, height, loading }) => {
+        const priority = loading === 'eager' ? true : false;
+        return Image({
+            width,
+            height,
+            src: src || '',
+            alt,
+            style: { width: '100%', height: 'auto' },
+            priority,
+        });
+    },
 };
 export const markdownOptions = { remarkPlugins, components };

@@ -91,7 +91,6 @@ export default function Cart(props: InferGetServerSidePropsType<typeof getServer
             body: JSON.stringify(payload),
         });
 
-        console.log(res);
         if (res.status === 200) {
             // clear cart
             nookies.set(null, 'cart', '{}', COOKIES_ATTRIBUTES);

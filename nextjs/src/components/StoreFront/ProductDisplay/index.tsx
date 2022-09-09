@@ -58,8 +58,9 @@ function ProductDisplay({ products }: { products: Products[] }) {
         for (let i = 1; i <= pageCount; i++) {
             const currProducts = products.slice((i - 1) * itemsPerPage, i * itemsPerPage);
             pages.push(
-                currProducts.map((product) => (
-                    <ProductCard key={product.part_no} product={product} />
+                currProducts.map((product, index) => (
+                    // gives priority to first product image to improve lcp score
+                    <ProductCard key={product.part_no} product={product} priority={index === 0} />
                 ))
             );
         }

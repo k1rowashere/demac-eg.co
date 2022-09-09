@@ -18,8 +18,6 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse<User>) {
 
     const { username, password } = await req.body;
 
-    console.log(process.env.ADMIN_USERNAME, process.env.ADMIN_HASH);
-
     const loginSuccess =
         username === process.env.ADMIN_USERNAME &&
         (await bcrypt.compare(password, process.env.ADMIN_HASH));

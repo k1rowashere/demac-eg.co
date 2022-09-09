@@ -53,7 +53,7 @@ export default function AddToCart({ id }: { id: string }) {
                             </>
                         ) : (
                             <>
-                                <i className='bi bi-cart-fill me-1' /> Add to Cart
+                                <i className='bi bi-cart-plus-fill me-1' /> Add to Cart
                             </>
                         )}
                     </Button>

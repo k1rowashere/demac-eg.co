@@ -1,6 +1,6 @@
 ## Extrusion Line control:attr{#extrusion-line-control}
 
-![test](/assets/projects/extrusion_line_0.jpg):attr{width=1000 height=350}
+![test](/assets/projects/extrusion_line_0.jpg):attr{width=1000 height=350 loading='eager'}
 
 Based on Siemens Simatic latest software TIA 16 and hardware of Simatic S7- 1200 or S7 – 1500 or S7 – 300 System.
 

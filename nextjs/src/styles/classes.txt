@@ -1,0 +1,181 @@
+active
+align-content-center
+align-items-center
+align-items-end
+align-self-center
+bg
+bg-dark
+bg-gears
+bg-glass
+bg-nah
+bg-transparent
+border-top-0
+breadcrumb
+breadcrumb-item
+btn
+btn-close
+btn-close-white
+* btn-group-sm
+btn-light
+btn-outline-dark
+btn-outline-light
+* btn-link
+btn-primary
+btn-success
+card
+card-body
+* card-header
+card-footer
+card-hover
+card-title
+categories_wrapper__Q1mFS
+* col
+* col-1
+* col-2
+* col-4
+* col-6
+* col-lg-3
+* col-lg-4
+* col-lg-9
+* col-md-1
+* col-md-2
+* col-md-3
+* col-md-4
+* col-md-5
+* col-sm-3
+* col-sm-5
+collapse
+collapsed
+* collapsing
+container
+container-fluid
+container-lg
+d-block
+d-flex
+d-md-block
+d-none
+d-xl-block
+d-xl-none
+disabled
+dropdown
+* dropdown-divider
+* dropdown-item
+* dropdown-menu
+* dropdown-menu-dark
+* dropdown-menu-toggle
+dropdown-toggle
+flex-column
+flex-grow-1
+form-control
+form-floating
+* gap-3
+gap-4
+gx-4
+gx-lg-5
+h-100
+* has-validation
+h4
+h5
+hstack
+indent
+input-group
+* input-group:not(.has-validation)
+* input-group-text
+* invalid-feedback
+* invalid-tooltip
+* is-invalid
+* is-valid
+justify-content-around
+justify-content-between
+justify-content-center
+justify-content-start
+list-group
+list-group-item
+mb-2
+mb-3
+mb-md-0
+mb-sm-3
+me-auto
+minBreakpoint-xs
+* modal-backdrop
+* modal-body
+* modal-content
+* modal-dialog
+* modal-header
+* modal-lg
+* modal-title
+ms-auto
+mt-3
+mt-5
+mt-auto
+mt-lg-0
+mt-mb-auto
+mt-sm-0
+my-4
+my-5
+my-auto
+nav-item
+nav-link
+navbar
+navbar-dark
+navbar-expand-md
+navbar-nav
+navbar-toggler
+* navbar-toggler-icon
+offcanvas
+offcanvas-body
+offcanvas-end
+offcanvas-header
+offcanvas-title
+* offset-1
+* offset-md-0
+* offset-md-1
+* offset-sm-1
+* order-0
+* order-1
+* order-2
+* order-3
+* order-4
+* order-5
+* order-lg-0
+* order-md-0
+* order-md-1
+* order-md-2
+* order-md-3
+* order-md-4
+* order-md-5
+p-0
+p-2
+p-3
+p-4
+page-item
+* page-link
+pagination
+pb-2
+pb-5
+pt-0
+pt-4
+px-1
+px-3
+px-4
+px-lg-5
+px-md-5
+py-3
+py-5
+read-more
+row
+row-cols-1
+row-cols-lg-2
+row-cols-lg-3
+row-cols-md-2
+row-cols-md-3
+row-cols-sm-2
+row-cols-xl-2
+row-cols-xl-4
+row-cols-xxl-6
+show
+text-center
+text-truncate
+text-white
+text-white-50
+* visually-hidden

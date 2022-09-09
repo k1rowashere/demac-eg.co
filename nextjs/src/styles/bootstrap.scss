@@ -96,3 +96,8 @@
 .card-header {
     background-color: unset;
 }
+
+.form-floating .form-control:required ~ label::after {
+    content: ' *';
+    color: #dc3545;
+}
